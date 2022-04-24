@@ -1,0 +1,15 @@
+#cuerpo{
+    font-family: Montserrat;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+body{
+    background: url(../img/tierra.jpg);
+    background-repeat: no-repeat;
+    background-size: 1920px; 
+    /* COVER */
+}

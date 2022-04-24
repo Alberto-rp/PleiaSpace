@@ -1,0 +1,63 @@
+#cuerpo{
+    font-family: Montserrat;
+    color: white;
+}
+
+.darkColor{
+    background-color: #1a1a1a;
+}
+
+/* #jumbo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+/* DEJA LOS ELEMENTOS APARTADOS DEL NAV */
+
+/* html, body{
+    width: 100%;
+    height: 100%;
+} */
+body{
+  min-height: 50rem;
+  padding-top: 9.5rem;
+  background-color: #1a1a1a;
+}
+
+@media screen and (min-width:1280px) { 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/cupula.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+
+    }
+}
+
+@media screen and (min-width:800px) and (max-width:1280px){ 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/cupulaSmall.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+
+    }
+}
+
+@media screen and (max-width:800px) { 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/cupulaXSmall.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+
+    }
+} 

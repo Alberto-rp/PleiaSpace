@@ -1,0 +1,27 @@
+
+body{
+    background: url(../img/tierra.jpg);
+    background-repeat: no-repeat;
+    background-size: 1920px; 
+    
+    /* COVER */
+}
+
+#principal{
+    max-width: 800px;
+    margin-top: 100px;
+    font-family: Montserrat;
+}
+.col:not(.but){
+    border: solid 1px white;
+    height: 150px;
+}
+.elemVuelo{
+    font-size: 10px;
+}
+
+/* Logos de avanzar y retroceder */
+div[class~='col-3'] img{
+    width: 30px;
+    cursor: pointer;
+}

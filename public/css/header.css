@@ -1,0 +1,30 @@
+
+
+.header {
+    background-color: #1a1a1a;
+}
+
+/* body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+} */
+
+a.nav-link {
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-family: Montserrat;
+    color: white;
+}
+
+img.mr-5{
+    width: 120px;
+}
+
+.colorComp{
+    background-color: #6699FF;
+}
+
+a[class~='nav-link']:hover{
+    transition: 0.5s;
+}
