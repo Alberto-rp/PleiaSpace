@@ -5,7 +5,7 @@ var vuelos = require('./routes/rutasVuelos')
 var router = express.Router();
 var app = express();
 
-var PORT = 8080
+var PORT = 80
 //3008
 //En el futuro modificar guayy
 
@@ -17,6 +17,10 @@ app.use(vuelos)
 
 
 // Iniciamos el servidor
-app.listen(PORT, () => {
+// app.listen(PORT, () => {
+//     console.log(`Server iniciado en el puerto ${PORT}`)
+// })
+
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Server iniciado en el puerto ${PORT}`)
 })
