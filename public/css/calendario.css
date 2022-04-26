@@ -1,11 +1,10 @@
 
-body{
+/* body{
     background: url(../img/tierra.jpg);
     background-repeat: no-repeat;
     background-size: 1920px; 
     
-    /* COVER */
-}
+} */
 
 #principal{
     max-width: 800px;
@@ -25,3 +24,39 @@ div[class~='col-3'] img{
     width: 30px;
     cursor: pointer;
 }
+
+@media screen and (min-width:1280px) { 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/tierra.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+
+    }
+} 
+
+@media screen and (min-width:800px) and (max-width:1280px){ 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/tierraMed.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+
+    }
+}
+
+@media screen and (max-width:800px) { 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/tierraXSmall.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+
+    }
+} 
