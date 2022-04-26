@@ -7,7 +7,7 @@ var app = express();
 
 var PORT = 3008
 //3008
-//En el futuro modificar guayy
+//En el futuro modificar guay develop
 
 
 app.use("/", express.static('public'))
