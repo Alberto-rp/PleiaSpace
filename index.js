@@ -5,7 +5,7 @@ var vuelos = require('./routes/rutasVuelos')
 var router = express.Router();
 var app = express();
 
-var PORT = 80
+var PORT = 8080
 //3008
 //En el futuro modificar guayy
 
