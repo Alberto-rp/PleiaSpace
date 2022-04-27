@@ -1,8 +1,8 @@
 window.addEventListener("load", init)
 let arrayMeses = ["EN","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEPT","OCT","NOV","DIC"]
+let fechaAct = new Date()
 
 function init(){
-    let fechaAct = new Date()
     document.querySelector("#anioActual").innerHTML = fechaAct.getFullYear()
 
     // Inicializamos el calendario
@@ -43,9 +43,11 @@ function avanzarAnio(){
 function retrocederAnio(){
     let anioAct = Number(document.querySelector("#anioActual").innerHTML)
     anioAct -= 1
-    document.querySelector("#anioActual").innerHTML = anioAct
-    limpiarMeses()
-    cambiarCalendario()
+    if(anioAct >= fechaAct.getFullYear()){
+        document.querySelector("#anioActual").innerHTML = anioAct
+        limpiarMeses()
+        cambiarCalendario()
+    }
     
 }
 
@@ -58,7 +60,7 @@ async function cambiarCalendario(){
             let fechaVuelo = new Date(item.fecha)
             if(document.querySelector("#anioActual").innerHTML == fechaVuelo.getFullYear()){
                 let id = "#m"+(fechaVuelo.getMonth()+1)
-                document.querySelector(id).innerHTML = `<div class='elemVuelo'>
+                document.querySelector(id).innerHTML += `<div class='elemVuelo'>
                                                             Vuelo: ${item.id_vuelo}<br>
                                                             Orbita: ${item.orbita_destino}<br>
                                                             Tipo: ${item.tipo_vuelo}

@@ -12,7 +12,7 @@ var PORT = 3008
 
 app.use("/", express.static('public'))
 app.use(bodyParser.json())
-app.use(router)
+// app.use(router)
 app.use(vuelos)
 
 
