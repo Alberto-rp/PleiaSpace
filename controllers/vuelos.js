@@ -16,4 +16,18 @@ vuelos.getVuelos = function(callback){
     })
 }
 
+vuelos.getVuelosCOMByFecha = function(fecha, callback){
+    console.log(fecha)
+    let query = 'SELECT id_vuelo, fecha, tipo_vuelo, orbita_destino FROM `vuelos` WHERE fecha > ? AND tipo_vuelo = "COM" ORDER BY fecha';
+    pool.query(query, fecha, function (error, result){
+        if(error){
+            throw error
+        }
+        else{
+            callback(null, result)
+        }
+
+    })
+}
+
 module.exports = vuelos
