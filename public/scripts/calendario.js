@@ -53,7 +53,7 @@ function retrocederAnio(){
 
 async function cambiarCalendario(){
     // Recuperamos los datos del servidor
-    fetch("/vuelos")
+    fetch("/api/vuelos")
     .then(response => response.json())
     .then(data => {
         for(item of data){
