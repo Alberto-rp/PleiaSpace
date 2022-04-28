@@ -9,6 +9,11 @@ var router = express.Router();
 var vuelosControler = require('../controllers/controlador_vuelos');
 
 //Todos los vuelos
+router.get('/', function(request, response){
+    response.render('index')
+})
+
+//Todos los vuelos
 router.get('/api/vuelos', function(request, response){
     vuelosControler.getVuelos(function(error, data){
         response.status(200).json(data)

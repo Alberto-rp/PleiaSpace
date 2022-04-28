@@ -9,10 +9,16 @@ var PORT = 3008
 //3008
 //En el futuro modificar guay ejs
 
+//Motor plantillas
+app.set('view engine', 'ejs')
 
-app.use("/", express.static('public'))
+// Archivos estaticos
+app.use(express.static('public'))
+
+// Procesar datos desde formularios
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
 app.use(router)
 app.use(vuelos)
 
