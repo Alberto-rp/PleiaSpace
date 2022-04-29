@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
     <script src="scripts/header.js"></script>
+    <script src="scripts/vueloCom.js"></script>
     <link rel="stylesheet" href="css/fuente.css">
     <link rel="stylesheet" href="css/vuelo_comercial.css">
     <!-- Bootstrap CSS -->
@@ -25,7 +26,7 @@
             </div>
         </div>
 
-        <form action="/vuelosCOM" method="get">
+        <form action="" method="get" id="formulario1">
             <div class="row darkColor mt-5 text-center">
                 <div class="col-sm-8 m-auto">
                     <label for="fechaIn">No antes de:</label>
@@ -33,10 +34,11 @@
                 </div>
                 
                 <div class="col-12 text-center mt-2">
-                    <input class="btn" type="submit" value="Reservar">
+                    <input id="envio" class="btn" type="submit" value="Reservar">
                 </div>
             </div>
         </form>
+        <div class="container" id="tablaResult"></div>
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->

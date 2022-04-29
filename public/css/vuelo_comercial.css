@@ -7,6 +7,10 @@
     background-color: #1a1a1a;
 }
 
+#tablaResult{
+    display: none;
+}
+
 /* #jumbo{
     position: absolute;
     top: 50%;

@@ -1,20 +1,24 @@
 var express = require("express");
 var bodyParser  = require("body-parser");
-var vuelos = require('./routes/rutasVuelos')
+var vuelos = require('./routes/rutasEstaticos')
+var rutasAPI = require("./routes/rutasAPI")
 
-var router = express.Router();
-var app = express();
-
+var router = express.Router()
+var app = express()
 var PORT = 3008
-//3008
-//En el futuro modificar guay develop
 
 
+// Archivos estáticos
 app.use("/", express.static('public'))
+
+// Envio de datos al servidor
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+// Rutas
 app.use(router)
 app.use(vuelos)
+app.use(rutasAPI)
 
 
 // Iniciamos el servidor
