@@ -25,20 +25,108 @@
                 <p class="lead">LA EXPERIENCIA QUE CAMBIARÁ TÚ VIDA</p>
             </div>
         </div>
+        
+        <!-- FORM -->
+        <form action="" method="get" class="bg-dark text-center" id="formulario1">
+            <fieldset id="fs1">
+                <div class="row darkColor text-center">
+                    <div class="col-sm-8 m-auto">
+                        <label for="fechaIn">No antes de:</label>
+                        <input type="month" class="form-control" id="fechaIn" name="fechaIn">
+                    </div>
+                    
+                    <div class="col-12 text-center mt-2">
+                        <input id="envio" class="btn" type="submit" value="Reservar">
+                    </div>
+                </div>
+            </fieldset>
 
-        <form action="" method="get" id="formulario1">
-            <div class="row darkColor mt-5 text-center">
-                <div class="col-sm-8 m-auto">
-                    <label for="fechaIn">No antes de:</label>
-                    <input type="month" class="form-control" id="fechaIn" name="fechaIn">
+            <div class="container" id="tablaResult"></div>
+
+            <fieldset disabled="disabled" id="fs2">
+                <!-- Nombre y apellidos -->
+                <h2 class="text-center">Contacto</h2>
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="name">Nombre</label><br>
+                        <input type="text" name="name" id="name" required placeholder="Nombre">
+                    </div>
+                    <div class="col m-auto">
+                        <label for="surnames">Apellidos</label><br>
+                        <input type="text" name="surnames" id="surnames" required>
+                    </div>
                 </div>
-                
-                <div class="col-12 text-center mt-2">
-                    <input id="envio" class="btn" type="submit" value="Reservar">
+                <!-- Email -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="email">Email</label><br>
+                        <input type="email" name="email" id="email" required>
+                    </div>
                 </div>
-            </div>
+                <!-- Telefono -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="phone">Teléfono</label><br>
+                        <input type="tel" name="phone" id="phone" required>
+                    </div>
+                </div>
+                <!-- Pais y provincia -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="country">País</label>
+                        <select name="country" id="country"></select>
+                    </div>
+                    <div class="col m-auto">
+                        <label for="stateProv">Provincia</label>
+                        <input type="text" name="stateProv" id="stateProv">
+                    </div>
+                </div>
+                <!-- Ciudad y código postal -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="city">Ciudad</label>
+                        <input type="text" name="city" id="city">
+                    </div>
+                    <div class="col m-auto">
+                        <label for="codPost">Código Postal</label>
+                        <input type="number" name="codPost" id="codPost">
+                    </div>
+                </div>
+                <!-- Dirección -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="adress">Dirección</label><br>
+                        <input type="text" name="adress" id="adress" required>
+                    </div>
+                </div>
+
+                <!-- fecha nacimiento -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="birthDate">Fecha de nacimiento</label><br>
+                        <input type="date" name="birthDate" id="birthDate">
+                    </div>
+                </div>
+                <!-- sobreti -->
+                <h2 class="text-center mt-5">Sobre ti</h2>
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="info">Fecha de nacimiento</label><br>
+                        <textarea name="info" id="info" cols="50" rows="5"></textarea>
+                    </div>
+                </div>
+
+                <!-- Id VUELO -->
+                <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
+
+                <!-- SUBMIT -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <input type="submit" value="Enviar">
+                    </div>
+                </div>
+            </fieldset>
         </form>
-        <div class="container" id="tablaResult"></div>
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->
