@@ -8,8 +8,7 @@ vuelos.getVuelos = function(callback){
     pool.query('SELECT id_vuelo, fecha, tipo_vuelo, orbita_destino FROM `vuelos` ORDER BY fecha', function (error, result){
         if(error){
             throw error
-        }
-        else{
+        }else{
             callback(null, result)
         }
 
@@ -21,8 +20,7 @@ vuelos.getVuelosCOMByFecha = function(fecha, callback){
     pool.query(query, fecha, function (error, result){
         if(error){
             throw error
-        }
-        else{
+        }else{
             callback(null, result)
         }
 

@@ -1,12 +1,11 @@
 var express = require('express');
-const url = require('url')
-const path = require('path')
 var router = express.Router();
 
 //Creamos el objeto para definir las rutas
 
 //Importamos el modelo que ejecutará las sentencias SQL
 var vuelosControler = require('../controllers/controlador_vuelos');
+var authController = require('../controllers/controlador_auth')
 
 //Todos los vuelos
 router.get('/api/vuelos', function(request, response){
@@ -26,5 +25,7 @@ router.get('/api/vuelosCOM:fechita', function(request, response){
         response.status(200).json(data)
     })
 })
+
+router.post('/api/registro', authController.registro)
 
 module.exports = router

@@ -24,4 +24,13 @@ router.get('/vuela', function(request, response){
     response.sendFile(path.join(__dirname + '/../public/vuelo_comercial.html'));
 })
 
+router.get('/login', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/login.html'))
+})
+
+router.get('/registro', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/registro.html'))
+    // response.redirect('/registro')
+})
+
 module.exports = router
