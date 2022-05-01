@@ -1,29 +1,14 @@
 var mysql = require('mysql');
 
+// Añadimos esta línea para que las variables de entorno sean alcanzables
+require('dotenv').config();
+
 var pool = mysql.createPool({
     connectionLimit : 10,
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database : 'pleiaspace',
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASSWD,
+    database : process.env.DB_DATABASE,
 });     
+
 module.exports = pool;
-
-
-// Pool LOCAL
-// var pool = mysql.createPool({
-//     connectionLimit : 10,
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : '',
-//     database : 'pleiaspace',
-// });   
-
-// POOL HEROKU
-// var pool = mysql.createPool({
-//     connectionLimit : 10,
-//     host     : 'eu-cdbr-west-02.cleardb.net',
-//     user     : 'bb93f3ee1f045e',
-//     password : '86aa4083',
-//     database : 'heroku_1787a299a65ece9',
-// });    

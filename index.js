@@ -3,6 +3,9 @@ var bodyParser  = require("body-parser");
 var cookieParser = require("cookie-parser")
 var vuelos = require('./routes/rutasEstaticos')
 var rutasAPI = require("./routes/rutasAPI")
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 var router = express.Router()
 var app = express()
@@ -20,7 +23,7 @@ app.use(bodyParser.json())
 app.use(router)
 app.use(vuelos)
 app.use(rutasAPI)
-// app.use(cookieParser)
+app.use(cookieParser())
 
 
 // Iniciamos el servidor

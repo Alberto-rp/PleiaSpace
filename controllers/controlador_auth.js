@@ -40,11 +40,27 @@ exports.login = async (request, response) =>{
                 if(results.length == 0 || ! (await bcryp.compare(password, results[0].password))){
                     response.redirect('/login?error=fail')
                 }else{
-                    // Inicio OK
-                    const id = results[0].id_usuario
-                    // const token = jwt.sign({id:id})
-                    console.log(id)
-                    // Necesitamos variables de entorno para seguir
+                    try {
+                        // INICIO CORRECTO
+                        // Creacion del token
+                        const id = results[0].id_usuario
+                        const token = jwt.sign({id:id}, process.env.JWT_SECRET, {
+                            expiresIn: process.env.JWT_TIEMPO_EXPIRA
+                        })
+                        console.log(token+" DE "+email)
+    
+                        // Configuracion cookie
+                        const cookiesOptions = {
+                            expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+                            httpOnly: true
+                        }
+    
+                        response.cookie('jwt', token, cookiesOptions)
+                        response.redirect('/')
+                        
+                    } catch (error) {
+                        console.log(error)
+                    }
                 }
             })
         }
