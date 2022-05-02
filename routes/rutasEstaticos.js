@@ -2,6 +2,9 @@ var express = require('express');
 const url = require('url')
 const path = require('path')
 var router = express.Router();
+const cookieParser = require("cookie-parser")
+router.use(cookieParser())
+const authController = require('../controllers/controlador_auth')
 
 //Importamos el modelo que ejecutará las sentencias SQL
 
@@ -16,7 +19,7 @@ var router = express.Router();
 //     // })
 // })
 
-router.get('/calendario', function(request, response){
+router.get('/calendario', authController.isAutentic, function(request, response){
     response.sendFile(path.join(__dirname + '/../public/calendario.html'));
 })
 

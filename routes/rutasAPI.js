@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const cookieParser = require("cookie-parser")
+router.use(cookieParser())
 
 //Creamos el objeto para definir las rutas
 

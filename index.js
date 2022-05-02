@@ -23,7 +23,10 @@ app.use(bodyParser.json())
 app.use(router)
 app.use(vuelos)
 app.use(rutasAPI)
+
+// Funcion de las cookies
 app.use(cookieParser())
+
 
 
 // Iniciamos el servidor

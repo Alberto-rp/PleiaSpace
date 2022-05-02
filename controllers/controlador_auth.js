@@ -3,6 +3,7 @@ const bcryp = require("bcryptjs")
 const {promisify} = require("util")
 var pool = require('../DataBase/conection')
 
+
 // Método de registro
 exports.registro = async (request, response) =>{
     try {
@@ -66,5 +67,26 @@ exports.login = async (request, response) =>{
         }
     } catch (error) {
         console.log(error)
+    }
+}
+
+exports.isAutentic = async (request, response, next)=>{
+    if(request.cookies.jwt){
+        try {
+            var decodificada = await promisify(jwt.verify)(request.cookies.jwt, process.env.JWT_SECRET)
+            pool.query('SELECT * FROM usuarios WHERE id_usuario = ?', [decodificada.id], (error,results)=>{
+                if(error){console.log(error)}
+                // Si no hay resultado sigue al siguiente destino
+                if(!results){return next()}
+                console.log(results)
+                request.user = results[1]
+                return next()
+            })
+        } catch (error) {
+            console.log(error)
+            return next()
+        }
+    }else{
+        response.redirect('/login') 
     }
 }
