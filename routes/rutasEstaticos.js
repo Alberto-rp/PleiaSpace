@@ -19,11 +19,11 @@ const authController = require('../controllers/controlador_auth')
 //     // })
 // })
 
-router.get('/calendario', authController.isAutentic, function(request, response){
+router.get('/calendario', function(request, response){
     response.sendFile(path.join(__dirname + '/../public/calendario.html'));
 })
 
-router.get('/vuela', function(request, response){
+router.get('/vuela', authController.isAutentic, function(request, response){
     response.sendFile(path.join(__dirname + '/../public/vuelo_comercial.html'));
 })
 

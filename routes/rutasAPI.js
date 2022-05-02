@@ -21,4 +21,7 @@ router.post('/api/registro', authController.registro)
 // Login
 router.post('/api/login', authController.login)
 
+// logout
+router.get('/api/logout', authController.logout)
+
 module.exports = router

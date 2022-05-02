@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken")
 const bcryp = require("bcryptjs")
 const {promisify} = require("util")
 var pool = require('../DataBase/conection')
+const { response } = require("express")
+const res = require("express/lib/response")
 
 
 // Método de registro
@@ -48,7 +50,6 @@ exports.login = async (request, response) =>{
                         const token = jwt.sign({id:id}, process.env.JWT_SECRET, {
                             expiresIn: process.env.JWT_TIEMPO_EXPIRA
                         })
-                        console.log(token+" DE "+email)
     
                         // Configuracion cookie
                         const cookiesOptions = {
@@ -78,8 +79,7 @@ exports.isAutentic = async (request, response, next)=>{
                 if(error){console.log(error)}
                 // Si no hay resultado sigue al siguiente destino
                 if(!results){return next()}
-                console.log(results)
-                request.user = results[1]
+                request.user = results[0]
                 return next()
             })
         } catch (error) {
@@ -89,4 +89,9 @@ exports.isAutentic = async (request, response, next)=>{
     }else{
         response.redirect('/login') 
     }
+}
+
+exports.logout = (request, response) => {
+    response.clearCookie('jwt')
+    response.redirect('/')
 }
