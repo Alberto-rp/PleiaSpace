@@ -1,6 +1,6 @@
 {
   "name": "pleiaapp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Pagina Web de la agencia espacial PleiaSpace",
   "main": "index.js",
   "scripts": {
