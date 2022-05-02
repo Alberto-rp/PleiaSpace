@@ -6,11 +6,7 @@ function init(){
     if(document.cookie != ''){
         document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/login">Perfil</a>
         <a class="dropdown-item" href="/api/logout">Logout</a>`
-    }else{
-        document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/login">Login</a>
-        <a class="dropdown-item" href="/registro">Registro</a>`
     }
-
 }
 
 fetch("header.html")
