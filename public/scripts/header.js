@@ -2,7 +2,6 @@
 window.addEventListener("load", init)
 
 function init(){
-    console.log(document.cookie)
     if(document.cookie != ''){
         document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/login">Perfil</a>
         <a class="dropdown-item" href="/api/logout">Logout</a>`

@@ -55,6 +55,7 @@ exports.login = async (request, response) =>{
                         const cookiesOptions = {
                             expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
                             httpOnly: true
+                            // la linea de arriba es para que no sea visible en el cliente
                         }
     
                         response.cookie('jwt', token, cookiesOptions)
@@ -88,7 +89,7 @@ exports.isAutentic = async (request, response, next)=>{
             return next()
         }
     }else{
-        response.redirect('/login') 
+        response.redirect('/login?error=auth') 
     }
 }
 
