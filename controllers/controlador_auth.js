@@ -58,7 +58,8 @@ exports.login = async (request, response) =>{
                         }
     
                         response.cookie('jwt', token, cookiesOptions)
-                        response.redirect('/')
+                        response.cookie('usuario',results[0].nombre, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
+                        response.redirect('/vuela')
                         
                     } catch (error) {
                         console.log(error)
@@ -93,5 +94,6 @@ exports.isAutentic = async (request, response, next)=>{
 
 exports.logout = (request, response) => {
     response.clearCookie('jwt')
+    response.clearCookie('usuario')
     response.redirect('/')
 }
