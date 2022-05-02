@@ -9,15 +9,17 @@ window.addEventListener('load', init)
 
 function init(){
     let divAlerta = document.querySelector("#alerta")
-    divAlerta.style.display = 'block'
     switch(error){
         case'blank':
+            divAlerta.style.display = 'block'
             divAlerta.children[0].innerHTML = "<strong>Error</strong> Debes introducir algo"
             break;
         case'fail':
+            divAlerta.style.display = 'block'
             divAlerta.children[0].innerHTML = "<strong>Error</strong> Usuario o contraseña incorrectos"
             break;
         case'auth':
+            divAlerta.style.display = 'block'
             divAlerta.children[0].innerHTML = "<strong>Error</strong> Debes iniciar sesion para reservar vuelo"
             break;
 

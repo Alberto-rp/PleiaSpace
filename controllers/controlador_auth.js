@@ -59,7 +59,8 @@ exports.login = async (request, response) =>{
                         }
     
                         response.cookie('jwt', token, cookiesOptions)
-                        response.cookie('usuario',results[0].nombre, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
+                        let nombreHash = await bcryp.hash(results[0].nombre, 8)
+                        response.cookie('usuario',nombreHash, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
                         response.redirect('/vuela')
                         
                     } catch (error) {
@@ -74,6 +75,7 @@ exports.login = async (request, response) =>{
 }
 
 exports.isAutentic = async (request, response, next)=>{
+    // console.log(request.cookies)
     if(request.cookies.jwt){
         try {
             var decodificada = await promisify(jwt.verify)(request.cookies.jwt, process.env.JWT_SECRET)
@@ -81,7 +83,7 @@ exports.isAutentic = async (request, response, next)=>{
                 if(error){console.log(error)}
                 // Si no hay resultado sigue al siguiente destino
                 if(!results){return next()}
-                request.user = results[0]
+                // request.user = results[0]
                 return next()
             })
         } catch (error) {
@@ -97,4 +99,25 @@ exports.logout = (request, response) => {
     response.clearCookie('jwt')
     response.clearCookie('usuario')
     response.redirect('/')
+}
+
+exports.comprobarCookie = async (request, response) => {
+    const nombreCod = request.params.name;
+    if(request.cookies.jwt){
+        try {
+            var decodificada = await promisify(jwt.verify)(request.cookies.jwt, process.env.JWT_SECRET)
+            pool.query('SELECT nombre FROM usuarios WHERE id_usuario = ?', [decodificada.id], (error,results)=>{
+                if(error){console.log(error)}
+                if(results.length != 0 ||  await (bcryp.compare(results[0].nombre, nombreCod))){
+                    response.status(200).json({ok : true})
+                }
+                
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }else{
+        response.status(200).json({ok : false})
+    }
+    
 }

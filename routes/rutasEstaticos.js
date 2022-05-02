@@ -36,4 +36,9 @@ router.get('/registro', function(request, response){
     // response.redirect('/registro')
 })
 
+router.get('/perfil', authController.isAutentic, function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/perfil.html'))
+    // response.redirect('/registro')
+})
+
 module.exports = router

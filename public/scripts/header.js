@@ -1,10 +1,27 @@
 
+
 window.addEventListener("load", init)
 
 function init(){
+
     if(document.cookie != ''){
-        document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/login">Perfil</a>
-        <a class="dropdown-item" href="/api/logout">Logout</a>`
+        // Funcion que comprueba el nombre de usuario codificado en el servidor
+        fetch('/api/compCookie'+getCookie('usuario'))
+        .then(res => res.json())
+        .then(data => {
+            // Si se verifica que la cookie es correcta, se actualiza la cabecera
+            if(data.ok){
+                fetch('/api/usuario')
+                .then(resp => resp.json())
+                .then(data => {
+                    document.querySelector("#navbardrop").innerHTML = data[0].nombre.toUpperCase()
+                })
+        
+                document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/perfil">Perfil</a>
+                <a class="dropdown-item" href="/api/logout">Logout</a>`
+            }
+        })
+
     }
 }
 
@@ -39,3 +56,9 @@ function borrarBtn(){
     this.children[0].style.textDecorationLine = ""
     this.children[0].style.textUnderlineOffset = "";
 }
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
