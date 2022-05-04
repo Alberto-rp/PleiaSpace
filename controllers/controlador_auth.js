@@ -24,7 +24,7 @@ exports.registro = async (request, response) =>{
                 console.log(error)
                 response.redirect('/registro?error=duplicate')
             }else{
-                response.redirect('/login')
+                response.redirect('/login?error=noerror')
             }
         })
     } catch (error) {

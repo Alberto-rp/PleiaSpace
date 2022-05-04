@@ -28,7 +28,7 @@
         </div>
         
         <!-- FORM -->
-        <form action="" method="get" class="bg-dark text-center" id="formulario1">
+        <form action="/api/usuario/reserva" method="post" class="bg-dark text-center" id="formulario1">
             <fieldset id="fs1">
                 <div class="row darkColor text-center">
                     <div class="col-sm-8 m-auto">
@@ -50,11 +50,11 @@
                 <div class="row mt-2 text-center">
                     <div class="col m-auto">
                         <label for="name">Nombre</label><br>
-                        <input type="text" name="name" id="name" required placeholder="Nombre">
+                        <input type="text" name="name" id="name" required placeholder="Nombre" readonly>
                     </div>
                     <div class="col m-auto">
                         <label for="surnames">Apellidos</label><br>
-                        <input type="text" name="surnames" id="surnames" required>
+                        <input type="text" name="surnames" id="surnames" required readonly>
                     </div>
                 </div>
                 <!-- Email -->
@@ -75,59 +75,70 @@
                 <div class="row mt-2 text-center">
                     <div class="col m-auto">
                         <label for="country">País</label>
-                        <select name="country" id="country"></select>
+                        <select name="country" id="country" required></select>
                     </div>
                     <div class="col m-auto">
                         <label for="stateProv">Provincia</label>
-                        <input type="text" name="stateProv" id="stateProv">
+                        <input type="text" name="stateProv" id="stateProv" required>
                     </div>
                 </div>
                 <!-- Ciudad y código postal -->
                 <div class="row mt-2 text-center">
                     <div class="col m-auto">
                         <label for="city">Ciudad</label>
-                        <input type="text" name="city" id="city">
+                        <input type="text" name="city" id="city" required>
                     </div>
                     <div class="col m-auto">
                         <label for="codPost">Código Postal</label>
-                        <input type="number" name="codPost" id="codPost">
+                        <input type="number" name="codPost" id="codPost" required>
                     </div>
                 </div>
-                <!-- Dirección -->
+                <!-- Dirección y metodoPago-->
                 <div class="row mt-2 text-center">
                     <div class="col m-auto">
                         <label for="adress">Dirección</label><br>
                         <input type="text" name="adress" id="adress" required>
                     </div>
-                </div>
-
-                <!-- fecha nacimiento -->
-                <div class="row mt-2 text-center">
                     <div class="col m-auto">
-                        <label for="birthDate">Fecha de nacimiento</label><br>
-                        <input type="date" name="birthDate" id="birthDate">
+                        <label for="payMeth">Método de pago</label>
+                        <select name="payMeth" id="payMeth" required></select>
                     </div>
                 </div>
+                <!-- Asientos -->
+                <div class="row mt-2 text-center">
+                    <div class="col m-auto">
+                        <label for="numAsients">Asientos</label>
+                        <select name="numAsients" id="numAsients" required></select>
+                    </div>
+                </div>
+
                 <!-- sobreti -->
                 <h2 class="text-center mt-5">Sobre ti</h2>
                 <div class="row mt-2 text-center">
                     <div class="col m-auto">
-                        <label for="info">Fecha de nacimiento</label><br>
-                        <textarea name="info" id="info" cols="50" rows="5"></textarea>
+                        <label for="info">¿Porqué quieres ir al espacio?</label><br>
+                        <textarea name="info" id="info" cols="50" rows="5" maxlength="500"></textarea>
                     </div>
                 </div>
 
                 <!-- Id VUELO -->
                 <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
+                <input type="hidden" name="idUsuario" id="idUsuario" value="">
 
                 <!-- SUBMIT -->
                 <div class="row mt-2 text-center">
                     <div class="col m-auto">
-                        <input type="submit" value="Enviar">
+                        <input type="submit" value="Reservar">
                     </div>
                 </div>
             </fieldset>
         </form>
+        <div class="alert alert-dismissible fade show" role="alert"  id="alerta">
+            <span></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->

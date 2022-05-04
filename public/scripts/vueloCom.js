@@ -1,8 +1,63 @@
 window.addEventListener("load", init)
 let vuelosDisponibles = null
+let metodosPago = [['TC','Tarjeta de crédito'],['TF','Transferencia Bancaria'] ,['PMA','Pago mediante Activos']]
+let asientosDisponibles = []
+
+// Errores
+const queryURL = window.location.search
+const parametros = new URLSearchParams(queryURL)
+let error = parametros.get('error')
 
 function init(){
     document.querySelector("#envio").addEventListener("click", despFormulario)
+
+    // Inicializamos los métodos de pago
+    for(item of metodosPago){
+        document.querySelector('#payMeth').innerHTML += `<option value='${item[0]}'>${item[1]}</option>`
+    }
+
+    // Rellenamos los campos con los datos del usuario registrado
+    fetch('/api/compCookie'+getCookie('usuario'))
+    .then(res => res.json())
+    .then(data => {
+        // Si se verifica que la cookie es correcta, Se autorrellenan los campos
+        if(data.ok){
+            fetch('/api/usuario')
+            .then(resp => resp.json())
+            .then(data => {
+                document.querySelector("#name").value = data[0].nombre
+                document.querySelector("#surnames").value = data[0].apellidos
+                document.querySelector("#email").value = data[0].email
+                document.querySelector("#country").value = data[0].pais
+                document.querySelector("#idUsuario").value = data[0].id_usuario
+            })
+    
+        }
+    })
+
+    // Comprobar errores URL
+    switch(error){
+        case'error1':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.style.display = 'block'
+            divAlerta.children[0].innerHTML = "<strong>Error</strong> Debes introducir algo"
+            break;
+        case'error2':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.style.display = 'block'
+            divAlerta.children[0].innerHTML = "<strong>Error</strong> Usuario o contraseña incorrectos"
+            break;
+        case'error3':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.style.display = 'block'
+            divAlerta.children[0].innerHTML = "<strong>Error</strong> Debes iniciar sesion para reservar vuelo"
+            break;
+        case'noerror':
+            divAlerta.classList.add("alert-success")
+            divAlerta.style.display = 'block'
+            divAlerta.children[0].innerHTML = "<strong>Bien!</strong> Usuario creado correctamente"
+        break;
+    }
 }
 
 function despFormulario(e){
@@ -40,6 +95,7 @@ function despFormulario(e){
                                     <div class='col'>${item.asientos_disponibles}</div>
                                     <div class='col'><button name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></div>
                                     </div>`
+                    asientosDisponibles.push([item.id_vuelo, item.asientos_disponibles])
                 }
                 divCont.innerHTML += codigoHtml
                 asignarFuncion()
@@ -81,6 +137,16 @@ function nextStep(e){
 
     // Guardamos la id del vuelo en el formulario
     document.querySelector("#idVueloSel").value = this.id
+
+    // Asignamos los asientos dispobibles
+    for(item of asientosDisponibles){
+        if(item[0] == this.id){
+            iterador = item[1]
+        }
+    }
+    for(let i = 1; i <= iterador; i++){
+        document.querySelector("#numAsients").innerHTML += `<option value='${i}'>${i}</option>`
+    }
     
     //Ocultamos los vuelos no seleccionados
     let divResultado = document.querySelector("#tablaResult").children

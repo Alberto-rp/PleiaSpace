@@ -19,6 +19,9 @@ router.get('/api/vuelosCOM:fechita', vuelosControler.getVuelosCOMByFecha)
 // Registro usuario
 router.post('/api/registro', authController.registro)
 
+// Reserva vuelo
+router.post('/api/usuario/reserva', userController.reservarVuelo)
+
 // Login
 router.post('/api/login', authController.login)
 
