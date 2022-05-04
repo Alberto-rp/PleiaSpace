@@ -20,8 +20,12 @@ exports.registro = async (request, response) =>{
         let passHash = await bcryp.hash(passwd, 8)
 
         pool.query('INSERT INTO usuarios SET ?', {nombre: nombre, apellidos: surnames, password: passHash, email: email, pais: country, fecha_nac: birthDate}, (error, results) =>{
-            if(error){console.log(error)}
-            response.redirect('/login')
+            if(error){
+                console.log(error)
+                response.redirect('/registro?error=duplicate')
+            }else{
+                response.redirect('/login')
+            }
         })
     } catch (error) {
         console.log(error)

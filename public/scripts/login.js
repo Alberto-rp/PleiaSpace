@@ -22,6 +22,9 @@ function init(){
             divAlerta.style.display = 'block'
             divAlerta.children[0].innerHTML = "<strong>Error</strong> Debes iniciar sesion para reservar vuelo"
             break;
-
+        case'duplicate':
+            divAlerta.style.display = 'block'
+            divAlerta.children[0].innerHTML = "<strong>Error</strong> El correo ya está registrado en la web"
+            break;
     }
 }
