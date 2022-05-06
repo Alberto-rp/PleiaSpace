@@ -17,22 +17,53 @@
 </head>
 <body>
     <nav></nav>
-
     <div id="cuerpo" class="container">
-        <table>
-            <tr>
-                <td>usuario</td>
-                <td id="tdUser"></td>
-            </tr>
-            <tr>
-                <td>Correo electronico</td>
-                <td id="tdMail"></td>
-            </tr>
-            <tr>
-                <td>vuelos</td>
-                <td id="tdVuelos"></td>
-            </tr>
-        </table>
+        <h2>Datos personales</h2>
+        <div class="row mb-3">
+            <div class="col">
+                <div><b>Nombre:</b></div>
+                <div class="mb-2" id="tdUserNam"></div>
+
+                <div><b>Apellidos:</b></div>
+                <div class="mb-2" id="tdUserSur"></div>
+        
+                <div><b>Correo electronico:</b></div>
+                <div class="mb-2" id="tdMail"></div>
+
+                <div><b>Fecha nacimiento:</b></div>
+                <div class="mb-2" id="tdFecha"></div>
+
+                <div><b>País:</b></div>
+                <div class="mb-2" id="tdPais"></div>
+            </div>
+            <div class="col" id="datosSecundarios">
+                <div><b>Telefono contacto:</b></div>
+                <div class="mb-2" id="tdTel"></div>
+                
+                <div><b>Provincia:</b></div>
+                <div class="mb-2" id="tdProv"></div>
+
+                <div><b>Ciudad:</b></div>
+                <div class="mb-2" id="tdCiudad"></div>
+
+                <div><b>Código Postal:</b></div>
+                <div class="mb-2" id="tdPostCode"></div>
+
+                <div><b>Dirección:</b></div>
+                <div class="mb-2" id="tdDirecc"></div>  
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col" id="tdReserv">
+                <h2>Reservas</h2> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>Acciones</h2>
+                <a type="button" class="btn btn-primary" href="/api/logout">Logout</a>
+            </div>
+        </div>
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->

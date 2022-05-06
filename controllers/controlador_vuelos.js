@@ -10,6 +10,15 @@ vuelos.getVuelos = function(request, response){
     })
 }
 
+vuelos.getvuelosUsuario = function(request, response){
+    const idUser = request.params.id;
+    let query = 'SELECT v.id_vuelo, orbita_destino, fecha, asientos_reservados, metodo_pago FROM vuelos v, reserva_asiento ra WHERE v.id_vuelo = ra.id_vuelo AND ra.id_usuario = ?'
+    pool.query(query, [idUser], (error, results) => {
+        if(error){console.log(error)}
+        response.status(200).json(results)
+    })
+}
+
 vuelos.getVuelosCOMByFecha = function(request, response){
     const fechaP = request.params.fechita;
     let fecha = new Date(fechaP)

@@ -36,26 +36,22 @@ function init(){
     })
 
     // Comprobar errores URL
+    let divAlerta = document.querySelector("#alerta")
     switch(error){
         case'error1':
             divAlerta.classList.add("alert-danger")
             divAlerta.style.display = 'block'
-            divAlerta.children[0].innerHTML = "<strong>Error</strong> Debes introducir algo"
+            divAlerta.children[0].innerHTML = "<strong>Error</strong> Ya has efectuado una reserva en este vuelo.<br> Puedes modificar o cancelar tu reserva en la sección <i><a href='/perfil'>Perfil</a></i>"
             break;
         case'error2':
             divAlerta.classList.add("alert-danger")
             divAlerta.style.display = 'block'
-            divAlerta.children[0].innerHTML = "<strong>Error</strong> Usuario o contraseña incorrectos"
-            break;
-        case'error3':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.style.display = 'block'
-            divAlerta.children[0].innerHTML = "<strong>Error</strong> Debes iniciar sesion para reservar vuelo"
+            divAlerta.children[0].innerHTML = "<strong>Error</strong> Algo ha salido mal"
             break;
         case'noerror':
             divAlerta.classList.add("alert-success")
             divAlerta.style.display = 'block'
-            divAlerta.children[0].innerHTML = "<strong>Bien!</strong> Usuario creado correctamente"
+            divAlerta.children[0].innerHTML = "<strong>Exito! </strong>Reserva realizada correctamente"
         break;
     }
 }
