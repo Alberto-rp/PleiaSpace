@@ -2,6 +2,7 @@
 
 .header {
     background-color: #1a1a1a;
+    color: white;
 }
 
 /* body {
@@ -10,7 +11,11 @@
     box-sizing: border-box;
 } */
 
-a.nav-link {
+.color-white{
+  color: white;  
+}
+
+a.color-white, a.nav-link {
     letter-spacing: 3px;
     text-decoration: none;
     font-family: Montserrat;
@@ -26,5 +31,9 @@ img.mr-5{
 }
 
 a[class~='nav-link']:hover{
+    transition: 0.5s;
+}
+
+a[class~='color-white']:hover{
     transition: 0.5s;
 }

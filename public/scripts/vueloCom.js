@@ -11,6 +11,10 @@ let error = parametros.get('error')
 function init(){
     document.querySelector("#envio").addEventListener("click", despFormulario)
 
+    // Inicializamos el input
+    let fechaAct = new Date(Date.now())
+    document.querySelector("#fechaIn").value = fechaAct.getFullYear()+"-"+mesFormat(fechaAct.getMonth())
+
     // Inicializamos los métodos de pago
     for(item of metodosPago){
         document.querySelector('#payMeth').innerHTML += `<option value='${item[0]}'>${item[1]}</option>`
@@ -73,27 +77,30 @@ function despFormulario(e){
             // Comprobamos que hay vuelos disponibles
             if(vuelosR.length > 0){
                 // Reiniciamos la tabla de resultados y la mostramos
-                divCont.innerHTML = `<div class="row bg-primary" id='LABELS'>
-                                        <div class="col">ID</div>
-                                        <div class="col">FECHA</div>
-                                        <div class="col">ORBITA</div>
-                                        <div class="col">ASIENTOS</div>
-                                        <div class="col"></div>
-                                    </div>`
+                let tabla = ''
+                tabla += `<table class="table table-responsive bg-dark" id='LABELS'>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>FECHA</td>
+                                        <td>ORBITA</td>
+                                        <td>ASIENTOS</td>
+                                        <td>PRECIO</td>
+                                    </tr>`
 
                 // Insertamos los datos de cada vuelo
-                let codigoHtml = ""
                 for(item of vuelosR){
-                    codigoHtml += `<div class='row bg-primary' id='FILA${item.id_vuelo}'>
-                                    <div class='col'>${item.id_vuelo}</div>
-                                    <div class='col'>${item.fecha.slice(0,7)}</div>
-                                    <div class='col'>${item.orbita_destino}</div>
-                                    <div class='col'>${item.asientos_disponibles}</div>
-                                    <div class='col'><button name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></div>
-                                    </div>`
+                    tabla += `<tr id='FILA${item.id_vuelo}' name='filaR[]'>
+                                    <td>${item.id_vuelo}</td>
+                                    <td class='w-auto'>${item.fecha.slice(0,7)}</td>
+                                    <td>${item.orbita_destino}</td>
+                                    <td>${item.asientos_disponibles}</td>
+                                    <td>${new Number(item.precio_asiento).toLocaleString("es-ES",{style:'currency',currency:'EUR'})}</td>
+                                    <td><button class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td>
+                                    </tr>`
                     asientosDisponibles.push([item.id_vuelo, item.asientos_disponibles])
                 }
-                divCont.innerHTML += codigoHtml
+                tabla += '</table>'
+                divCont.innerHTML = tabla
                 asignarFuncion()
 
             }else{
@@ -124,6 +131,10 @@ function asignarFuncion(){
     }
 }
 
+function mesFormat(mes){
+    return (mes < 10)? '0'+(mes+1) : (mes+1)
+}
+
 function nextStep(e){
     e.preventDefault()
     //Ocultamos el formulario inicial y mostramos el segundo
@@ -145,8 +156,8 @@ function nextStep(e){
     }
     
     //Ocultamos los vuelos no seleccionados
-    let divResultado = document.querySelector("#tablaResult").children
-    for(item of divResultado){
+    let filas = document.getElementsByName("filaR[]")
+    for(item of filas){
         if(item.id != `FILA${this.id}` && item.id != 'LABELS'){
             item.style.display = "none"
         }

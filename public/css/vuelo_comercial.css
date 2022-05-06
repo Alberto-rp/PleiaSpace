@@ -15,6 +15,13 @@
     display: none;
 }
 
+#alerta{
+    display: none;
+}
+
+select{
+    width: 170px;
+}
 
 
 body{
