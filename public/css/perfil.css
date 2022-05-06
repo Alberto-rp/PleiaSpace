@@ -1,16 +1,33 @@
-table, th, tr, td{
-    /* border: solid 1px white; */
+/* table, th, tr, td{
+     border: solid 1px white;
     text-align: center;
     background-color: black;
-}
+} */
 
+body{
+    padding-top: 2rem;
+}
 #cuerpo{
     font-family: Montserrat;
     color: white;
-    position: absolute;
+    margin-top: 8rem;
+
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+}
+
+input{
+    width: 3rem;
+}
+
+.noActiva {
+    outline: none;
+    background-color: transparent;
+    color: white;
+    border: 0;
+    border-color: transparent;
 }
 
 @media screen and (min-width:1280px) { 

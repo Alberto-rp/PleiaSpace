@@ -58,3 +58,31 @@ exports.reservarVuelo = async (request, response) => {
         console.log(error)
     }
 }
+
+exports.eliminarReserva = (request, response) =>{
+
+    try {
+        let idUsuario = request.body.UsuarioCancela
+        let idVuelo = request.body.VueloCancela
+
+        pool.query('UPDATE vuelos_comerciales vc SET vc.asientos_disponibles = vc.asientos_disponibles + (SELECT asientos_reservados FROM reserva_asiento WHERE ? AND ?) WHERE vc.id_vuelo = ?', [{id_usuario: idUsuario}, {id_vuelo: idVuelo}, idVuelo], (error, results) =>{
+            if(error){
+                console.log(error)
+                response.redirect('/perfil?error=error')
+            }else{
+                pool.query('DELETE FROM reserva_asiento WHERE ? AND ?', [{id_usuario: idUsuario}, {id_vuelo: idVuelo}], (error, results) =>{
+                    if(error){
+                        console.log(error)
+                        response.redirect('/vuela?error=error')
+                    }else{
+                        response.redirect("/perfil")
+                    }
+                })
+            }
+        })
+    
+    } catch (error) {
+        console.log(error)
+    }
+}
+

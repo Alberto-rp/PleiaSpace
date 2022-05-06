@@ -16,6 +16,9 @@ function init(){
         document.querySelector("#tdPostCode").innerHTML = salidaTexto(data[0].cod_postal)
         document.querySelector("#tdDirecc").innerHTML = salidaTexto(data[0].direccion)
 
+        // Asignamos la id al formulario de anular vuelo, en caso de que quiera anularlo
+        document.querySelector("#UsuarioCancela").value = data[0].id_usuario
+
         // Sacamos los datos de las reservas si tiene
         fetch('/api/vuelos/usuario'+data[0].id_usuario)
         .then(resp => resp.json())
@@ -23,22 +26,29 @@ function init(){
 
             let divVuelos = document.querySelector("#tdReserv")
             if(datosVuelos.length > 0){
-                divVuelos.innerHTML += `<div class="row">
-                                            <div class="col"><b>Vuelo</b></div>
-                                            <div class="col"><b>Fecha</b></div>
-                                            <div class="col"><b>Orbita</b></div>
-                                            <div class="col"><b>Asientos</b></div>
-                                            <div class="col"><b>Pago</b></div>
-                                            </div>`
+                let tabla = ''
+                tabla += `<table class="table table-responsive table-dark">
+                            <tr>
+                            <th><b>Vuelo</b></th>
+                            <th><b>Fecha</b></th>
+                            <th><b>Orbita</b></th>
+                            <th><b>Asientos</b></th>
+                            <th><b>Pago</b></th>
+                            </tr>`
                 for(vuelo of datosVuelos){
-                    divVuelos.innerHTML += `<div class="row">
-                                            <div class="col">${vuelo.id_vuelo}</div>
-                                            <div class="col">${new Date(vuelo.fecha).toLocaleDateString()}</div>
-                                            <div class="col">${vuelo.orbita_destino}</div>
-                                            <div class="col">${vuelo.asientos_reservados}</div>
-                                            <div class="col">${vuelo.metodo_pago}</div>
-                                            </div>`
+                    tabla += `<tr>
+                                <td>${vuelo.id_vuelo}</td>
+                                <td>${new Date(vuelo.fecha).toLocaleDateString()}</td>
+                                <td>${vuelo.orbita_destino}</td>
+                                <td>${vuelo.asientos_reservados}</td>
+                                <td><input type="text" value="${vuelo.metodo_pago}" class="noActiva" id="metpag" name="metpag" readonly></td>
+                                <td><button class='btn btn-primary' id="Mod${vuelo.id_vuelo}">Modificar</button></td>
+                                <td><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnul" name='btnModales[]' id='Anul${vuelo.id_vuelo}'>Anular</button></td>
+                              </tr>`
                 }
+                tabla += '</table>'
+                divVuelos.innerHTML += tabla
+                initBotonesMod()
             }else{
                 // Si no ha reservado vuelos, solo se muestran los campos de registro
                 document.querySelector("#datosSecundarios").style.display = 'none'
@@ -46,8 +56,21 @@ function init(){
             }
         })
     })
+    
+
 }
 
 function salidaTexto(dato){
     return (dato == undefined)? 'No proporcionado' : dato
+}
+
+function initBotonesMod(){
+    let botones = document.getElementsByName("btnModales[]")
+    for(item of botones){
+        item.addEventListener("click", asignarId)
+    }
+}
+
+function asignarId(){
+    document.querySelector("#VueloCancela").value = this.id.slice(4)
 }

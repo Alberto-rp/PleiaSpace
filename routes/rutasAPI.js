@@ -41,6 +41,9 @@ router.post('/api/usuario/reserva', userController.reservarVuelo)
 //Obtener usuario id
 router.get('/api/usuario', userController.obtenerUsuario)
 
+// Eliminar reserva
+router.post('/api/eliminarReserva', userController.eliminarReserva)
+
 
 
 

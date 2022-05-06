@@ -64,6 +64,41 @@
                 <a type="button" class="btn btn-primary" href="/api/logout">Logout</a>
             </div>
         </div>
+
+        <!-- MODAL -->
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="modal" id="ModalAnul">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+            
+                        <!-- Modal Header -->
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title text-white">¿Está Seguro?</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <form action="api/eliminarReserva" method="post">
+                            <input type="hidden" id="VueloCancela" name="VueloCancela">
+                            <input type="hidden" id="UsuarioCancela" name="UsuarioCancela">
+                            <div class="modal-body">
+                                <p class="text-dark">Va a eliminar su reserva para el vuelo</p>
+                            </div>
+                
+                            <!-- Modal footer -->
+                            <div class="modal-footer text-left">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
+                                <button type="submit" class="btn btn-primary" >Eliminar mi reserva</button>
+                            </div>
+                        </form>
+                        <!-- Modal body -->
+            
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->
