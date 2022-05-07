@@ -26,14 +26,23 @@ img.mr-5{
     width: 120px;
 }
 
+.darkiHed{
+    background-color: #1a1a1a;
+}
+
 .colorComp{
     background-color: #6699FF;
 }
 
 a[class~='nav-link']:hover{
     transition: 0.5s;
+    color: rebeccapurple;
 }
 
-a[class~='color-white']:hover{
-    transition: 0.5s;
+/* Quitar borde del toggler */
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
 }

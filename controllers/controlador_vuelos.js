@@ -30,5 +30,4 @@ vuelos.getVuelosCOMByFecha = function(request, response){
     })
 
 }
-
 module.exports = vuelos

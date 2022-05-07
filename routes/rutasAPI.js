@@ -34,6 +34,7 @@ router.get('/api/logout', authController.logout)
 // Comprobar cookie
 router.get('/api/compCookie:name', authController.comprobarCookie)
 
+
 /* USERS */
 // Reserva vuelo
 router.post('/api/usuario/reserva', userController.reservarVuelo)
@@ -43,6 +44,9 @@ router.get('/api/usuario', userController.obtenerUsuario)
 
 // Eliminar reserva
 router.post('/api/eliminarReserva', userController.eliminarReserva)
+
+// Modificar reserva
+router.post('/api/modificarReserva', userController.modificarReserva)
 
 
 

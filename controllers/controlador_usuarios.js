@@ -86,3 +86,35 @@ exports.eliminarReserva = (request, response) =>{
     }
 }
 
+exports.modificarReserva = (request, response) =>{
+
+    try {
+        let idUsuario = request.body.idUsuario
+        let idVuelo = request.body.idVuelo
+        let sumaAsientos = request.body.sumaAsientos
+        let asientosReserva = request.body.asientosReserva
+        let pagoSelect = request.body.pagoSel
+
+        console.log(idUsuario+" "+idVuelo+" "+sumaAsientos+" "+pagoSelect+" "+asientosReserva)
+
+        pool.query('UPDATE vuelos_comerciales vc SET vc.asientos_disponibles = vc.asientos_disponibles + ? WHERE vc.id_vuelo = ?', [sumaAsientos, idVuelo], (error, results) =>{
+            if(error){
+                console.log(error)
+                response.redirect('/perfil?error=error')
+            }else{
+                pool.query('UPDATE reserva_asiento SET ? WHERE ? AND ?', [{asientos_reservados: asientosReserva, metodo_pago: pagoSelect},{id_usuario: idUsuario}, {id_vuelo: idVuelo}], (error, results) =>{
+                    if(error){
+                        console.log(error)
+                        response.redirect('/perfil?error=error')
+                    }else{
+                        response.redirect("/perfil?error=noerror")
+                    }
+                })
+            }
+        })
+    
+    } catch (error) {
+        console.log(error)
+    }
+}
+

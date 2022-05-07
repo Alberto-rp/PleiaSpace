@@ -89,15 +89,17 @@ function despFormulario(e){
 
                 // Insertamos los datos de cada vuelo
                 for(item of vuelosR){
-                    tabla += `<tr id='FILA${item.id_vuelo}' name='filaR[]'>
-                                    <td>${item.id_vuelo}</td>
-                                    <td class='w-auto'>${item.fecha.slice(0,7)}</td>
-                                    <td>${item.orbita_destino}</td>
-                                    <td>${item.asientos_disponibles}</td>
-                                    <td>${new Number(item.precio_asiento).toLocaleString("es-ES",{style:'currency',currency:'EUR'})}</td>
-                                    <td><button class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td>
-                                    </tr>`
-                    asientosDisponibles.push([item.id_vuelo, item.asientos_disponibles])
+                    if(item.asientos_disponibles > 0){
+                        tabla += `<tr id='FILA${item.id_vuelo}' name='filaR[]'>
+                                        <td>${item.id_vuelo}</td>
+                                        <td class='w-auto'>${item.fecha.slice(0,7)}</td>
+                                        <td>${item.orbita_destino}</td>
+                                        <td>${item.asientos_disponibles}</td>
+                                        <td>${new Number(item.precio_asiento).toLocaleString("es-ES",{style:'currency',currency:'EUR'})}</td>
+                                        <td><button class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td>
+                                        </tr>`
+                        asientosDisponibles.push([item.id_vuelo, item.asientos_disponibles])
+                    }
                 }
                 tabla += '</table>'
                 divCont.innerHTML = tabla

@@ -32,7 +32,7 @@ fetch("header.html")
 .then(data => {
     // Cargar la cabecera en cada página
     document.querySelector("nav").innerHTML = data;
-    document.querySelector("nav").classList = "navbar fixed-top navbar-expand-lg navbar-dark header"
+    document.querySelector("nav").classList = "navbar fixed-top navbar-expand-lg header"
 
     // Cargar el logo de la pestaña
     document.querySelector("head").innerHTML += `<link rel="icon" href="img/Minitura.png">`
