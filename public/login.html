@@ -20,7 +20,8 @@
 
     <div id="cuerpo" class="container">
         <h1>Login</h1>
-        <form action="/api/login" method="post" id="formLogin">
+        <!-- <form action="/api/login" method="post" id="formLogin"> -->
+            <!-- Form realizado con fetch -->
             <fieldset>
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email">
@@ -30,15 +31,18 @@
                 <input type="password" name="passwd" id="passwd">
             </fieldset>
             <fieldset>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button class="btn btn-primary" id="btnLogin">Login</button>
                 <a type="button" class="btn btn-primary" href="/registro">Registro</a>
             </fieldset>
-        </form>
+        <!-- </form> -->
         <div class="alert alert-dismissible fade show" role="alert"  id="alerta">
             <span></span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+        </div>
+        <div class="alert" role="alert" id="alerta2">
+            This is a primary alert—check it out!
         </div>
     </div>
     <!-- <div class="fondo"></div> -->

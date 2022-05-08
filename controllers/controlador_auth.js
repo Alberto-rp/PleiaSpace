@@ -38,14 +38,18 @@ exports.login = async (request, response) =>{
         let email = request.body.email
         let password = request.body.passwd
 
+        console.log(email+" "+password)
+
         if(!email || !password){
-            response.redirect('/login?error=blank')
+            // response.redirect('/login?error=blank')
+            response.status(404).json({error : 'blank'})
         }else{
             pool.query("SELECT * FROM usuarios WHERE email = ?", [email], async (error, results)=>{
                 if(error){console.log(error)}
 
                 if(results.length == 0 || ! (await bcryp.compare(password, results[0].password))){
-                    response.redirect('/login?error=fail')
+                    // response.redirect('/login?error=fail')
+                    response.status(404).json({error : 'fail'})
                 }else{
                     try {
                         // INICIO CORRECTO
@@ -65,7 +69,8 @@ exports.login = async (request, response) =>{
                         response.cookie('jwt', token, cookiesOptions)
                         let nombreHash = await bcryp.hash(results[0].nombre, 8)
                         response.cookie('usuario',nombreHash, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
-                        response.redirect('/vuela')
+                        // response.redirect('/vuela')
+                        response.status(200).json({error : false})
                         
                     } catch (error) {
                         console.log(error)
