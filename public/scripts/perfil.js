@@ -19,8 +19,9 @@ function init(){
         document.querySelector("#tdPostCode").innerHTML = salidaTexto(data[0].cod_postal)
         document.querySelector("#tdDirecc").innerHTML = salidaTexto(data[0].direccion)
 
-        // Asignamos la id al formulario de anular vuelo, en caso de que quiera anularlo
+        // Asignamos la id al formulario de anular vuelo y eliminar cuenta, en caso de que quiera anularlo
         document.querySelector("#UsuarioCancela").value = data[0].id_usuario
+        document.querySelector("#UsuarioElimina").value = data[0].id_usuario
 
         // Sacamos los datos de las reservas si tiene
         fetch('/api/vuelos/usuario'+data[0].id_usuario)
@@ -74,6 +75,7 @@ function initBotonesMod(){
     let botonesMod = document.getElementsByName("btnModi[]")
     for(item of botonesAn){
         item.addEventListener("click", asignarId)
+        item.addEventListener("click", resetBotonAnular)
     }
     for(item of botonesMod){
         item.addEventListener("click", modificarReserva)
@@ -84,7 +86,7 @@ function asignarId(){
     document.querySelector("#VueloCancela").value = this.id.slice(4)
 }
 
-
+// PRIMER PARADA MODIFICAR RESERVA
 function modificarReserva(){
     vueloMod = this.id.slice(4)
     
@@ -106,13 +108,28 @@ function modificarReserva(){
     this.innerHTML = "Confirmar"
     this.removeEventListener("click", modificarReserva)
     this.addEventListener("click", EnviarModificacion)
+
+    // Sustituimos el boton de anular por un CANCELAR
+    let btnAnul = document.querySelector("#Anul"+vueloMod)
+    btnAnul.removeAttribute('data-toggle')
+    btnAnul.removeAttribute('data-target')
+    btnAnul.innerHTML = "Cancelar"
+    btnAnul.className = 'btn btn-danger'
+    btnAnul.removeEventListener("click", asignarId)
+    btnAnul.removeEventListener("click", resetBotonAnular)
+    btnAnul.addEventListener("click", cancelarMod)
 }
 
+// SEGUNDA PARADA ENVIAR DATOS
 function EnviarModificacion(){
     vueloMod = this.id.slice(4)
+    this.disabled = true
 
-    inputAsientoValue = document.querySelector("#asients"+vueloMod).value
-    inputPagoSel = document.querySelector("#metpag"+vueloMod)[document.querySelector("#metpag"+vueloMod).selectedIndex].value
+    inputAsiento = document.querySelector("#asients"+vueloMod)
+    inputPago = document.querySelector("#metpag"+vueloMod)
+
+    inputAsientoValue = inputAsiento.value
+    inputPagoSel = inputPago[inputPago.selectedIndex].value
 
     let datosEnviar = {
         idVuelo : vueloMod,
@@ -122,25 +139,82 @@ function EnviarModificacion(){
         asientosReserva : inputAsientoValue,
         pagoSel : inputPagoSel
     }
-
     fetch('/api/modificarReserva', {
         method: 'POST',
         body: JSON.stringify(datosEnviar),
         headers:{'Content-Type': 'application/json'}
     })
-    .then(function(response) {
-        if(response.ok) {
-            location.reload()
+    .then(resp => {
+        
+        console.log(resp.status)
+        if(resp.status == 200){
+            inputAsiento.readOnly = true
+            inputAsiento.classList = 'noActiva'
+            inputPago.disabled = true
+            inputPago.classList = 'noActiva'
 
+            this.innerHTML = "Modificar"
+            this.removeEventListener("click", EnviarModificacion)
+            this.addEventListener("click", modificarReserva)
+
+            btnAnul = document.querySelector("#Anul"+vueloMod)
+            btnAnul.removeEventListener("click", cancelarMod)
+            btnAnul.addEventListener("click", asignarId)
+            btnAnul.addEventListener("click", resetBotonAnular)
+            btnAnul.innerHTML = "Anular"
+            btnAnul.className = 'btn btn-primary'
             
-        } else {
-            throw "Error en la llamada Ajax";
+        }else if(resp.status == 404){
+            console.log('ERROR') //METER ERROR AQUI
         }
-
+        this.disabled = false
+        return resp.json()
+    })
+    .then(data =>{
+        console.log(data)
+        tempAlert(2000, data.error)
     })
     .catch(function(err) {
         console.log(err);
     });
+}
+
+// Cancelar la modificacion
+function cancelarMod(){
+    let btnAnul = document.querySelector("#Anul"+vueloMod)
+    let btnMod = document.querySelector("#Modi"+vueloMod)
+    inputAsiento = document.querySelector("#asients"+vueloMod)
+    inputPago = document.querySelector("#metpag"+vueloMod)
+
+    //Valores Originales
+    inputAsiento.value = datosOriginales.asientosOriginales
+    inputPago.value= datosOriginales.metPagoOriginal
+
+    // Inputs
+    inputAsiento.readOnly = true
+    inputAsiento.classList = 'noActiva'
+    inputPago.disabled = true
+    inputPago.classList = 'noActiva'
+
+    // Boton anular
+    btnAnul.removeEventListener("click", cancelarMod)
+    btnAnul.addEventListener("click", asignarId)
+    btnAnul.addEventListener("click", resetBotonAnular)
+    btnAnul.innerHTML = "Anular"
+    btnAnul.className = 'btn btn-primary'
+
+    // Boton modificar
+    btnMod.innerHTML = "Modificar"
+    btnMod.removeEventListener("click", EnviarModificacion)
+    btnMod.addEventListener("click", modificarReserva)
+}
+
+function resetBotonAnular(){
+    let btnAnul = document.querySelector("#Anul"+vueloMod)
+    if(btnAnul.getAttribute('data-toggle') == null && btnAnul.getAttribute('data-target') == null){
+        btnAnul.setAttribute('data-toggle', 'modal')
+        btnAnul.setAttribute('data-target', '#ModalAnul')
+    }
 }
 
 // Funcion para general el select dentro de cada reserva
@@ -155,4 +229,34 @@ function generarSel(metodo_pago){
         }
     }
     return cadena
+}
+
+// Alerta que se auto cierra
+function tempAlert(duration, error){
+    var divAlerta = document.querySelector("#alerta");
+    // Analizamos error
+    switch(error){
+        case true:
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Error indeterminado"
+            break;
+        case'outAsientos':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Asientos insuficientes"
+            break;
+        case false:
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Bien!</strong> Reserva actualizada"
+        break;
+    }
+    // Mostramos la alerta
+
+    divAlerta.style.opacity = '1'
+    setTimeout(function(){
+
+    divAlerta.style.opacity = '0'
+    divAlerta.className = ''
+    divAlerta.classList.add("alert")
+
+    },duration);
 }

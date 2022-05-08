@@ -58,14 +58,23 @@
                 <h2>Reservas</h2> 
             </div>
         </div>
+
+        <!-- Alertas -->
+        <div class="alert" role="alert" id="alerta">
+            This is a primary alert—check it out!
+        </div>
+        
+
+        <!-- Acciones -->
         <div class="row">
             <div class="col">
                 <h2>Acciones</h2>
                 <a type="button" class="btn btn-primary" href="/api/logout">Logout</a>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#ModalEliminCuent"  id="ElimCount">Eliminar Cuenta</button>
             </div>
         </div>
 
-        <!-- MODAL -->
+        <!-- MODAL ANULAR VUELO -->
         <div class="container">
             <div class="row">
               <div class="col">
@@ -83,6 +92,40 @@
                             <input type="hidden" id="UsuarioCancela" name="UsuarioCancela">
                             <div class="modal-body">
                                 <p class="text-dark">Va a eliminar su reserva para el vuelo</p>
+                            </div>
+                
+                            <!-- Modal footer -->
+                            <div class="modal-footer text-left">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
+                                <button type="submit" class="btn btn-primary" >Eliminar mi reserva</button>
+                            </div>
+                        </form>
+                        <!-- Modal body -->
+            
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- MODAL ELIMINAR CUENTA -->
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="modal" id="ModalEliminCuent">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+            
+                        <!-- Modal Header -->
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title text-white">¿Está Seguro?</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <form action="api/eliminarCuenta" method="post">
+                            <input type="hidden" id="UsuarioElimina" name="UsuarioElimina">
+                            <div class="modal-body">
+                                <p class="text-dark">Va a eliminar su cuenta, este paso no se puede revertir</p>
                             </div>
                 
                             <!-- Modal footer -->

@@ -33,7 +33,7 @@ exports.reservarVuelo = async (request, response) => {
                 console.log(error)
                 response.redirect('/vuela?error=error1')
             }else{
-                pool.query('UPDATE vuelos_comerciales vc SET asientos_disponibles = asientos_disponibles - (SELECT asientos_reservados FROM reserva_asiento WHERE id_vuelo = vc.id_vuelo) WHERE id_vuelo = ?', [idVuelo],(error, results) =>{
+                pool.query('UPDATE vuelos_comerciales vc SET asientos_disponibles = asientos_disponibles - (SELECT asientos_reservados FROM reserva_asiento WHERE id_vuelo = vc.id_vuelo AND id_usuario = ?) WHERE id_vuelo = ?', [idUsuario, idVuelo],(error, results) =>{
                     if(error){
                         console.log(error)
                         response.redirect('/vuela?error=error2')
@@ -95,26 +95,52 @@ exports.modificarReserva = (request, response) =>{
         let asientosReserva = request.body.asientosReserva
         let pagoSelect = request.body.pagoSel
 
-        console.log(idUsuario+" "+idVuelo+" "+sumaAsientos+" "+pagoSelect+" "+asientosReserva)
+        // console.log(idUsuario+" "+idVuelo+" "+sumaAsientos+" "+pagoSelect+" "+asientosReserva)
+        
+        pool.query('SELECT asientos_disponibles FROM vuelos_comerciales WHERE ?', [{id_vuelo: idVuelo}], (error, results) =>{
+            // Si el resultado no va a ser menor de 0
+            if(!((parseInt(results[0].asientos_disponibles) + parseInt(sumaAsientos)) < 0)){
 
-        pool.query('UPDATE vuelos_comerciales vc SET vc.asientos_disponibles = vc.asientos_disponibles + ? WHERE vc.id_vuelo = ?', [sumaAsientos, idVuelo], (error, results) =>{
-            if(error){
-                console.log(error)
-                response.redirect('/perfil?error=error')
-            }else{
-                pool.query('UPDATE reserva_asiento SET ? WHERE ? AND ?', [{asientos_reservados: asientosReserva, metodo_pago: pagoSelect},{id_usuario: idUsuario}, {id_vuelo: idVuelo}], (error, results) =>{
+                pool.query('UPDATE vuelos_comerciales vc SET vc.asientos_disponibles = vc.asientos_disponibles + ? WHERE vc.id_vuelo = ?', [sumaAsientos, idVuelo], (error, results) =>{
                     if(error){
                         console.log(error)
-                        response.redirect('/perfil?error=error')
+                        response.status(404).json({error : true})
                     }else{
-                        response.redirect("/perfil?error=noerror")
+                        pool.query('UPDATE reserva_asiento SET ? WHERE ? AND ?', [{asientos_reservados: asientosReserva, metodo_pago: pagoSelect},{id_usuario: idUsuario}, {id_vuelo: idVuelo}], (error, results) =>{
+                            if(error){
+                                console.log(error)
+                                response.status(404).json({error : true})
+                            }else{
+                                response.status(200).json({error : false})
+                            }
+                        })
                     }
                 })
+            }else{
+                response.status(404).json({error : 'outAsientos'})
             }
+                
         })
+
     
     } catch (error) {
         console.log(error)
     }
 }
 
+exports.eliminarCuenta = (request, response) => {
+    try {
+        let idUsuario = request.body.UsuarioElimina
+        pool.query('DELETE FROM usuarios WHERE ?',[{id_usuario: idUsuario}], (error, results) => {
+            if(error){console.log(error)}
+            else{
+                response.clearCookie('jwt')
+                response.clearCookie('usuario')
+                response.redirect('/')
+            }
+        })
+        console.log(idUsuario+" Eliminado")
+    } catch (error) {
+        console.log(error)
+    }
+}

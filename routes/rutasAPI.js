@@ -48,6 +48,9 @@ router.post('/api/eliminarReserva', userController.eliminarReserva)
 // Modificar reserva
 router.post('/api/modificarReserva', userController.modificarReserva)
 
+// Eliminar cuenta
+router.post('/api/eliminarCuenta', userController.eliminarCuenta)
+
 
 
 

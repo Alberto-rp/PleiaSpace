@@ -23,7 +23,8 @@ input{
 }
 
 #alerta{
-    display: none;
+    opacity: 0;
+    transition: 0.5s;
 }
 
 .noActiva {
@@ -32,6 +33,10 @@ input{
     color: white;
     border: 0;
     border-color: transparent;
+}
+
+.btn{
+    cursor: pointer;
 }
 
 @media screen and (min-width:1280px) { 
