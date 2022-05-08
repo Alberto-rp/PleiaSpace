@@ -10,6 +10,8 @@ let error = parametros.get('error')
 
 function init(){
     document.querySelector("#envio").addEventListener("click", despFormulario)
+    let resp = Response
+    console.log(resp)
 
     // Inicializamos el input
     let fechaAct = new Date(Date.now())
@@ -39,6 +41,7 @@ function init(){
         }
     })
 
+    
     // Comprobar errores URL
     let divAlerta = document.querySelector("#alerta")
     switch(error){
@@ -75,7 +78,7 @@ function despFormulario(e){
             divCont.style.display = "inline-block"
 
             // Comprobamos que hay vuelos disponibles
-            if(vuelosR.length > 0){
+            if(vuelosR.length > 0 && vuelosConAsiento(vuelosR)){
                 // Reiniciamos la tabla de resultados y la mostramos
                 let tabla = ''
                 tabla += `<table class="table table-responsive bg-dark" id='LABELS'>
@@ -131,6 +134,15 @@ function asignarFuncion(){
     for(item of botones){
         item.addEventListener("click", nextStep)
     }
+}
+
+// Comprobar que hay al menos un vuelo con asiento disponibles
+function vuelosConAsiento(vuelos){
+    let numAsientos = 0
+    for(item of vuelos){
+        numAsientos += item.asientos_disponibles
+    }
+    return (numAsientos > 0)? true : false
 }
 
 function mesFormat(mes){
