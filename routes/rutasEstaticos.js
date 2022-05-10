@@ -33,11 +33,16 @@ router.get('/login', function(request, response){
 
 router.get('/registro', function(request, response){
     response.sendFile(path.join(__dirname + '/../public/registro.html'))
-    // response.redirect('/registro')
+
 })
 
 router.get('/perfil', authController.isAutentic, function(request, response){
     response.sendFile(path.join(__dirname + '/../public/perfil.html'))
+
+})
+
+router.get('/empleo', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/workWithUs.html'))
     // response.redirect('/registro')
 })
 

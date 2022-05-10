@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pleia Space</title>
+    <script src="scripts/header.js"></script>
+    <link rel="stylesheet" href="css/fuente.css">
+    <link rel="stylesheet" href="css/wwUs.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- BUSCAR COMO INCLUIR LINKS -->
+</head>
+<body>
+    <nav></nav>
+
+    <div id="cuerpo" class="container">
+        <div class="row">
+            <div class="col">
+                <h3>UNETE</h3>
+                <h2 class="display-5"> <small>AL</small> <b>EQUIPO</b></h2>
+                <p class="lead">Envianos tus datos y háblanos de tí</p>
+                <div id="falsoFormW">
+                    <fieldset>
+                        <div class="form-group">
+                            <label for="name">Nombre <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Introduce tú nombre" required>
+                            <!-- <small id="nameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Apellidos <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="surnames" name="surnames" placeholder="Introduce tus apellidos" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Introduce tu email" required>
+                            <small id="emailHelp" class="form-text text-muted">No compartiremos el email con nadie</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp" placeholder="Introduce tu teléfono" required>
+                            <small id="phoneHelp" class="form-text text-muted">No compartiremos el teléfono con nadie</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Ciudad</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="Introduce la ciudad en la que resides">
+                        </div>
+                        <div class="form-group">
+                            <label for="cv">Curriculum</label>
+                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" id="enviarFetch">Enviar</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="fondo"></div> -->
+    <!-- Meter Scripts en un fichero js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body>
+</html>
