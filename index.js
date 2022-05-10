@@ -4,6 +4,9 @@ var cookieParser = require("cookie-parser")
 var vuelos = require('./routes/rutasEstaticos')
 var rutasAPI = require("./routes/rutasAPI")
 const dotenv = require('dotenv')
+// const multer = require('multer')
+
+
 
 dotenv.config()
 
@@ -15,7 +18,7 @@ var PORT = 3008
 // Archivos estáticos
 app.use("/", express.static('public'))
 
-// Envio de datos al servidor
+// Envio de datos al servidor //poner a true cuando eliminemos los errorres en la URL
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 

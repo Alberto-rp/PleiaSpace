@@ -2,6 +2,21 @@ var express = require('express');
 var router = express.Router();
 const cookieParser = require("cookie-parser")
 router.use(cookieParser())
+// const multer = require('multer')
+
+// // Seteamos el almacenamiento de multer
+// var storage = multer.diskStorage({
+//     // destination: __dirname + '../uploads',
+
+//     filename: function (req, file, cb) {
+//         let nombre = req.body.name
+//       cb(null, nombre+'-'+Date.now()+file.originalname)
+//     }
+// })
+
+// const upload = multer({
+//     storage: storage
+// })
 
 //Creamos el objeto para definir las rutas
 
@@ -9,6 +24,7 @@ router.use(cookieParser())
 var vuelosControler = require('../controllers/controlador_vuelos');
 var authController = require('../controllers/controlador_auth')
 var userController = require('../controllers/controlador_usuarios')
+var fileController = require('../controllers/controlador_files')
 
 
 /* VUELOS */
@@ -50,6 +66,11 @@ router.post('/api/modificarReserva', userController.modificarReserva)
 
 // Eliminar cuenta
 router.post('/api/eliminarCuenta', userController.eliminarCuenta)
+
+
+/*ARCHIVOS*/
+//Trabaja con nosotros
+router.post('/api/file', fileController.subirCurriculum)
 
 
 
