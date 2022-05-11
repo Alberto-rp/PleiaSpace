@@ -2,21 +2,24 @@ var express = require('express');
 var router = express.Router();
 const cookieParser = require("cookie-parser")
 router.use(cookieParser())
-// const multer = require('multer')
+const multer = require('multer')
 
 // // Seteamos el almacenamiento de multer
-// var storage = multer.diskStorage({
-//     // destination: __dirname + '../uploads',
+var storage = multer.diskStorage({
+    destination: 'uploads/',
 
-//     filename: function (req, file, cb) {
-//         let nombre = req.body.name
-//       cb(null, nombre+'-'+Date.now()+file.originalname)
-//     }
-// })
+    filename: function (req, file, cb) {
+      cb(null, 'Curriculum'+'-'+Date.now()+file.originalname)
+    }
+})
 
-// const upload = multer({
-//     storage: storage
-// })
+const upload = multer({
+   storage: storage,
+   limits: {
+    fieldSize: 1024 * 256, //Esto equivale a 512 KB
+    fieldNameSize: 200
+  },
+})
 
 //Creamos el objeto para definir las rutas
 
@@ -70,7 +73,8 @@ router.post('/api/eliminarCuenta', userController.eliminarCuenta)
 
 /*ARCHIVOS*/
 //Trabaja con nosotros
-router.post('/api/file', fileController.subirCurriculum)
+router.post('/api/file', upload.single('cv'), fileController.subirCurriculum)
+
 
 
 

@@ -11,6 +11,10 @@
     background-size: 1920px; 
     /* COVER 
 } */
+#alerta2{
+    opacity: 0;
+    transition: 0.5s;
+}
 
 @media screen and (min-width:1280px) { 
     html, body{
