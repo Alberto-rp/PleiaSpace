@@ -5,6 +5,11 @@ let error = parametros.get('error')
 window.addEventListener('load', init)
 
 function init(){
+    // Si hay una cookie de Sesion, evita acceder a Login
+    if(document.cookie != ''){
+        window.location.replace('/perfil')
+    }
+    tempAlert(2000, error)
 
     // Listeners
     // let divAlerta = document.querySelector("#alerta")
@@ -74,7 +79,17 @@ function tempAlert(duration, error){
         case'fail':
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Usuario o contraseña incorrectos"
-        break;
+            break;
+        case 'auth':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes iniciar sesión para reservar un vuelo"
+            break;
+        case 'noerror':
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente"
+            break;
+        default:
+            divAlerta.innerHTML = ""
     }
 
     // Mostramos la alerta

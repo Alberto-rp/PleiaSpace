@@ -1,6 +1,12 @@
 window.addEventListener("load", init)
 
+// Recogemos parametros error de la URL
+const queryURL = window.location.search
+const parametros = new URLSearchParams(queryURL)
+let errorURL = parametros.get('error')
+
 function init(){
+    tempAlert(2500, errorURL)
     // Variables global para recoger el vuelo a modificar
     vueloMod = ''
     datosOriginales = {}
@@ -244,10 +250,16 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Asientos insuficientes"
             break;
+        case'reservaActiva':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes anular las reservas antes de eliminar tu cuenta"
+            break;
         case false:
             divAlerta.classList.add("alert-success")
             divAlerta.innerHTML = "<strong>Bien!</strong> Reserva actualizada"
-        break;
+            break;
+        default:
+            divAlerta.innerHTML = ""
     }
     // Mostramos la alerta
 
