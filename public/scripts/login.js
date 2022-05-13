@@ -68,7 +68,6 @@ function enviarDatos(){
 
 // Alerta que se auto cierra
 function tempAlert(duration, error){
-    console.log(error)
     var divAlerta = document.querySelector("#alerta2");
     // Analizamos error
     switch(error){
