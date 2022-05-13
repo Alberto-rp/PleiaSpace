@@ -62,6 +62,12 @@ body{
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
+    }
 
+    .dispMov{
+        font-size: 1.8rem;
+    }
+    .dispMovSub{
+        font-size: 1rem;
     }
 } 

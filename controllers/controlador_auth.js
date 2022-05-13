@@ -38,7 +38,7 @@ exports.login = async (request, response) =>{
         let email = request.body.email
         let password = request.body.passwd
 
-        console.log(email+" "+password)
+        console.log(email+" Se ha logeado")
 
         if(!email || !password){
             // response.redirect('/login?error=blank')
@@ -68,7 +68,7 @@ exports.login = async (request, response) =>{
     
                         response.cookie('jwt', token, cookiesOptions)
                         let nombreHash = await bcryp.hash(results[0].nombre, 8)
-                        response.cookie('usuario',nombreHash, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
+                        response.cookie('usuario',nombreHash, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000), exp: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
                         // response.redirect('/vuela')
                         response.status(200).json({error : false})
                         

@@ -3,9 +3,30 @@
 window.addEventListener("load", init)
 
 function init(){
+    //Traemos el header   
+    fetch("header.html")
+    .then(response => {
+        return response.text()
+    })
+    .then(data => {
+        // Cargar la cabecera en cada página
+        document.querySelector("nav").innerHTML = data;
+        document.querySelector("nav").classList = "navbar fixed-top navbar-expand-lg header"
+    
+        // Cargar el logo de la pestaña
+        document.querySelector("head").innerHTML += `<link rel="icon" href="img/Minitura.png">`
+    
+        // Iluminar colores
+        let elementos = document.querySelectorAll(".nav-item")
+        for(item of elementos){
+            item.addEventListener("mouseover", iluminarBtn)
+            item.addEventListener("mouseout", borrarBtn)
+        }
+    });
 
+
+    // Funcion que comprueba el nombre de usuario codificado en el servidor
     if(document.cookie != ''){
-        // Funcion que comprueba el nombre de usuario codificado en el servidor
         fetch('/api/compCookie'+getCookie('usuario'))
         .then(res => res.json())
         .then(data => {
@@ -23,27 +44,9 @@ function init(){
         })
 
     }
+    
 }
 
-fetch("header.html")
-.then(response => {
-    return response.text()
-})
-.then(data => {
-    // Cargar la cabecera en cada página
-    document.querySelector("nav").innerHTML = data;
-    document.querySelector("nav").classList = "navbar fixed-top navbar-expand-lg header"
-
-    // Cargar el logo de la pestaña
-    document.querySelector("head").innerHTML += `<link rel="icon" href="img/Minitura.png">`
-
-    // Iluminar colores
-    let elementos = document.querySelectorAll(".nav-item")
-    for(item of elementos){
-        item.addEventListener("mouseover", iluminarBtn)
-        item.addEventListener("mouseout", borrarBtn)
-    }
-});
 
 function iluminarBtn(){
     this.children[0].style.color = "#6699FF"

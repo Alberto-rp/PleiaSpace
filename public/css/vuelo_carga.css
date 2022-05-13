@@ -1,0 +1,87 @@
+#cuerpo{
+    font-family: Montserrat;
+    color: white;
+}
+
+.darkColor{
+    background-color: #1a1a1a;
+}
+
+#tablaResult{
+    display: none;
+}
+
+#fs2{
+    display: none;
+}
+
+#alerta{
+    display: none;
+}
+
+select{
+    width: 170px;
+}
+
+.titulo1{
+    font-size: 2.3rem;
+}
+
+/* IMPUTS */
+/* input{
+    background-color: #1a1a1a;
+    width: 20rem;
+    height: 3rem;
+    color: white
+} */
+
+
+body{
+  min-height: 50rem;
+  padding-top: 9.5rem;
+  background-color: #1a1a1a;
+}
+
+@media screen and (min-width:1280px) { 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/cargaImg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+    }
+}
+
+@media screen and (min-width:800px) and (max-width:1280px){ 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/cargaImgSmall.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #1a1a1a;
+        
+
+    }
+}
+
+@media screen and (max-width:800px) { 
+    html, body{
+        width: 100%;
+        height: 100%;
+        background-image: url(../img/cargaImgXSmall.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: black
+
+    }
+
+    .titulo1{
+        font-size: 1.5rem;
+    }
+
+    .titulo2{
+        font-size: 1rem;
+    }
+} 

@@ -46,4 +46,9 @@ router.get('/empleo', function(request, response){
     // response.redirect('/registro')
 })
 
+router.get('/carga', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/vuelo_carga.html'))
+    // response.redirect('/registro')
+})
+
 module.exports = router
