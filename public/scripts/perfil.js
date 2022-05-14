@@ -42,6 +42,7 @@ function init(){
                             <th><b>Vuelo</b></th>
                             <th><b>Fecha</b></th>
                             <th><b>Orbita</b></th>
+                            <th><b>Precio</b></th>
                             <th><b>Asientos</b></th>
                             <th><b>Método de Pago</b></th>
                             </tr>`
@@ -51,6 +52,7 @@ function init(){
                                 <td>${vuelo.id_vuelo}</td>
                                 <td>${new Date(vuelo.fecha).toLocaleDateString()}</td>
                                 <td>${vuelo.orbita_destino}</td>
+                                <td id="Prec${vuelo.id_vuelo}" name="${vuelo.precio_asiento}">${pintarPrecio(vuelo.precio_asiento * vuelo.asientos_reservados)}</td>
                                 <td><input type="number" max="4" min="1" value="${vuelo.asientos_reservados}" class="noActiva" id="asients${vuelo.id_vuelo}" name="asients" readonly></td>
                                 <td><select class="noActiva" id="metpag${vuelo.id_vuelo}" disabled>${generarSel(vuelo.metodo_pago)}</select>
                                 <td><button class='btn btn-primary' name='btnModi[]' id="Modi${vuelo.id_vuelo}">Modificar</button></td>
@@ -98,6 +100,9 @@ function modificarReserva(){
     
     inputAsiento = document.querySelector("#asients"+vueloMod)
     inputPago = document.querySelector("#metpag"+vueloMod)
+
+    // evento para recalcular precio
+    inputAsiento.addEventListener("input", recalcularPrecio)
 
     // Guardamos los valores originales en una variable global
     datosOriginales = {
@@ -162,6 +167,7 @@ function EnviarModificacion(){
             this.innerHTML = "Modificar"
             this.removeEventListener("click", EnviarModificacion)
             this.addEventListener("click", modificarReserva)
+            inputAsiento.removeEventListener("input", recalcularPrecio)
 
             btnAnul = document.querySelector("#Anul"+vueloMod)
             btnAnul.removeEventListener("click", cancelarMod)
@@ -235,6 +241,18 @@ function generarSel(metodo_pago){
         }
     }
     return cadena
+}
+
+// Funcion para sacar precios
+function pintarPrecio(num){
+    return new Number(num).toLocaleString("es-ES",{style:'currency',currency:'EUR'})
+}
+
+// Recalcular precio vuelo
+function recalcularPrecio(idVuelo){
+    let vueloMod = this.id.slice(7)
+    document.querySelector("#Prec"+vueloMod).innerHTML = pintarPrecio(this.value * document.querySelector("#Prec"+vueloMod).attributes[1].value)
+    //Ocultamos en el name el precio del asiento para evitar harcode
 }
 
 // Alerta que se auto cierra

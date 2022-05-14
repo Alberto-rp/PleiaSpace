@@ -63,7 +63,8 @@ async function cambiarCalendario(){
                 document.querySelector(id).innerHTML += `<div class='elemVuelo'>
                                                             Vuelo: ${item.id_vuelo}<br>
                                                             Orbita: ${item.orbita_destino}<br>
-                                                            Tipo: ${item.tipo_vuelo}
+                                                            Tipo: ${item.tipo_vuelo}<br>
+                                                            Vehiculo: ${item.lanzador}
                                                         </div>`
             }
         }

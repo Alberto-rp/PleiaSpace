@@ -1,4 +1,4 @@
-const orbitas = ['LEO','MEO','GEO','POLAR']
+const orbitas = ['LEO','SSO','GTO']
 const fechaActual = new Date(Date.now())
 
 window.addEventListener("load", init)
