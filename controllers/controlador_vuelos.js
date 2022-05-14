@@ -30,4 +30,16 @@ vuelos.getVuelosCOMByFecha = function(request, response){
     })
 
 }
+
+vuelos.getVuelosCarga = function(request, response){
+    const orb = request.body.orbita
+    const fecha = new Date(request.body.fecha)
+
+    let query = 'SELECT v.id_vuelo, fecha, orbita_destino, lanzador, precio_kg, disp_port_A, disp_port_B FROM `vuelos` v, `vuelos_carga` vc WHERE fecha > ? AND tipo_vuelo = "CAR" AND orbita_destino = ? AND v.id_vuelo = vc.id_vuelo  ORDER BY fecha;'
+    pool.query(query, [fecha, orb], (error, results) => {
+        if(error){console.log(error)}
+        response.status(200).json(results)
+    })
+
+}
 module.exports = vuelos

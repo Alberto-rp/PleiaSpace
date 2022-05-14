@@ -40,6 +40,9 @@ router.get('/api/vuelosCOM:fechita', vuelosControler.getVuelosCOMByFecha)
 // Vuelo por id Usuario
 router.get('/api/vuelos/usuario:id',vuelosControler.getvuelosUsuario)
 
+//Vuelos carga
+router.post('/api/vuelosCAR', vuelosControler.getVuelosCarga)
+
 
 /* AUTH */
 // Registro usuario
