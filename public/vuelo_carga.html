@@ -31,56 +31,98 @@
         <!-- FORM -->
 
             <fieldset id="fs1">
-                <div class="row text-center">
-                    <div class="col-12 col-sm-4 m-auto darkColor">
+                <div class="row text-center darkColor">
+                    <div class="col-12 col-sm-4 m-auto">
                         <label for="fechaIn" class="text-muted">No antes de:</label><br>
                         <input type="month" class="form-control" id="fechaIn" name="fechaIn">
                         <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                     </div>
-                    <div class="col-12 col-sm-4 m-auto darkColor">
-                        <label for="fechaIn" class="text-muted">Orbita:</label><br>
+                    <div class="col-12 col-sm-4 m-auto">
+                        <label for="orbit" class="text-muted">Orbita:</label><br>
                         <select name="orbit" id="orbit" class="form-control"></select>
                         <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                     </div>
-                    <div class="col-12 col-sm-4 m-auto darkColor">
-                        <label for="fechaIn" class="text-muted">Masa:</label><br>
+                    <div class="col-12 col-sm-4 m-auto">
+                        <label for="peso" class="text-muted">Masa:</label><br>
                         <input type="number" name="peso" id="peso" class="form-control">
                         <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                     </div>
-                    <div class="col-12 text-center mt-2 darkColor">
-                        Precio estimado:
-                        <span id="precio">--</span>
-                    </div>
-                    <div class="col-12 text-center mt-2">
-                        <input id="btnComp" class="btn btn-primary" type="submit" value="Comprobar">
-                    </div>
                 </div>
             </fieldset>
-
-            <div class="row">
-                <div class="col" id="tablaResult">sd</div>
+            <div class="row text-center darkColor">
+                <div class="col-12 text-center darkColor">
+                    Precio estimado:
+                    <span id="precio">--</span>
+                </div>
+                <div class="col-12 text-center darkColor">
+                    <span id="datosSeleccionados" class="text-muted"></span>
+                </div>
+                <div class="col-12 text-center mt-2">
+                    <input id="btnComp" class="btn btn-primary" type="submit" value="Comprobar">
+                </div>
             </div>
-
-            <fieldset disabled="disabled" id="fs2" class="p-1 p-md-5">
-
-                <!-- Id VUELO -->
-                <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
-                <input type="hidden" name="idUsuario" id="idUsuario" value="">
-
-                <!-- SUBMIT -->
-                <div class="row mt-2 text-center">
-                    <div class="col">
-                        <input class="btn btn-primary" type="submit" value="Reservar">
-                    </div>
+            <fieldset id="fs2">
+                <div class="row text-center darkColor">
+                    <div class="col" id="tablaResult">sd</div>
                 </div>
             </fieldset>
+            <div class="row text-center darkColor">
+                <fieldset  id="fs3" class="p-1 p-md-5 container">
+    
+                    <!-- Id VUELO y PRECIO hiden-->
+                    <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
+                    <input type="hidden" name="precioEstimado" id="precioEstimado" value="">
 
-        <div class="alert alert-dismissible fade show" role="alert"  id="alerta">
-            <span></span>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="btnCierraAlert">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+                    <div class="col-12">
+                        <div class="row justify-content-between text-center bg-white">
+                            <div class="col-12 col-sm-6 bg-danger">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <img class="" src="img/utilities/portA.png" alt="puertoA">
+                                    </div>
+                                    <div class="col-12 text-dark" id="datosA"></div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary" id="A" name="btnPORT">SELECT</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 text-center bg-success">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <img class="" src="img/utilities/portB.png" alt="puertoB">
+                                    </div>
+                                    <div class="col-12 text-dark" id="datosB"></div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary" id="B" name="btnPORT">SELECT</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+
+
+    
+                    <!-- SUBMIT -->
+                    <!-- <div class="row mt-2 text-center">
+                        <div class="col">
+                            <input class="btn btn-primary" type="submit" value="Reservar">
+                        </div>
+                    </div> -->
+                </fieldset>
+            </div>
+            <!-- <div class="row text-center darkColor">
+                <fieldset disabled="disabled" id="fs3" class="p-1 p-md-5">
+                </fieldset>
+            </div>
+            <div class="row text-center darkColor">
+                <fieldset disabled="disabled" id="fs4" class="p-1 p-md-5">
+                </fieldset>
+            </div> -->
+
+
+            <!-- ALERTA -->
+            <div class="alert" role="alert" id="alerta2"></div>
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->

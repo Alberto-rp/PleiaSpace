@@ -7,17 +7,35 @@
     background-color: #1a1a1a;
 }
 
-#tablaResult{
+/* #tablaResult{
+    display: none;
+} */
+
+/* Aniadir fs3 */
+#fs2, #fs4{ 
     display: none;
 }
 
-#fs2{
-    display: none;
+#alerta2{
+    opacity: 0;
+    transition: 0.5s;
 }
 
-#alerta{
-    display: none;
+div[class~='col-12'] img{
+    width: 220px;
 }
+
+#datosSeleccionados{
+    font-size: 1.4rem;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+/* .icon {
+    padding-left: 25px;
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+    background-size: 20px;
+} */
 
 select{
     width: 170px;
@@ -61,8 +79,10 @@ body{
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
-        
+    }
 
+    #datosSeleccionados{
+        font-size: 1.2rem;
     }
 }
 
@@ -83,5 +103,9 @@ body{
 
     .titulo2{
         font-size: 1rem;
+    }
+
+    #datosSeleccionados{
+        font-size: 0.8rem;
     }
 } 
