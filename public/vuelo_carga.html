@@ -13,7 +13,7 @@
     <script src="scripts/vueloCarg.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <!-- <link rel="icon" href="img/Minitura.png"> -->
+    <link rel="icon" href="img/Minitura.png">
 
     <!-- BUSCAR COMO INCLUIR LINKS -->
 </head>
@@ -24,7 +24,7 @@
         <div class="row" id="jumbo">
             <div class="col text-center align-items-center">
                 <h1 class="titulo1"><b>PROGRAMA DE CARGA <br> COMPARTIDA</b></h1>
-                <p class="titulo2">MISIONES DEDICADAS A VIAJES COMPARTIDOS DE CARGA.<br> BUSCA TÚ VUELO ABAJO</p>
+                <p class="titulo2" id="seccHead">MISIONES DEDICADAS A VIAJES COMPARTIDOS DE CARGA.<br> BUSCA TÚ VUELO ABAJO</p>
             </div>
         </div>
         
@@ -72,10 +72,11 @@
                     <!-- Id VUELO y PRECIO hiden-->
                     <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
                     <input type="hidden" name="precioEstimado" id="precioEstimado" value="">
+                    <input type="hidden" name="puertoSel" id="puertoSel" value="">
 
                     <div class="col-12">
-                        <div class="row justify-content-between text-center bg-white">
-                            <div class="col-12 col-sm-6 bg-danger">
+                        <div class="row justify-content-between text-center bg-secondary">
+                            <div class="col-12 col-sm-6 bg-white">
                                 <div class="row">
                                     <div class="col-12">
                                         <img class="" src="img/utilities/portA.png" alt="puertoA">
@@ -86,7 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 text-center bg-success">
+                            <div class="col-12 col-sm-6 text-center bg-white">
                                 <div class="row">
                                     <div class="col-12">
                                         <img class="" src="img/utilities/portB.png" alt="puertoB">
@@ -99,26 +100,17 @@
                             </div>
                         </div>
                     </div>
-                        
-
-
-    
-                    <!-- SUBMIT -->
-                    <!-- <div class="row mt-2 text-center">
-                        <div class="col">
-                            <input class="btn btn-primary" type="submit" value="Reservar">
-                        </div>
-                    </div> -->
-                </fieldset>
-            </div>
-            <!-- <div class="row text-center darkColor">
-                <fieldset disabled="disabled" id="fs3" class="p-1 p-md-5">
                 </fieldset>
             </div>
             <div class="row text-center darkColor">
-                <fieldset disabled="disabled" id="fs4" class="p-1 p-md-5">
+                <fieldset id="fs4" class="p-1 p-md-5">
+                    <button>Holabuena</button>
                 </fieldset>
-            </div> -->
+            </div>
+            <div class="row text-center darkColor">
+                <fieldset id="fs5" class="p-1 p-md-5">
+                </fieldset>
+            </div>
 
 
             <!-- ALERTA -->

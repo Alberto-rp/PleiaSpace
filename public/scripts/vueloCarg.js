@@ -2,6 +2,7 @@ const orbitas = ['LEO','SSO','GTO']
 const fechaActual = new Date(Date.now())
 // Objeto global que guarda los vuelos
 let vuelosTOTAL = []
+let datosVueloSelectGEN = []
 
 
 window.addEventListener("load", init)
@@ -19,7 +20,7 @@ function init(){
 
     //Listeners
     document.querySelector("#btnComp").addEventListener("click", calcularPrecio)
-    asignarFuncion("btnPORT", addon)
+    asignarFuncion("btnPORT", addon, 'click')
 
 }
 
@@ -53,8 +54,8 @@ function calcularPrecio(){
         .then(resp => resp.json())
         .then(vuelos => {
             console.log(vuelos)
-            document.querySelector("#precio").innerHTML = pintarPrecio(vuelos[0].precio_kg * masaInput)
             if(vuelos.length > 0){ //METER FUNCION COMPROBAR SLOTS
+                document.querySelector("#precio").innerHTML = pintarPrecio(vuelos[0].precio_kg * masaInput)
                 // Reiniciamos la tabla de resultados y la mostramos
                 vuelosTOTAL = []
                 let tabla = ''
@@ -80,16 +81,30 @@ function calcularPrecio(){
                                         <td>${item.disp_port_A}</td>
                                         <td>${item.disp_port_B}</td>
                                         <td>${item.lanzador}</td>
-                                        <td>${new Number(item.precio_kg).toLocaleString("es-ES",{style:'currency',currency:'EUR'})}/Kg</td>
-                                        <td><button class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td>
-                                        </tr>`
+                                        <td>${new Number(item.precio_kg).toLocaleString("es-ES",{style:'currency',currency:'EUR'})}/Kg</td>`
+                                        if(masaInput > 100 && item.lanzador == 'ELECTRA'){
+                                            tabla += `<td><button disabled class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td></tr>`
+                                        }else{
+                                            tabla += `<td><button class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td></tr>`
+                                        }
+                                        
                         vuelosTOTAL.push(item)
                     }
                 }
                 tabla += '</table>'
                 salida.innerHTML = tabla
                 document.querySelector("#fs2").style.display = 'block'
-                asignarFuncion('vtnVuelos', selectPort)
+                document.querySelector("#seccHead").innerHTML = 'SELECCION DE VUELO'
+
+                asignarFuncion('vtnVuelos', selectPort, 'click')
+                
+                // Alerta de puertos
+                let botones = document.getElementsByName("vtnVuelos")
+                for(item of botones){
+                    if(item.disabled == true){
+                        item.parentElement.addEventListener("mouseenter", alertaDisabled)
+                    }
+                }
     
             }else{
                 // Si no hay vuelos, mostrar mensaje:
@@ -123,10 +138,10 @@ function calcularPrecio(){
 }
 
 // Asignar botones
-function asignarFuncion(nombre, funcion){
+function asignarFuncion(nombre, funcion, disparador){
     let botones = document.getElementsByName(nombre)
     for(item of botones){
-        item.addEventListener("click", funcion)
+        item.addEventListener(disparador, funcion)
     }
 }
 
@@ -148,8 +163,15 @@ function selectPort(){
     actualizarDatosLanzador(datosVuelo.lanzador)
     
 
-    // Mostramos los datos elegidos y el siguiente fileset
-    datosSel.innerHTML = datosVuelo.id_vuelo+" | "+datosVuelo.lanzador+" | "+fechaFormato(datosVuelo.fecha)+" | "+datosVuelo.orbita_destino+" | "+(document.querySelector("#precioEstimado").value / 1000)+"K €"
+    // Mostramos los datos elegidos y el siguiente fileset    
+    datosVueloSelectGEN = [['id',datosVuelo.id_vuelo],
+                        ['vehiculo', datosVuelo.lanzador],
+                        ['fecha', datosVuelo.fecha],
+                        ['orbita', datosVuelo.orbita_destino],
+                        ['peso', masaInput],
+                        ['coste', document.querySelector("#precioEstimado").value]
+                        ]
+    pintarResumen()
     datosSel.style.opacity = 1
     document.querySelector("#fs3").style.display = "inline-block"
 
@@ -159,12 +181,31 @@ function selectPort(){
     document.querySelector("#fs1").style.display = 'none'
     document.querySelector("#fs2").style.display = 'none'
 
+    document.querySelector("#seccHead").innerHTML = 'SELECCION DE PUERTO'
     console.log(this.id)
 }
 
 // addons 3
 function addon(){
-    console.log(this.id)
+    // Guardamos la seleccion en un input oculto
+    document.querySelector("#puertoSel").value = this.id
+    datosVueloSelectGEN.push(['puerto',this.id])
+    // Si se selecciona el puerto A se incrementa el precio en un 25%
+    if(this.id == 'A'){
+        for(item of datosVueloSelectGEN){
+            if(item[0] == 'coste'){
+                item[1] *= 1.25
+            }
+        }
+    }
+
+    // Mostramos el resumen
+    pintarResumen()
+
+    // Mostrar siguiente form
+    document.querySelector("#fs3").style.display = 'none'
+    document.querySelector("#fs4").style.display = "inline-block"
+    document.querySelector("#seccHead").innerHTML = 'COMPLETA TÚ VUELO'
 }
 
 // Funcion sacar la fecha Guay
@@ -174,14 +215,60 @@ function fechaFormato(fechaEnt){
     return mes+"/"+fecha.getFullYear()  
 }
 
+// Sacar dinero guay
+function salidaDinero(suma){
+    console.log(suma)
+    return (suma < 1000000)? (suma/1000)+'K €' : (suma/1000000)+'M €'
+}
+
+// Pintar Resumen
+function pintarResumen(){
+    let salida = document.querySelector("#datosSeleccionados")
+    salida.innerHTML = ""
+    let texto = ""
+    for(item of datosVueloSelectGEN){
+        if(item[0] == 'fecha'){
+            texto += fechaFormato(item[1])
+        }else if(item[0] == 'peso'){
+            texto += item[1]+"Kg"
+        }else if(item[0] == 'coste'){
+            texto += salidaDinero(item[1])
+        }else if(item[0] == 'puerto'){
+            texto += "Port "+item[1]
+        }else{
+            texto += item[1]
+        }
+
+        if(datosVueloSelectGEN.indexOf(item) !=  (datosVueloSelectGEN.length - 1)){
+            texto += " | "
+        }
+    }
+    salida.innerHTML = texto
+}
+
 // Datos lanzador
 function actualizarDatosLanzador(vehiculo){
-    // fetch A FUTURO
-    let pesoA = 0
-    let pesoB = 0
+    fetch('/api/vehiculos'+vehiculo)
+    .then(resp => resp.json())
+    .then(datos => {
+        document.querySelector("#datosA").innerHTML = `<b>Puerto ${datos[0].diam_port_A}\"</b><br> MAX ${datos[0].peso_max_pA} Kg`
+        document.querySelector("#datosB").innerHTML = `<b>Puerto ${datos[0].diam_port_B}\"</b><br> MAX ${datos[0].peso_max_pB} Kg`
 
-    document.querySelector("#datosA").innerHTML = `12`
-    document.querySelector("#datosB").innerHTML = `12`
+        if(document.querySelector("#peso").value > datos[0].peso_max_pB){
+            document.querySelector("#B").disabled = true
+            document.querySelector("#B").parentElement.addEventListener("mouseenter", alertaDisabledPort)
+        }
+    })
+}
+
+// Alerta cuando vuelo no es compatible
+function alertaDisabled(){
+    tempAlert(5000,'vueloPeso')
+}
+
+// Alerta cuando peso excede puerto
+function alertaDisabledPort(){
+    tempAlert(5000,'portPeso')
 }
 
 // Alerta que se auto cierra
@@ -193,13 +280,13 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Debes introducir una masa!"
             break;
-        case'fail':
+        case'portPeso':
             divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Usuario o contraseña incorrectos"
+            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este puerto."
             break;
-        case 'auth':
+        case'vueloPeso':
             divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Debes iniciar sesión para reservar un vuelo"
+            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a>"
             break;
         case 'noerror':
             divAlerta.classList.add("alert-success")

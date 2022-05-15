@@ -12,7 +12,7 @@
 } */
 
 /* Aniadir fs3 */
-#fs2, #fs4{ 
+#fs2, #fs3, #fs4{ 
     display: none;
 }
 
@@ -69,6 +69,10 @@ body{
         background-repeat: no-repeat;
         background-color: #1a1a1a;
     }
+
+    #datosSeleccionados{
+        font-size: 1.1rem;
+    }
 }
 
 @media screen and (min-width:800px) and (max-width:1280px){ 
@@ -82,7 +86,7 @@ body{
     }
 
     #datosSeleccionados{
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 
@@ -106,6 +110,6 @@ body{
     }
 
     #datosSeleccionados{
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 } 

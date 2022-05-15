@@ -28,6 +28,7 @@ var vuelosControler = require('../controllers/controlador_vuelos');
 var authController = require('../controllers/controlador_auth')
 var userController = require('../controllers/controlador_usuarios')
 var fileController = require('../controllers/controlador_files')
+var vehicleController = require('../controllers/controlador_vehiculos')
 
 
 /* VUELOS */
@@ -77,6 +78,10 @@ router.post('/api/eliminarCuenta', userController.eliminarCuenta)
 /*ARCHIVOS*/
 //Trabaja con nosotros
 router.post('/api/file', upload.single('cv'), fileController.subirCurriculum)
+
+/*VEHICULOS */
+//Devolver vehiculo nombre
+router.get('/api/vehiculos:name', vehicleController.devolverDatosVehiculo)
 
 
 

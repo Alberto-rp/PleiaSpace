@@ -14,8 +14,7 @@ function init(){
         document.querySelector("nav").classList = "navbar fixed-top navbar-expand-lg header"
     
         // Cargar el logo de la pestaña
-        document.querySelector("head").innerHTML += `<link rel="icon" href="img/Minitura.png">`
-        document.querySelector("head").innerHTML += `<link rel="shortcut icon" href="#">` //Quitar favicon error
+        document.querySelector("head").innerHTML += `<link rel="shortcut icon" href="img/Minitura.png">`
     
         // Iluminar colores
         let elementos = document.querySelectorAll(".nav-item")
