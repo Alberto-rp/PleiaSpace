@@ -1,4 +1,5 @@
 const orbitas = ['LEO','SSO','GTO']
+const preciosAddon = [['seguro', 0.05],['adapt', 10000],['elect',5000],['fuel',12000]]
 const fechaActual = new Date(Date.now())
 // Objeto global que guarda los vuelos
 let vuelosTOTAL = []
@@ -21,6 +22,7 @@ function init(){
     //Listeners
     document.querySelector("#btnComp").addEventListener("click", calcularPrecio)
     asignarFuncion("btnPORT", addon, 'click')
+    asignarFuncion("checksFS4[]", inputChecks, "click")
 
 }
 
@@ -182,7 +184,6 @@ function selectPort(){
     document.querySelector("#fs2").style.display = 'none'
 
     document.querySelector("#seccHead").innerHTML = 'SELECCION DE PUERTO'
-    console.log(this.id)
 }
 
 // addons 3
@@ -206,6 +207,112 @@ function addon(){
     document.querySelector("#fs3").style.display = 'none'
     document.querySelector("#fs4").style.display = "inline-block"
     document.querySelector("#seccHead").innerHTML = 'COMPLETA TÚ VUELO'
+
+    // Boton confirmar evento
+    document.querySelector("#confirmDatosAddons").addEventListener("click", initDatosConct)
+}
+
+function initDatosConct(){
+    // Aztualizar Datos pasamos el coste de addons al total
+
+    // Si se ha seleccionado y luego dejado a 0, eliminamos los indices
+    if(valorMatriz(datosVueloSelectGEN, 'addons') == 0 && valorMatriz(datosVueloSelectGEN, 'addonsSEL').length == 0){
+        for(let i = 0; i < datosVueloSelectGEN.length; i++){
+            if(datosVueloSelectGEN[i][0] == 'addonsSEL' || datosVueloSelectGEN[i][0] == 'addons'){
+                datosVueloSelectGEN.splice(i, 1)
+                i-=1
+            }
+        }
+    }else{
+        // Actualizamos el precio total
+        for(item of datosVueloSelectGEN){
+            if(item[0] == 'coste'){
+                for(item2 of datosVueloSelectGEN){
+                    if(item2[0] == 'addons'){
+                        item[1] = (parseFloat(item[1]) + parseFloat(item2[1]))
+                        break
+                    }
+                }
+                break
+            }
+        }
+
+        // Eliminamos el indice auxiliar addons
+        for(let i = 0; i < datosVueloSelectGEN.length; i++){
+            if(datosVueloSelectGEN[i][0] == 'addons'){
+                datosVueloSelectGEN.splice(i, 1)
+                break
+            }
+        }
+    }
+
+    // Actualizamos datos
+    pintarResumen()
+
+    // Mostrar los siguientes elementos
+    document.querySelector("#fs4").style.display = 'none'
+    document.querySelector("#fs5").style.display = "inline-block"
+    document.querySelector("#seccHead").innerHTML = 'DATOS DE CONTACTO'
+}
+
+// Funcion recalcular precio segun checks de ADDONS
+function inputChecks(){
+    adons = []
+    let checks = document.getElementsByName("checksFS4[]")
+    for(item of checks){
+        if(item.checked){
+            adons.push(item.value)
+        }
+    }
+
+    totalDinero = 0
+    // SUMAR PRECIOS
+    for(item of preciosAddon){
+        if(adons.indexOf(item[0]) != -1){
+            if(item[0] != 'seguro'){
+                totalDinero += item[1]
+            }else{
+                totalDinero += (item[1] * valorMatriz(datosVueloSelectGEN, 'coste')) 
+            }
+        }
+    }
+
+    // Mostramos el la suma total de los addons y la guardamos en la matriz de datos
+    document.querySelector("#sumaAddon").innerHTML = pintarPrecio(totalDinero)
+
+    if(valorMatriz(datosVueloSelectGEN, 'addons') == 0){
+        datosVueloSelectGEN.push(['addons',totalDinero])
+    }else{
+        for(item of datosVueloSelectGEN){
+            if(item[0] == 'addons'){
+                item[1] = totalDinero
+                break
+            }
+        }
+    }
+
+    // Guardamos los datos seleccionados
+    if(valorMatriz(datosVueloSelectGEN, 'addonsSEL') == 0){
+        datosVueloSelectGEN.push(['addonsSEL',adons])
+    }else{
+        for(item of datosVueloSelectGEN){
+            if(item[0] == 'addonsSEL'){
+                item[1] = adons
+                break
+            }
+        }
+    }
+}
+
+//funcion para buscar el indice de una matriz
+function valorMatriz(matriz, elemento){
+    let salida = 0
+    for(item of matriz){
+        if(item[0] == elemento){
+            salida = item[1]
+        }
+    }
+    return salida
 }
 
 // Funcion sacar la fecha Guay
@@ -217,7 +324,6 @@ function fechaFormato(fechaEnt){
 
 // Sacar dinero guay
 function salidaDinero(suma){
-    console.log(suma)
     return (suma < 1000000)? (suma/1000)+'K €' : (suma/1000000)+'M €'
 }
 

@@ -103,8 +103,74 @@
                 </fieldset>
             </div>
             <div class="row text-center darkColor">
-                <fieldset id="fs4" class="p-1 p-md-5">
-                    <button>Holabuena</button>
+                <fieldset id="fs4" class="col-12 pt-2">
+                    <div class="row bg-secondary">
+                        <div class="col-auto align-items-center d-flex">
+                            <input class="form-input" type="checkbox" value="seguro" name="checksFS4[]" id="checkSeguro">
+                            <label class="form-check-label" for="checkSeguro"><b>SEGURO</b></label>
+                        </div>
+                        <div class="col-12 col-md-auto text-left">
+                            <small id="checkSeguroHelp" class="form-text">Seguro de que cubre la carga y los costes del lanzamiento. Corresponde a un 5% del precio estimado.</small>
+                        </div>
+                    </div>
+
+                    <div class="row"><div class="col"></div></div>
+
+                    <div class="row bg-secondary">
+                        <div class="col-12 col-md-auto align-items-center d-flex">
+                            <input class="form-input" type="checkbox" value="elect" name="checksFS4[]" id="checkElect">
+                            <label class="form-check-label" for="checkElect"><b>ASIESTENCIA ELÉCTRICA</b></label>
+                        </div>
+                        <div class="col text-left">
+                            <small id="checkElectHelp" class="form-text">El equipo de PleiaSpace puede proveer de conectividad eléctrica entre el vehiculo y su carga. Nuestro equipo se pondrá en contacto para más detalles.</small>
+                        </div>
+                    </div>
+
+                    <div class="row"><div class="col"></div></div>
+
+                    <div class="row bg-secondary">
+                        <div class="col-12 col-md-auto align-items-center d-flex">
+                            <input class="form-input" type="checkbox" value="adapt" name="checksFS4[]" id="checkAdapt">
+                            <label class="form-check-label" for="checkAdapt"><b>ADAPTADOR PUERTO</b></label>
+                        </div>
+                        <div class="col text-left">
+                            <small id="checkAdaptHelp" class="form-text">Si el tamaño de nuestros puertos no se adapta a las especificaciones de su carga, o necesita plantear un sistema de separación, el equipo de PleiaSpace se pondrá en contacto con usted para brindarle una solución.</small>
+                        </div>
+                    </div>
+
+                    <div class="row"><div class="col"></div></div>
+
+                    <div class="row bg-secondary">
+                        <div class="col-12 col-md-auto align-items-center d-flex">
+                            <input class="form-input" type="checkbox" value="fuel" name="checksFS4[]" id="checkFuel">
+                            <label class="form-check-label" for="checkFuel"><b>COMBUSTIBLE</b></label>
+                        </div>
+                        <div class="col text-left">
+                            <small id="checkFuelHelp" class="form-text">Si durante el día de lanzamiento, necesita repostar su carga seleccione esta opción para que el equipo de PleiaSpace tenga preparados los comburentes que usted necesite.</small>
+                        </div>
+                    </div>
+
+                    <div class="row"><div class="col"></div></div>
+
+                    <div class="row bg-secondary justify-content-end">
+                        <div class="col-auto align-items-center d-flex">
+                            TOTAL:
+                        </div>
+                        <div class="col-auto text-right" id="sumaAddon">
+                            0,00 €
+                        </div>
+                    </div>
+
+                    <div class="row"><div class="col"></div></div>
+
+                    <div class="row bg-dark pt-2 pb-2 justify-content-end">
+                        <div class="col-8 justify-content-start text-muted">
+                            El total se añadirá al coste estimado
+                        </div>
+                        <div class="col-4 align-items-center justify-content-end d-flex">
+                            <button class="btn btn-primary" id="confirmDatosAddons">Confirmar</button>
+                        </div>
+                    </div>
                 </fieldset>
             </div>
             <div class="row text-center darkColor">
