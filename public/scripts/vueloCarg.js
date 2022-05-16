@@ -212,7 +212,8 @@ function addon(){
     document.querySelector("#confirmDatosAddons").addEventListener("click", initDatosConct)
 }
 
-function initDatosConct(){
+// PASO 5/5
+function initDatosConct(){ 
     // Aztualizar Datos pasamos el coste de addons al total
 
     // Si se ha seleccionado y luego dejado a 0, eliminamos los indices
@@ -253,9 +254,59 @@ function initDatosConct(){
     document.querySelector("#fs4").style.display = 'none'
     document.querySelector("#fs5").style.display = "inline-block"
     document.querySelector("#seccHead").innerHTML = 'DATOS DE CONTACTO'
+    document.querySelector("#sumaCheckout").innerHTML = pintarPrecio(valorMatriz(datosVueloSelectGEN, 'coste'))
+
+    document.querySelector("#btnReservar").addEventListener("click", realizarReserva)
 }
 
-// Funcion recalcular precio segun checks de ADDONS
+// Completar la reserva y enviar los datos
+function realizarReserva(){
+    //Recogemos los nuevos datos y comprobamos que están rellenos
+    let datosCompany = []
+    let validate = true
+
+    let nombreComp = document.querySelector("#nameComp").value
+    let adress = document.querySelector("#adress").value
+    let city = document.querySelector("#city").value
+    let prov = document.querySelector("#prov").value
+    let codPost = document.querySelector("#cod_Post").value
+    let country = document.querySelector("#country").value
+    let nombreContacto = document.querySelector("#nameContact").value
+    let email = document.querySelector("#emailContact").value
+    let phone = document.querySelector("#telContact").value
+
+    datosCompany.push(nombreComp, adress, city, prov, codPost, country, nombreContacto, email, phone)
+
+    for(item of datosCompany){
+        if(item == ""){
+            validate = false
+        }
+    }
+
+    if(validate){
+        // Si todo esta relleno
+        datosVueloSelectGEN.push(['datosComp',datosCompany])
+
+        // Guardamos los datos del array en un objeto
+        let datosEnviar = {}
+        for(item of datosVueloSelectGEN){
+            datosEnviar[item[0]] = item[1]
+        }
+
+        fetch('/api/reservaCarga', {
+            method: 'POST',
+            body: JSON.stringify(datosEnviar),
+            headers:{'Content-Type': 'application/json'}
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+    }else{
+        tempAlert(3000, 'rellenarCamps')
+    }
+    
+}
+
+// Funcion recalcular precio segun checks de ADDONS 
 function inputChecks(){
     adons = []
     let checks = document.getElementsByName("checksFS4[]")
@@ -280,7 +331,7 @@ function inputChecks(){
     // Mostramos el la suma total de los addons y la guardamos en la matriz de datos
     document.querySelector("#sumaAddon").innerHTML = pintarPrecio(totalDinero)
 
-    if(valorMatriz(datosVueloSelectGEN, 'addons') == 0){
+    if(valorMatriz(datosVueloSelectGEN, 'addons') == -1){
         datosVueloSelectGEN.push(['addons',totalDinero])
     }else{
         for(item of datosVueloSelectGEN){
@@ -292,7 +343,7 @@ function inputChecks(){
     }
 
     // Guardamos los datos seleccionados
-    if(valorMatriz(datosVueloSelectGEN, 'addonsSEL') == 0){
+    if(valorMatriz(datosVueloSelectGEN, 'addonsSEL') == -1){
         datosVueloSelectGEN.push(['addonsSEL',adons])
     }else{
         for(item of datosVueloSelectGEN){
@@ -306,7 +357,7 @@ function inputChecks(){
 
 //funcion para buscar el indice de una matriz
 function valorMatriz(matriz, elemento){
-    let salida = 0
+    let salida = -1
     for(item of matriz){
         if(item[0] == elemento){
             salida = item[1]
@@ -341,11 +392,12 @@ function pintarResumen(){
             texto += salidaDinero(item[1])
         }else if(item[0] == 'puerto'){
             texto += "Port "+item[1]
-        }else{
+        }else if(item[0] != 'addonsSEL'){
             texto += item[1]
         }
 
-        if(datosVueloSelectGEN.indexOf(item) !=  (datosVueloSelectGEN.length - 1)){
+        //Mientras no sea el ultimo elemento, y no sea puerto
+        if(datosVueloSelectGEN.indexOf(item) != (datosVueloSelectGEN.length - 1) && item[0] != 'puerto'){
             texto += " | "
         }
     }
@@ -393,6 +445,10 @@ function tempAlert(duration, error){
         case'vueloPeso':
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a>"
+            break;
+        case'rellenarCamps':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Debes rellenar todos los datos!"
             break;
         case 'noerror':
             divAlerta.classList.add("alert-success")

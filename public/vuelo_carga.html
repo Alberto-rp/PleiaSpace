@@ -11,6 +11,7 @@
 
     <script src="scripts/header.js"></script>
     <script src="scripts/vueloCarg.js"></script>
+    <script src="scripts/initPaises.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="icon" href="img/Minitura.png">
@@ -173,8 +174,73 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="row text-center darkColor">
-                <fieldset id="fs5" class="p-1 p-md-5">
+            <div class="row bg-dark">
+                <fieldset id="fs5" class="col-12 pt-2">
+                    <h3>Datos Compañia</h3>
+                    <div class="row bg-white">
+                        <div class="col-12 col-md-6 text-dark">
+                            <label for="nameComp" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nameComp" name="compName" required>
+                        </div>
+                        <div class="col-12 col-md-6 text-dark">
+                            <label for="adress" class="form-label">Dirección:</label>
+                            <input type="text" class="form-control" id="adress" name="adress" required>
+                        </div>
+                    </div>
+                    <div class="row bg-white">
+                        <div class="col-12 col-md-6 text-dark">
+                            <label for="city" class="form-label">Ciudad:</label>
+                            <input type="text" class="form-control" id="city" name="city" required>
+                        </div>
+                        <div class="col-12 col-md-6 text-dark">
+                            <label for="prov" class="form-label">Provincia:</label>
+                            <input type="text" class="form-control" id="prov" name="prov" required>
+                        </div>
+                    </div>
+                    <div class="row bg-white pb-4">
+                        <div class="col-12 col-md-6 text-dark">
+                            <label for="cod_Post" class="form-label">Código Postal:</label>
+                            <input type="number" class="form-control" id="cod_Post" name="cod_Post" required>
+                        </div>
+                        <div class="col-12 col-md-6 text-dark">
+                            <label for="country" class="form-label">País:</label>
+                            <select name="country" id="country" class="form-control" required></select>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-2">Datos Contacto</h3>
+
+                    <div class="row bg-white pb-4">
+                        <div class="col-12 col-md-4 text-dark">
+                            <label for="nameContact" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nameContact" name="nameContact" required>
+                        </div>
+                        <div class="col-12 col-md-4 text-dark">
+                            <label for="emailContact" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="emailContact" name="emailContact" required>
+                        </div>
+                        <div class="col-12 col-md-4 text-dark">
+                            <label for="telContact" class="form-label">Teléfono:</label>
+                            <input type="tel" class="form-control" id="telContact" name="telContact" required>
+                        </div>
+                    </div>
+                    <div class="row bg-secondary justify-content-end">
+                        <div class="col-auto align-items-center d-flex">
+                            TOTAL:
+                        </div>
+                        <div class="col-auto text-right" id="sumaCheckout">
+                            0,00 €
+                        </div>
+                    </div>
+                    <div class="row bg-dark pt-2 pb-2 justify-content-end">
+                        <div class="col-8 justify-content-start text-muted align-items-center d-flex">
+                            Se enviará un email con todos los datos de la reserva.
+                        </div>
+                        <div class="col-4 align-items-center justify-content-end d-flex">
+                            <button class="btn btn-primary" id="btnReservar">Reservar</button>
+                        </div>
+                    </div>
+
                 </fieldset>
             </div>
 

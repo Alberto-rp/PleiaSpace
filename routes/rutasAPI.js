@@ -44,6 +44,9 @@ router.get('/api/vuelos/usuario:id',vuelosControler.getvuelosUsuario)
 //Vuelos carga
 router.post('/api/vuelosCAR', vuelosControler.getVuelosCarga)
 
+//Reservar vuelo carga
+router.post('/api/reservaCarga', vuelosControler.reservarVueloCarga)
+
 
 /* AUTH */
 // Registro usuario

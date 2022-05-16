@@ -42,4 +42,9 @@ vuelos.getVuelosCarga = function(request, response){
     })
 
 }
+
+vuelos.reservarVueloCarga = (request, response) =>{
+    console.log(request.body)
+
+}
 module.exports = vuelos
