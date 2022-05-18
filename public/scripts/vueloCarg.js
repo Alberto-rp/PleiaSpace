@@ -4,6 +4,8 @@ const fechaActual = new Date(Date.now())
 // Objeto global que guarda los vuelos
 let vuelosTOTAL = []
 let datosVueloSelectGEN = []
+// Ha volado antes?? (Completar con modal) Si la compañia existe en BD se pone a true
+let existeEnBD = false
 
 
 window.addEventListener("load", init)
@@ -157,13 +159,21 @@ function selectPort(){
             datosVuelo = item
         }
     }
-
     // Asignamos los input hide y datos de puertos
     document.querySelector("#idVueloSel").value = this.id
     let masaInput = document.querySelector("#peso").value
     document.querySelector("#precioEstimado").value = masaInput * datosVuelo.precio_kg
     actualizarDatosLanzador(datosVuelo.lanzador)
     
+    if(datosVuelo.disp_port_A == 0){
+        document.querySelector("#A").disabled = true
+        document.querySelector("#A").parentElement.addEventListener("mouseenter", alertaPort0)
+    }
+    if(datosVuelo.disp_port_B == 0){
+        document.querySelector("#B").disabled = true
+        document.querySelector("#B").parentElement.addEventListener("mouseenter", alertaPort0)
+    }
+
 
     // Mostramos los datos elegidos y el siguiente fileset    
     datosVueloSelectGEN = [['id',datosVuelo.id_vuelo],
@@ -184,6 +194,7 @@ function selectPort(){
     document.querySelector("#fs2").style.display = 'none'
 
     document.querySelector("#seccHead").innerHTML = 'SELECCION DE PUERTO'
+    
 }
 
 // addons 3
@@ -265,6 +276,11 @@ function realizarReserva(){
     let datosCompany = []
     let validate = true
 
+    // Ha volado antes?? (Completar con modal)
+    // let existeEnBD = false
+    // if(existeEnBd){idComp = ? datosCompany.push(id)}else{lodeAbajo}
+    // 
+
     let nombreComp = document.querySelector("#nameComp").value
     let adress = document.querySelector("#adress").value
     let city = document.querySelector("#city").value
@@ -275,10 +291,11 @@ function realizarReserva(){
     let email = document.querySelector("#emailContact").value
     let phone = document.querySelector("#telContact").value
 
-    datosCompany.push(nombreComp, adress, city, prov, codPost, country, nombreContacto, email, phone)
+    datosCompany.push(nombreComp, adress, city, prov, codPost, country, nombreContacto, email, phone, existeEnBD)
 
     for(item of datosCompany){
-        if(item == ""){
+        console.log(item)
+        if(item === ""){ //=== para poder enviar el false
             validate = false
         }
     }
@@ -299,8 +316,23 @@ function realizarReserva(){
             body: JSON.stringify(datosEnviar),
             headers:{'Content-Type': 'application/json'}
         })
-        .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(resp => {
+        
+            console.log(resp.status)
+            if(resp.status == 200){
+                //Si todo sale bien OCULTAR TODO EL FORMULARIO
+            }else if(resp.status == 404){
+                console.log('ERROR') //METER ERROR AQUI
+            }
+            return resp.json()
+        })
+        .then(data =>{
+            console.log(data)
+            tempAlert(2000, data.error)
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
     }else{
         tempAlert(3000, 'rellenarCamps')
     }
@@ -430,6 +462,11 @@ function alertaDisabledPort(){
     tempAlert(5000,'portPeso')
 }
 
+// Alerta cuando no quedan puertos de este tipo
+function alertaPort0(){
+    tempAlert(5000,'port0')
+}
+
 // Alerta que se auto cierra
 function tempAlert(duration, error){
     var divAlerta = document.querySelector("#alerta2");
@@ -443,6 +480,10 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este puerto."
             break;
+        case'port0':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "Los puertos típo A de este vehiculo están completos"
+            break;
         case'vueloPeso':
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a>"
@@ -450,6 +491,10 @@ function tempAlert(duration, error){
         case'rellenarCamps':
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error!</strong> Debes rellenar todos los datos!"
+            break;
+        case'nombreComp':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Nombre de compañia duplicado!"
             break;
         case 'noerror':
             divAlerta.classList.add("alert-success")

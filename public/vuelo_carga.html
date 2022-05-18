@@ -176,7 +176,12 @@
             </div>
             <div class="row bg-dark">
                 <fieldset id="fs5" class="col-12 pt-2">
-                    <h3>Datos Compañia</h3>
+                    <div class="row bg-white">
+                        <div class="col-12 bg-dark">
+                            <span class="h3 float-left">Datos Compañia</span>
+                            <button id="btnCargaDatosComp" class="btn btn-primary float-right css-tooltip" data-tooltip="Carga tus datos pulsando aquí">Cargar</button>
+                        </div>
+                    </div>
                     <div class="row bg-white">
                         <div class="col-12 col-md-6 text-dark">
                             <label for="nameComp" class="form-label">Nombre:</label>
@@ -234,7 +239,8 @@
                     </div>
                     <div class="row bg-dark pt-2 pb-2 justify-content-end">
                         <div class="col-8 justify-content-start text-muted align-items-center d-flex">
-                            Se enviará un email con todos los datos de la reserva.
+                            *Se enviará un email con todos los datos de la reserva.<br>
+                            *Si su empresa ya había reservado antes, debe pulsar el botón de cargar.
                         </div>
                         <div class="col-4 align-items-center justify-content-end d-flex">
                             <button class="btn btn-primary" id="btnReservar">Reservar</button>
@@ -243,10 +249,14 @@
 
                 </fieldset>
             </div>
-
+            <div class="row justify-content-center mt-1">
+                <div class="col-auto"><a class="btn btn-secondary" href="/carga">Reiniciar formulario</a></div>
+            </div>
 
             <!-- ALERTA -->
             <div class="alert" role="alert" id="alerta2"></div>
+
+
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->
