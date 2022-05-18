@@ -290,6 +290,7 @@ function realizarReserva(){
         // Guardamos los datos del array en un objeto
         let datosEnviar = {}
         for(item of datosVueloSelectGEN){
+            if(item[0] != 'vehiculo' && item[0] != 'fecha' && item[0] != 'orbita') //No necesitamos estos datos para la reserva en el servidor, solo para mostrarlos durante el form
             datosEnviar[item[0]] = item[1]
         }
 

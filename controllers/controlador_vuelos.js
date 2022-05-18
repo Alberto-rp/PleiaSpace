@@ -46,5 +46,47 @@ vuelos.getVuelosCarga = function(request, response){
 vuelos.reservarVueloCarga = (request, response) =>{
     console.log(request.body)
 
+    // Datos reserva
+    let idVuelo = request.body.id
+    let peso = request.body.peso
+    let cost = request.body.coste
+    let port = request.body.puerto
+    
+
+    // Datos addons
+    let seguro = 0
+    let electr = 0
+    let adapt = 0
+    let fuel = 0
+    if(request.body.addonsSEL != undefined){
+        for(item of request.body.addonsSEL){
+            switch(item){
+                case'seguro':
+                    seguro = 1
+                    break
+                case'elect':
+                    electr = 1
+                    break
+                case'adapt':
+                    adapt = 1
+                    break
+                case'fuel':
+                    fuel = 1
+                    break
+            }
+        }
+    }
+    // console.log(seguro+" "+electr+" "+adapt+" "+fuel)
+
+    // Datos compañia
+    let nombreComp = request.body.datosComp[0]
+    let adressComp = request.body.datosComp[1]
+    let cityComp = request.body.datosComp[2]
+    let provComp = request.body.datosComp[3]
+    let cosPostComp = request.body.datosComp[4]
+    let countryComp = request.body.datosComp[5]
+
+    // console.log(nombreComp+" "+idVuelo+" "+provComp)
+
 }
 module.exports = vuelos
