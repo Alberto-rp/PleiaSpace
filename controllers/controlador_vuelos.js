@@ -91,8 +91,25 @@ vuelos.reservarVueloCarga = (request, response) =>{
         let existeEnBD = request.body.datosComp[9]
 
         if(existeEnBD){
-            //Si existe en BD metemos la reserva directamente
-            response.status(404).json({error : 'noerror'})
+            let idComp = request.body.datosComp[10]
+
+            pool.query('INSERT INTO reserva_puerto SET cod_comp = ?, ?',[idComp, {id_vuelo: idVuelo, puerto: port, peso: peso, precio: cost, seguro: seguro, electricidad: electr, fuel: fuel, adaptador: adapt}], (error, results) => {
+                if(error){
+                    console.log(error)
+                    response.status(404).json({error : 'errorDesconocido'})
+                }else{
+                    //actualizamos vuelos_carga
+                    pool.query(`UPDATE vuelos_carga SET ${portModify} = (${portModify} - 1) WHERE ?`,{id_vuelo: idVuelo}, (error, results) =>{
+                        if(error){
+                            console.log(error)
+                            response.status(404).json({error : 'errorDesconocido'})
+                            //ELIMINAR RESERVA SI UPDATEPUERTO FALLA
+                        }else{
+                            response.status(200).json({error : 'noerror'})
+                        }
+                    })
+                }
+            })
         }else{
             // Datos compañia
             let nombreComp = request.body.datosComp[0]
@@ -135,6 +152,7 @@ vuelos.reservarVueloCarga = (request, response) =>{
                                     console.log(error)
                                     response.status(404).json({error : 'reservaNoRealizada'})
                                 }else{
+                                    //actualizamos vuelos_carga
                                     pool.query(`UPDATE vuelos_carga SET ${portModify} = (${portModify} - 1) WHERE ?`,{id_vuelo: idVuelo}, (error, results) =>{
                                         if(error){
                                             console.log(error)

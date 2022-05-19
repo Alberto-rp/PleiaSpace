@@ -5,7 +5,7 @@ const fechaActual = new Date(Date.now())
 let vuelosTOTAL = []
 let datosVueloSelectGEN = []
 // Ha volado antes?? (Completar con modal) Si la compañia existe en BD se pone a true
-let existeEnBD = false
+let companieExisteEnBD = false
 
 
 window.addEventListener("load", init)
@@ -23,6 +23,8 @@ function init(){
 
     //Listeners
     document.querySelector("#btnComp").addEventListener("click", calcularPrecio)
+    document.querySelector("#buscNameComp").addEventListener("input", buscarComp)
+    document.querySelector("#cargaDatos").addEventListener("click", cargarDatosComp)
     asignarFuncion("btnPORT", addon, 'click')
     asignarFuncion("checksFS4[]", inputChecks, "click")
 
@@ -276,11 +278,6 @@ function realizarReserva(){
     let datosCompany = []
     let validate = true
 
-    // Ha volado antes?? (Completar con modal)
-    // let existeEnBD = false
-    // if(existeEnBd){idComp = ? datosCompany.push(id)}else{lodeAbajo}
-    // 
-
     let nombreComp = document.querySelector("#nameComp").value
     let adress = document.querySelector("#adress").value
     let city = document.querySelector("#city").value
@@ -291,7 +288,12 @@ function realizarReserva(){
     let email = document.querySelector("#emailContact").value
     let phone = document.querySelector("#telContact").value
 
-    datosCompany.push(nombreComp, adress, city, prov, codPost, country, nombreContacto, email, phone, existeEnBD)
+    datosCompany.push(nombreComp, adress, city, prov, codPost, country, nombreContacto, email, phone, companieExisteEnBD)
+
+    if(companieExisteEnBD){
+        idComp = document.querySelector("#idComp").value
+        datosCompany.push(idComp)
+    }
 
     for(item of datosCompany){
         console.log(item)
@@ -321,6 +323,9 @@ function realizarReserva(){
             console.log(resp.status)
             if(resp.status == 200){
                 //Si todo sale bien OCULTAR TODO EL FORMULARIO
+                document.querySelector("#fs5").style.display = 'none'
+                document.querySelector("#padreDatosSelect").style.display = 'none'
+                document.querySelector("#seccHead").innerHTML = 'RESERVA REALIZADA'
             }else if(resp.status == 404){
                 console.log('ERROR') //METER ERROR AQUI
             }
@@ -452,6 +457,72 @@ function actualizarDatosLanzador(vehiculo){
     })
 }
 
+//nombre Compañia para cargar datos
+function buscarComp(){
+
+    if(this.value != ""){
+        document.querySelector("#outputBusc").innerHTML = ''
+
+        fetch(`/api/company${this.value}`)
+        .then(resp => resp.json())
+        .then(data => {
+
+            if(data.length != undefined && data.length != 0){
+                for(item of data){
+                    document.querySelector("#outputBusc").innerHTML += `<option value="${item.cod_comp}">${item.nombre}, ${item.ciudad},${item.pais}</option>`
+                }
+            }else{
+                document.querySelector("#outputBusc").innerHTML = '<option value="-1">Sin resultados</option>'
+            }
+        })
+    }
+}
+
+//Carga de datos de compañia y contacto
+function cargarDatosComp(){
+    let idComp = document.querySelector("#outputBusc").value
+    let correoContact = document.querySelector("#correoComp").value
+
+    let datosEnvioC = {
+        id : idComp,
+        correo: correoContact
+    }
+
+    if(idComp != -1){
+        fetch('/api/company/data', {
+            method: 'POST',
+            body: JSON.stringify(datosEnvioC),
+            headers:{'Content-Type': 'application/json'}
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.error == undefined){
+                document.querySelector("#nameComp").value = data.datosCompany[0].nombre
+                document.querySelector("#adress").value = data.datosCompany[0].direccion
+                document.querySelector("#city").value = data.datosCompany[0].ciudad
+                document.querySelector("#prov").value = data.datosCompany[0].provincia
+                document.querySelector("#cod_Post").value = data.datosCompany[0].codigo_postal
+                document.querySelector("#country").value = data.datosCompany[0].pais
+                document.querySelector("#nameContact").value = data.datosContact[0].nombre
+                document.querySelector("#emailContact").value = data.datosContact[0].email
+                document.querySelector("#telContact").value = data.datosContact[0].telefono
+    
+                companieExisteEnBD = true
+                document.querySelector("#idComp").value = data.datosCompany[0].cod_comp
+
+            }else{
+                document.querySelector("#buscNameComp").value = ''
+                document.querySelector("#correoComp").value = ''
+                document.querySelector("#outputBusc").innerHTML = '<option value="-1">Sin resultados</option>'
+                tempAlert(4000, data.error)
+            }
+
+        })
+    }else{
+        tempAlert(4000, 'selectOptionModal')
+    }
+}
+
 // Alerta cuando vuelo no es compatible
 function alertaDisabled(){
     tempAlert(5000,'vueloPeso')
@@ -494,7 +565,23 @@ function tempAlert(duration, error){
             break;
         case'nombreComp':
             divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Nombre de compañia duplicado!"
+            divAlerta.innerHTML = "<strong>Error!</strong> Nombre de compañia duplicado!<br> Si ya ha reservado con anterioridad, cargue sus datos pulsando el botón CARGAR"
+            break;
+        case'selectOptionModal':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Debes seleccionar una opción válida!"
+            break;
+        case'wrongMail':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Datos incorrectos"
+            break;
+        case'contactoDuplicado':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Este correo ya está registrado. Para cargar datos existentes pulse el botón CARGAR"
+            break;
+        case'errorDesconocido':
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Algo ha salido mal"
             break;
         case 'noerror':
             divAlerta.classList.add("alert-success")

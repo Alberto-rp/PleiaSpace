@@ -29,6 +29,7 @@ var authController = require('../controllers/controlador_auth')
 var userController = require('../controllers/controlador_usuarios')
 var fileController = require('../controllers/controlador_files')
 var vehicleController = require('../controllers/controlador_vehiculos')
+var companyController = require('../controllers/controlador_company')
 
 
 /* VUELOS */
@@ -86,6 +87,12 @@ router.post('/api/file', upload.single('cv'), fileController.subirCurriculum)
 //Devolver vehiculo nombre
 router.get('/api/vehiculos:name', vehicleController.devolverDatosVehiculo)
 
+/*COMPÑIAS */
+//Devolver compañia
+router.get('/api/company:name', companyController.getCompany)
+
+//Devolver datos comañia y contactos
+router.post('/api/company/data', companyController.getDataCompany)
 
 
 

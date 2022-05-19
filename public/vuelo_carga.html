@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +14,13 @@
     <script src="scripts/vueloCarg.js"></script>
     <script src="scripts/initPaises.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="icon" href="img/Minitura.png">
 
     <!-- BUSCAR COMO INCLUIR LINKS -->
 </head>
+
 <body class="darkColor">
     <nav></nav>
 
@@ -25,243 +28,307 @@
         <div class="row" id="jumbo">
             <div class="col text-center align-items-center">
                 <h1 class="titulo1"><b>PROGRAMA DE CARGA <br> COMPARTIDA</b></h1>
-                <p class="titulo2" id="seccHead">MISIONES DEDICADAS A VIAJES COMPARTIDOS DE CARGA.<br> BUSCA TÚ VUELO ABAJO</p>
+                <p class="titulo2" id="seccHead">MISIONES DEDICADAS A VIAJES COMPARTIDOS DE CARGA.<br> BUSCA TÚ VUELO
+                    ABAJO</p>
             </div>
         </div>
-        
+
         <!-- FORM -->
 
-            <fieldset id="fs1">
-                <div class="row text-center darkColor">
-                    <div class="col-12 col-sm-4 m-auto">
-                        <label for="fechaIn" class="text-muted">No antes de:</label><br>
-                        <input type="month" class="form-control" id="fechaIn" name="fechaIn">
-                        <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
-                    </div>
-                    <div class="col-12 col-sm-4 m-auto">
-                        <label for="orbit" class="text-muted">Orbita:</label><br>
-                        <select name="orbit" id="orbit" class="form-control"></select>
-                        <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
-                    </div>
-                    <div class="col-12 col-sm-4 m-auto">
-                        <label for="peso" class="text-muted">Masa:</label><br>
-                        <input type="number" name="peso" id="peso" class="form-control">
-                        <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
-                    </div>
-                </div>
-            </fieldset>
+        <fieldset id="fs1">
             <div class="row text-center darkColor">
-                <div class="col-12 text-center darkColor">
-                    Precio estimado:
-                    <span id="precio">--</span>
+                <div class="col-12 col-sm-4 m-auto">
+                    <label for="fechaIn" class="text-muted">No antes de:</label><br>
+                    <input type="month" class="form-control" id="fechaIn" name="fechaIn">
+                    <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                 </div>
-                <div class="col-12 text-center darkColor">
-                    <span id="datosSeleccionados" class="text-muted"></span>
+                <div class="col-12 col-sm-4 m-auto">
+                    <label for="orbit" class="text-muted">Orbita:</label><br>
+                    <select name="orbit" id="orbit" class="form-control"></select>
+                    <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                 </div>
-                <div class="col-12 text-center mt-2">
-                    <input id="btnComp" class="btn btn-primary" type="submit" value="Comprobar">
+                <div class="col-12 col-sm-4 m-auto">
+                    <label for="peso" class="text-muted">Masa:</label><br>
+                    <input type="number" name="peso" id="peso" class="form-control">
+                    <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                 </div>
             </div>
-            <fieldset id="fs2">
-                <div class="row text-center darkColor">
-                    <div class="col" id="tablaResult">sd</div>
-                </div>
-            </fieldset>
+        </fieldset>
+        <div class="row text-center darkColor" id="padreDatosSelect">
+            <div class="col-12 text-center darkColor">
+                Precio estimado:
+                <span id="precio">--</span>
+            </div>
+            <div class="col-12 text-center darkColor">
+                <span id="datosSeleccionados" class="text-muted"></span>
+            </div>
+            <div class="col-12 text-center mt-2">
+                <input id="btnComp" class="btn btn-primary" type="submit" value="Comprobar">
+            </div>
+        </div>
+        <fieldset id="fs2">
             <div class="row text-center darkColor">
-                <fieldset  id="fs3" class="p-1 p-md-5 container">
-    
-                    <!-- Id VUELO y PRECIO hiden-->
-                    <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
-                    <input type="hidden" name="precioEstimado" id="precioEstimado" value="">
-                    <input type="hidden" name="puertoSel" id="puertoSel" value="">
+                <div class="col" id="tablaResult">sd</div>
+            </div>
+        </fieldset>
+        <div class="row text-center darkColor">
+            <fieldset id="fs3" class="p-1 p-md-5 container">
 
-                    <div class="col-12">
-                        <div class="row justify-content-between text-center bg-secondary">
-                            <div class="col-12 col-sm-6 bg-white">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <img class="" src="img/utilities/portA.png" alt="puertoA">
-                                    </div>
-                                    <div class="col-12 text-dark" id="datosA"></div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary" id="A" name="btnPORT">SELECT</button>
-                                    </div>
+                <!-- Id VUELO y PRECIO hiden-->
+                <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
+                <input type="hidden" name="precioEstimado" id="precioEstimado" value="">
+                <input type="hidden" name="puertoSel" id="puertoSel" value="">
+
+                <div class="col-12">
+                    <div class="row justify-content-between text-center bg-secondary">
+                        <div class="col-12 col-sm-6 bg-white">
+                            <div class="row">
+                                <div class="col-12">
+                                    <img class="" src="img/utilities/portA.png" alt="puertoA">
                                 </div>
-                            </div>
-                            <div class="col-12 col-sm-6 text-center bg-white">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <img class="" src="img/utilities/portB.png" alt="puertoB">
-                                    </div>
-                                    <div class="col-12 text-dark" id="datosB"></div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary" id="B" name="btnPORT">SELECT</button>
-                                    </div>
+                                <div class="col-12 text-dark" id="datosA"></div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary" id="A" name="btnPORT">SELECT</button>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 col-sm-6 text-center bg-white">
+                            <div class="row">
+                                <div class="col-12">
+                                    <img class="" src="img/utilities/portB.png" alt="puertoB">
+                                </div>
+                                <div class="col-12 text-dark" id="datosB"></div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary" id="B" name="btnPORT">SELECT</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </fieldset>
+                </div>
+                <span class="text-muted">*La selección de puertos tipo A conlleva un aumento del 25% del precio.</span>
+            </fieldset>
+        </div>
+        <div class="row text-center darkColor">
+            <fieldset id="fs4" class="col-12 pt-2">
+                <div class="row bg-secondary">
+                    <div class="col-auto align-items-center d-flex">
+                        <input class="form-input" type="checkbox" value="seguro" name="checksFS4[]" id="checkSeguro">
+                        <label class="form-check-label" for="checkSeguro"><b>SEGURO</b></label>
+                    </div>
+                    <div class="col-12 col-md-auto text-left">
+                        <small id="checkSeguroHelp" class="form-text">Seguro de que cubre la carga y los costes del
+                            lanzamiento. Corresponde a un 5% del precio estimado.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col"></div>
+                </div>
+
+                <div class="row bg-secondary">
+                    <div class="col-12 col-md-auto align-items-center d-flex">
+                        <input class="form-input" type="checkbox" value="elect" name="checksFS4[]" id="checkElect">
+                        <label class="form-check-label" for="checkElect"><b>ASIESTENCIA ELÉCTRICA</b></label>
+                    </div>
+                    <div class="col text-left">
+                        <small id="checkElectHelp" class="form-text">El equipo de PleiaSpace puede proveer de
+                            conectividad eléctrica entre el vehiculo y su carga. Nuestro equipo se pondrá en contacto
+                            para más detalles.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col"></div>
+                </div>
+
+                <div class="row bg-secondary">
+                    <div class="col-12 col-md-auto align-items-center d-flex">
+                        <input class="form-input" type="checkbox" value="adapt" name="checksFS4[]" id="checkAdapt">
+                        <label class="form-check-label" for="checkAdapt"><b>ADAPTADOR PUERTO</b></label>
+                    </div>
+                    <div class="col text-left">
+                        <small id="checkAdaptHelp" class="form-text">Si el tamaño de nuestros puertos no se adapta a las
+                            especificaciones de su carga, o necesita plantear un sistema de separación, el equipo de
+                            PleiaSpace se pondrá en contacto con usted para brindarle una solución.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col"></div>
+                </div>
+
+                <div class="row bg-secondary">
+                    <div class="col-12 col-md-auto align-items-center d-flex">
+                        <input class="form-input" type="checkbox" value="fuel" name="checksFS4[]" id="checkFuel">
+                        <label class="form-check-label" for="checkFuel"><b>COMBUSTIBLE</b></label>
+                    </div>
+                    <div class="col text-left">
+                        <small id="checkFuelHelp" class="form-text">Si durante el día de lanzamiento, necesita repostar
+                            su carga seleccione esta opción para que el equipo de PleiaSpace tenga preparados los
+                            comburentes que usted necesite.</small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col"></div>
+                </div>
+
+                <div class="row bg-secondary justify-content-end">
+                    <div class="col-auto align-items-center d-flex">
+                        TOTAL:
+                    </div>
+                    <div class="col-auto text-right" id="sumaAddon">
+                        0,00 €
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col"></div>
+                </div>
+
+                <div class="row bg-dark pt-2 pb-2 justify-content-end">
+                    <div class="col-8 justify-content-start text-muted">
+                        El total se añadirá al coste estimado
+                    </div>
+                    <div class="col-4 align-items-center justify-content-end d-flex">
+                        <button class="btn btn-primary" id="confirmDatosAddons">Confirmar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="row bg-dark">
+            <fieldset id="fs5" class="col-12 pt-2">
+                <div class="row bg-white">
+                    <div class="col-12 bg-dark">
+                        <span class="h3 float-left">Datos Compañia</span>
+                        <button id="btnCargaDatosComp" class="btn btn-primary float-right css-tooltip"
+                            data-tooltip="Carga tus datos pulsando aquí" data-toggle="modal" data-target="#modalCargaDatos">Cargar</button>
+                    </div>
+                </div>
+                <div class="row bg-white">
+                    <div class="col-12 col-md-6 text-dark">
+                        <label for="nameComp" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nameComp" name="compName" required>
+                        <input type="hidden" id="idComp" name="idComp" value="">
+                    </div>
+                    <div class="col-12 col-md-6 text-dark">
+                        <label for="adress" class="form-label">Dirección:</label>
+                        <input type="text" class="form-control" id="adress" name="adress" required>
+                    </div>
+                </div>
+                <div class="row bg-white">
+                    <div class="col-12 col-md-6 text-dark">
+                        <label for="city" class="form-label">Ciudad:</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="col-12 col-md-6 text-dark">
+                        <label for="prov" class="form-label">Provincia:</label>
+                        <input type="text" class="form-control" id="prov" name="prov" required>
+                    </div>
+                </div>
+                <div class="row bg-white pb-4">
+                    <div class="col-12 col-md-6 text-dark">
+                        <label for="cod_Post" class="form-label">Código Postal:</label>
+                        <input type="number" class="form-control" id="cod_Post" name="cod_Post" required>
+                    </div>
+                    <div class="col-12 col-md-6 text-dark">
+                        <label for="country" class="form-label">País:</label>
+                        <select name="country" id="country" class="form-control" required></select>
+                    </div>
+                </div>
+
+                <h3 class="mt-2">Datos Contacto</h3>
+
+                <div class="row bg-white pb-4">
+                    <div class="col-12 col-md-4 text-dark">
+                        <label for="nameContact" class="form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="nameContact" name="nameContact" required>
+                    </div>
+                    <div class="col-12 col-md-4 text-dark">
+                        <label for="emailContact" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="emailContact" name="emailContact" required>
+                    </div>
+                    <div class="col-12 col-md-4 text-dark">
+                        <label for="telContact" class="form-label">Teléfono:</label>
+                        <input type="tel" class="form-control" id="telContact" name="telContact" required>
+                    </div>
+                </div>
+                <div class="row bg-secondary justify-content-end">
+                    <div class="col-auto align-items-center d-flex">
+                        TOTAL:
+                    </div>
+                    <div class="col-auto text-right" id="sumaCheckout">
+                        0,00 €
+                    </div>
+                </div>
+                <div class="row bg-dark pt-2 pb-2 justify-content-end">
+                    <div class="col-8 justify-content-start text-muted align-items-center d-flex">
+                        *Se enviará un email con todos los datos de la reserva.<br>
+                        *Si su empresa ya había reservado antes, debe pulsar el botón de cargar.
+                    </div>
+                    <div class="col-4 align-items-center justify-content-end d-flex">
+                        <button class="btn btn-primary" id="btnReservar">Reservar</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+        <div class="row justify-content-center mt-1">
+            <div class="col-auto"><a class="btn btn-secondary" href="/carga">Reiniciar formulario</a></div>
+        </div>
+
+        <!-- ALERTA -->
+        <div class="alert" role="alert" id="alerta2"></div>
+
+        <!-- MODAL CARGAR DATOS -->
+        <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="modal" id="modalCargaDatos"> <!--modal-->
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+            
+                        <!-- Modal Header -->
+                        <div class="modal-header bg-primary">
+                            <h5 class="modal-title text-white">Cargar datos</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p class="text-dark">Si ya ha reservado con anterioridad, debe cargar sus datos introduciendo el nombre de su empresa en el cuadro inferior</p>
+                            <input type="text" class="form-control" name="buscNameComp" id="buscNameComp" placeholder="Introduce el nombre de tu compañia">
+                            <select name="outputBusc" id="outputBusc" class="form-control mt-1">
+                                <option value="-1">Sin resultados</option>
+                            </select>
+                            <input type="text" class="form-control mt-1" name="correoComp" id="correoComp" placeholder="Correo de contacto para confirmar tú identidad" required>
+                        </div>
+            
+                        <!-- Modal footer -->
+                        <div class="modal-footer text-center justify-content-center">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="cargaDatos">Cargar</button>
+                        </div>
+
+                        <!-- Modal body -->
+            
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="row text-center darkColor">
-                <fieldset id="fs4" class="col-12 pt-2">
-                    <div class="row bg-secondary">
-                        <div class="col-auto align-items-center d-flex">
-                            <input class="form-input" type="checkbox" value="seguro" name="checksFS4[]" id="checkSeguro">
-                            <label class="form-check-label" for="checkSeguro"><b>SEGURO</b></label>
-                        </div>
-                        <div class="col-12 col-md-auto text-left">
-                            <small id="checkSeguroHelp" class="form-text">Seguro de que cubre la carga y los costes del lanzamiento. Corresponde a un 5% del precio estimado.</small>
-                        </div>
-                    </div>
-
-                    <div class="row"><div class="col"></div></div>
-
-                    <div class="row bg-secondary">
-                        <div class="col-12 col-md-auto align-items-center d-flex">
-                            <input class="form-input" type="checkbox" value="elect" name="checksFS4[]" id="checkElect">
-                            <label class="form-check-label" for="checkElect"><b>ASIESTENCIA ELÉCTRICA</b></label>
-                        </div>
-                        <div class="col text-left">
-                            <small id="checkElectHelp" class="form-text">El equipo de PleiaSpace puede proveer de conectividad eléctrica entre el vehiculo y su carga. Nuestro equipo se pondrá en contacto para más detalles.</small>
-                        </div>
-                    </div>
-
-                    <div class="row"><div class="col"></div></div>
-
-                    <div class="row bg-secondary">
-                        <div class="col-12 col-md-auto align-items-center d-flex">
-                            <input class="form-input" type="checkbox" value="adapt" name="checksFS4[]" id="checkAdapt">
-                            <label class="form-check-label" for="checkAdapt"><b>ADAPTADOR PUERTO</b></label>
-                        </div>
-                        <div class="col text-left">
-                            <small id="checkAdaptHelp" class="form-text">Si el tamaño de nuestros puertos no se adapta a las especificaciones de su carga, o necesita plantear un sistema de separación, el equipo de PleiaSpace se pondrá en contacto con usted para brindarle una solución.</small>
-                        </div>
-                    </div>
-
-                    <div class="row"><div class="col"></div></div>
-
-                    <div class="row bg-secondary">
-                        <div class="col-12 col-md-auto align-items-center d-flex">
-                            <input class="form-input" type="checkbox" value="fuel" name="checksFS4[]" id="checkFuel">
-                            <label class="form-check-label" for="checkFuel"><b>COMBUSTIBLE</b></label>
-                        </div>
-                        <div class="col text-left">
-                            <small id="checkFuelHelp" class="form-text">Si durante el día de lanzamiento, necesita repostar su carga seleccione esta opción para que el equipo de PleiaSpace tenga preparados los comburentes que usted necesite.</small>
-                        </div>
-                    </div>
-
-                    <div class="row"><div class="col"></div></div>
-
-                    <div class="row bg-secondary justify-content-end">
-                        <div class="col-auto align-items-center d-flex">
-                            TOTAL:
-                        </div>
-                        <div class="col-auto text-right" id="sumaAddon">
-                            0,00 €
-                        </div>
-                    </div>
-
-                    <div class="row"><div class="col"></div></div>
-
-                    <div class="row bg-dark pt-2 pb-2 justify-content-end">
-                        <div class="col-8 justify-content-start text-muted">
-                            El total se añadirá al coste estimado
-                        </div>
-                        <div class="col-4 align-items-center justify-content-end d-flex">
-                            <button class="btn btn-primary" id="confirmDatosAddons">Confirmar</button>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="row bg-dark">
-                <fieldset id="fs5" class="col-12 pt-2">
-                    <div class="row bg-white">
-                        <div class="col-12 bg-dark">
-                            <span class="h3 float-left">Datos Compañia</span>
-                            <button id="btnCargaDatosComp" class="btn btn-primary float-right css-tooltip" data-tooltip="Carga tus datos pulsando aquí">Cargar</button>
-                        </div>
-                    </div>
-                    <div class="row bg-white">
-                        <div class="col-12 col-md-6 text-dark">
-                            <label for="nameComp" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nameComp" name="compName" required>
-                        </div>
-                        <div class="col-12 col-md-6 text-dark">
-                            <label for="adress" class="form-label">Dirección:</label>
-                            <input type="text" class="form-control" id="adress" name="adress" required>
-                        </div>
-                    </div>
-                    <div class="row bg-white">
-                        <div class="col-12 col-md-6 text-dark">
-                            <label for="city" class="form-label">Ciudad:</label>
-                            <input type="text" class="form-control" id="city" name="city" required>
-                        </div>
-                        <div class="col-12 col-md-6 text-dark">
-                            <label for="prov" class="form-label">Provincia:</label>
-                            <input type="text" class="form-control" id="prov" name="prov" required>
-                        </div>
-                    </div>
-                    <div class="row bg-white pb-4">
-                        <div class="col-12 col-md-6 text-dark">
-                            <label for="cod_Post" class="form-label">Código Postal:</label>
-                            <input type="number" class="form-control" id="cod_Post" name="cod_Post" required>
-                        </div>
-                        <div class="col-12 col-md-6 text-dark">
-                            <label for="country" class="form-label">País:</label>
-                            <select name="country" id="country" class="form-control" required></select>
-                        </div>
-                    </div>
-
-                    <h3 class="mt-2">Datos Contacto</h3>
-
-                    <div class="row bg-white pb-4">
-                        <div class="col-12 col-md-4 text-dark">
-                            <label for="nameContact" class="form-label">Nombre:</label>
-                            <input type="text" class="form-control" id="nameContact" name="nameContact" required>
-                        </div>
-                        <div class="col-12 col-md-4 text-dark">
-                            <label for="emailContact" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="emailContact" name="emailContact" required>
-                        </div>
-                        <div class="col-12 col-md-4 text-dark">
-                            <label for="telContact" class="form-label">Teléfono:</label>
-                            <input type="tel" class="form-control" id="telContact" name="telContact" required>
-                        </div>
-                    </div>
-                    <div class="row bg-secondary justify-content-end">
-                        <div class="col-auto align-items-center d-flex">
-                            TOTAL:
-                        </div>
-                        <div class="col-auto text-right" id="sumaCheckout">
-                            0,00 €
-                        </div>
-                    </div>
-                    <div class="row bg-dark pt-2 pb-2 justify-content-end">
-                        <div class="col-8 justify-content-start text-muted align-items-center d-flex">
-                            *Se enviará un email con todos los datos de la reserva.<br>
-                            *Si su empresa ya había reservado antes, debe pulsar el botón de cargar.
-                        </div>
-                        <div class="col-4 align-items-center justify-content-end d-flex">
-                            <button class="btn btn-primary" id="btnReservar">Reservar</button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </div>
-            <div class="row justify-content-center mt-1">
-                <div class="col-auto"><a class="btn btn-secondary" href="/carga">Reiniciar formulario</a></div>
-            </div>
-
-            <!-- ALERTA -->
-            <div class="alert" role="alert" id="alerta2"></div>
-
+        </div>
 
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
