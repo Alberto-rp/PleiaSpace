@@ -1,5 +1,5 @@
 
-var pool = require('../DataBase/conection')
+var pool = require('../config/conection')
 
 var vuelos = {}
 

@@ -1,5 +1,5 @@
 
-var pool = require('../DataBase/conection')
+var pool = require('../config/conection')
 
 exports.subirCurriculum = async (request, response) => {
     console.log(request.body)

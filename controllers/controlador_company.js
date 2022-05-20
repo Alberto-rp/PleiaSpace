@@ -1,4 +1,4 @@
-var pool = require('../DataBase/conection')
+var pool = require('../config/conection')
 
 exports.getCompany = (request, response) => {
     let nombreComp = request.params.name

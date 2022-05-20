@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 const bcryp = require("bcryptjs")
 const {promisify} = require("util")
-var pool = require('../DataBase/conection')
+var pool = require('../config/conection')
 const { response } = require("express")
 const res = require("express/lib/response")
 
