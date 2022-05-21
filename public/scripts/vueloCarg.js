@@ -1,6 +1,12 @@
 const orbitas = ['LEO','SSO','GTO']
 const preciosAddon = [['seguro', 0.05],['adapt', 10000],['elect',5000],['fuel',12000]]
 const fechaActual = new Date(Date.now())
+
+//Para coger los errores de la URL
+const queryURL = window.location.search
+const parametros = new URLSearchParams(queryURL)
+let errorURL = parametros.get('error')
+
 // Objeto global que guarda los vuelos
 let vuelosTOTAL = []
 let datosVueloSelectGEN = []
@@ -11,6 +17,7 @@ let companieExisteEnBD = false
 window.addEventListener("load", init)
 
 function init(){
+    tempAlert(3000, errorURL)
 
     // Inicializamos los inputs
     for(item of orbitas){
@@ -333,7 +340,7 @@ function realizarReserva(){
         })
         .then(data =>{
             console.log(data)
-            tempAlert(2000, data.error)
+            tempAlert(4000, data.error)
         })
         .catch(function(err) {
             console.log(err);
@@ -585,7 +592,11 @@ function tempAlert(duration, error){
             break;
         case 'noerror':
             divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente"
+            divAlerta.innerHTML = "<strong>Bien!</strong> Reserva realizada correctamente;<br> Recibirá un email con la información."
+            break;
+        case 'reservElim':
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Bien!</strong> Reserva eliminada correctamente."
             break;
         default:
             divAlerta.innerHTML = ""
