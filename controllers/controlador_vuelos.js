@@ -56,7 +56,7 @@ vuelos.cancelarVueloCarga = (request, response) => {
             console.log(error)
             response.status(400).redirect('/carga?error=errorDesconocido')
         }
-        else {
+        else if(results.length > 0){
             //Sacamos las variables necesarias
             id_vueloVar = results[0].id_vuelo
             puerto = results[0].puerto
@@ -85,6 +85,8 @@ vuelos.cancelarVueloCarga = (request, response) => {
                 }
             })
 
+        }else{
+            response.status(400).redirect('/carga?error=errorReservaEliminada')
         }
     })
 }

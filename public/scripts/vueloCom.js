@@ -13,6 +13,8 @@ function init(){
     let resp = Response
     console.log(resp)
 
+    initPaises() //Inicializar paises Form
+
     // Inicializamos el input
     let fechaAct = new Date(Date.now())
     document.querySelector("#fechaIn").value = fechaAct.getFullYear()+"-"+mesFormat(fechaAct.getMonth())

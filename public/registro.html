@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
     <script src="scripts/header.js"></script>
-    <script src="scripts/initPaises.js"></script>
+    <script src="scripts/funciones.js"></script>
     <script src="scripts/registro.js"></script>
     <link rel="stylesheet" href="css/fuente.css">
     <link rel="stylesheet" href="css/login.css">
@@ -19,15 +19,16 @@
 <body>
     <nav></nav>
 
-    <div id="cuerpo" class="container">
-        <h1>Registro</h1>
-        <form action="/api/registro" method="post" id="formLogin">
+    <div id="cuerpo" class="container text-center">
+        <h2><b>Registro</b></h2>
+        <form action="/api/registro" method="post" id="formLogin" class="bg-dark">
             <fieldset>
+                <div class="form-group m-auto">
+                    <label for="name">Nombre</label><br>
+                    <input class="form-control" type="text" name="name" id="name"  placeholder="Introduce tú nombre">
+                </div>
                 <div class="row mt-2 text-center">
-                    <div class="col-12 m-auto">
-                        <label for="name">Nombre</label><br>
-                        <input type="text" name="name" id="name"  placeholder="Nombre">
-                    </div>
+
                     <div class="col-12 m-auto">
                         <label for="surnames">Apellidos</label><br>
                         <input type="text" name="surnames" id="surnames" >

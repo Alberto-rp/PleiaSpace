@@ -18,6 +18,7 @@ window.addEventListener("load", init)
 
 function init(){
     tempAlert(3000, errorURL)
+    initPaises() //Inicializar paises Form
 
     // Inicializamos los inputs
     for(item of orbitas){
@@ -35,16 +36,6 @@ function init(){
     asignarFuncion("btnPORT", addon, 'click')
     asignarFuncion("checksFS4[]", inputChecks, "click")
 
-}
-
-//Pintar mes bonito
-function mesFormat(mes){
-    return (mes < 10)? '0'+(mes+1) : (mes+1)
-}
-
-// Pintar precio bonito
-function pintarPrecio(num){
-    return new Number(num).toLocaleString("es-ES",{style:'currency',currency:'EUR'})
 }
 
 // Calcular precio 1
@@ -411,13 +402,6 @@ function valorMatriz(matriz, elemento){
     return salida
 }
 
-// Funcion sacar la fecha Guay
-function fechaFormato(fechaEnt){
-    let fecha = new Date(fechaEnt)
-    let mes = (fecha.getMonth() < 10)? '0'+(fecha.getMonth()+1) : (fecha.getMonth()+1)
-    return mes+"/"+fecha.getFullYear()  
-}
-
 // Sacar dinero guay
 function salidaDinero(suma){
     return (suma < 1000000)? (suma/1000)+'K €' : (suma/1000000)+'M €'
@@ -543,72 +527,4 @@ function alertaDisabledPort(){
 // Alerta cuando no quedan puertos de este tipo
 function alertaPort0(){
     tempAlert(5000,'port0')
-}
-
-// Alerta que se auto cierra
-function tempAlert(duration, error){
-    var divAlerta = document.querySelector("#alerta2");
-    // Analizamos error
-    switch(error){
-        case 'blank':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir una masa!"
-            break;
-        case'portPeso':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este puerto."
-            break;
-        case'port0':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "Los puertos típo A de este vehiculo están completos"
-            break;
-        case'vueloPeso':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a>"
-            break;
-        case'rellenarCamps':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Debes rellenar todos los datos!"
-            break;
-        case'nombreComp':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Nombre de compañia duplicado!<br> Si ya ha reservado con anterioridad, cargue sus datos pulsando el botón CARGAR"
-            break;
-        case'selectOptionModal':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Debes seleccionar una opción válida!"
-            break;
-        case'wrongMail':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Datos incorrectos"
-            break;
-        case'contactoDuplicado':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Este correo ya está registrado. Para cargar datos existentes pulse el botón CARGAR"
-            break;
-        case'errorDesconocido':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Algo ha salido mal"
-            break;
-        case 'noerror':
-            divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Reserva realizada correctamente;<br> Recibirá un email con la información."
-            break;
-        case 'reservElim':
-            divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Reserva eliminada correctamente."
-            break;
-        default:
-            divAlerta.innerHTML = ""
-    }
-
-    // Mostramos la alerta
-    divAlerta.style.opacity = '1'
-    setTimeout(function(){
-
-    divAlerta.style.opacity = '0'
-    divAlerta.className = ''
-    divAlerta.classList.add("alert")
-
-    },duration);
 }
