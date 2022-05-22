@@ -29,6 +29,7 @@ var authController = require('../controllers/controlador_auth')
 var userController = require('../controllers/controlador_usuarios')
 var fileController = require('../controllers/controlador_files')
 var vehicleController = require('../controllers/controlador_vehiculos')
+var companyController = require('../controllers/controlador_company')
 
 
 /* VUELOS */
@@ -47,6 +48,9 @@ router.post('/api/vuelosCAR', vuelosControler.getVuelosCarga)
 //Reservar vuelo carga
 router.post('/api/reservaCarga', vuelosControler.reservarVueloCarga)
 
+//Cancelar vuelo carga
+router.get('/api/cancelar', vuelosControler.cancelarVueloCarga)
+
 
 /* AUTH */
 // Registro usuario
@@ -57,8 +61,15 @@ router.post('/api/login', authController.login)
 
 // logout
 router.get('/api/logout', authController.logout)
+
 // Comprobar cookie
 router.get('/api/compCookie:name', authController.comprobarCookie)
+
+// Eliminar cuenta
+router.post('/api/eliminarCuenta', authController.eliminarCuenta)
+
+// Activar cuenta
+router.get('/api/activar_user', authController.activarCuenta)
 
 
 /* USERS */
@@ -74,8 +85,6 @@ router.post('/api/eliminarReserva', userController.eliminarReserva)
 // Modificar reserva
 router.post('/api/modificarReserva', userController.modificarReserva)
 
-// Eliminar cuenta
-router.post('/api/eliminarCuenta', userController.eliminarCuenta)
 
 
 /*ARCHIVOS*/
@@ -86,6 +95,12 @@ router.post('/api/file', upload.single('cv'), fileController.subirCurriculum)
 //Devolver vehiculo nombre
 router.get('/api/vehiculos:name', vehicleController.devolverDatosVehiculo)
 
+/*COMPÑIAS */
+//Devolver compañia
+router.get('/api/company:name', companyController.getCompany)
+
+//Devolver datos comañia y contactos
+router.post('/api/company/data', companyController.getDataCompany)
 
 
 

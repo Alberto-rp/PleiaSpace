@@ -1,44 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
     <script src="scripts/header.js"></script>
-    <script src="scripts/initPaises.js"></script>
+    <script src="scripts/funciones.js"></script>
     <script src="scripts/registro.js"></script>
     <link rel="stylesheet" href="css/fuente.css">
     <link rel="stylesheet" href="css/login.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="icon" href="img/Minitura.png">
 
     <!-- BUSCAR COMO INCLUIR LINKS -->
 </head>
+
 <body>
     <nav></nav>
 
-    <div id="cuerpo" class="container">
-        <h1>Registro</h1>
-        <form action="/api/registro" method="post" id="formLogin">
+    <div id="cuerpo" class="container text-center">
+        <h2><b>Registro</b></h2>
+        <form action="/api/registro" method="post" id="formLogin" class="bg-dark">
             <fieldset>
+                <div class="form-group m-auto">
+                    <label for="name">Nombre</label><br>
+                    <input class="form-control" type="text" name="name" id="name" placeholder="Introduce tú nombre">
+                </div>
                 <div class="row mt-2 text-center">
-                    <div class="col-12 m-auto">
-                        <label for="name">Nombre</label><br>
-                        <input type="text" name="name" id="name"  placeholder="Nombre">
-                    </div>
+
                     <div class="col-12 m-auto">
                         <label for="surnames">Apellidos</label><br>
-                        <input type="text" name="surnames" id="surnames" >
+                        <input type="text" name="surnames" id="surnames">
                     </div>
                     <div class="col-12 m-auto">
                         <label for="email">Email</label><br>
-                        <input type="email" name="email" id="email" >
+                        <input type="email" name="email" id="email">
                     </div>
                     <div class="col-12 m-auto">
                         <label for="passwd">Contraseña</label><br>
-                        <input type="text" name="passwd" id="passwd" >
+                        <input type="text" name="passwd" id="passwd">
                     </div>
                     <div class="col-12 m-auto">
                         <label for="country">País</label>
@@ -66,8 +70,15 @@
     </div>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

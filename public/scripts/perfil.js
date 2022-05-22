@@ -243,50 +243,9 @@ function generarSel(metodo_pago){
     return cadena
 }
 
-// Funcion para sacar precios
-function pintarPrecio(num){
-    return new Number(num).toLocaleString("es-ES",{style:'currency',currency:'EUR'})
-}
-
 // Recalcular precio vuelo
 function recalcularPrecio(idVuelo){
     let vueloMod = this.id.slice(7)
     document.querySelector("#Prec"+vueloMod).innerHTML = pintarPrecio(this.value * document.querySelector("#Prec"+vueloMod).attributes[1].value)
     //Ocultamos en el name el precio del asiento para evitar harcode
-}
-
-// Alerta que se auto cierra
-function tempAlert(duration, error){
-    var divAlerta = document.querySelector("#alerta");
-    // Analizamos error
-    switch(error){
-        case true:
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Error indeterminado"
-            break;
-        case'outAsientos':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Asientos insuficientes"
-            break;
-        case'reservaActiva':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Debes anular las reservas antes de eliminar tu cuenta"
-            break;
-        case false:
-            divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Reserva actualizada"
-            break;
-        default:
-            divAlerta.innerHTML = ""
-    }
-    // Mostramos la alerta
-
-    divAlerta.style.opacity = '1'
-    setTimeout(function(){
-
-    divAlerta.style.opacity = '0'
-    divAlerta.className = ''
-    divAlerta.classList.add("alert")
-
-    },duration);
 }

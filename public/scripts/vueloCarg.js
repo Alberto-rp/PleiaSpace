@@ -1,14 +1,24 @@
 const orbitas = ['LEO','SSO','GTO']
 const preciosAddon = [['seguro', 0.05],['adapt', 10000],['elect',5000],['fuel',12000]]
 const fechaActual = new Date(Date.now())
+
+//Para coger los errores de la URL
+const queryURL = window.location.search
+const parametros = new URLSearchParams(queryURL)
+let errorURL = parametros.get('error')
+
 // Objeto global que guarda los vuelos
 let vuelosTOTAL = []
 let datosVueloSelectGEN = []
+// Ha volado antes?? (Completar con modal) Si la compañia existe en BD se pone a true
+let companieExisteEnBD = false
 
 
 window.addEventListener("load", init)
 
 function init(){
+    tempAlert(3000, errorURL)
+    initPaises() //Inicializar paises Form
 
     // Inicializamos los inputs
     for(item of orbitas){
@@ -21,19 +31,11 @@ function init(){
 
     //Listeners
     document.querySelector("#btnComp").addEventListener("click", calcularPrecio)
+    document.querySelector("#buscNameComp").addEventListener("input", buscarComp)
+    document.querySelector("#cargaDatos").addEventListener("click", cargarDatosComp)
     asignarFuncion("btnPORT", addon, 'click')
     asignarFuncion("checksFS4[]", inputChecks, "click")
 
-}
-
-//Pintar mes bonito
-function mesFormat(mes){
-    return (mes < 10)? '0'+(mes+1) : (mes+1)
-}
-
-// Pintar precio bonito
-function pintarPrecio(num){
-    return new Number(num).toLocaleString("es-ES",{style:'currency',currency:'EUR'})
 }
 
 // Calcular precio 1
@@ -157,13 +159,21 @@ function selectPort(){
             datosVuelo = item
         }
     }
-
     // Asignamos los input hide y datos de puertos
     document.querySelector("#idVueloSel").value = this.id
     let masaInput = document.querySelector("#peso").value
     document.querySelector("#precioEstimado").value = masaInput * datosVuelo.precio_kg
     actualizarDatosLanzador(datosVuelo.lanzador)
     
+    if(datosVuelo.disp_port_A == 0){
+        document.querySelector("#A").disabled = true
+        document.querySelector("#A").parentElement.addEventListener("mouseenter", alertaPort0)
+    }
+    if(datosVuelo.disp_port_B == 0){
+        document.querySelector("#B").disabled = true
+        document.querySelector("#B").parentElement.addEventListener("mouseenter", alertaPort0)
+    }
+
 
     // Mostramos los datos elegidos y el siguiente fileset    
     datosVueloSelectGEN = [['id',datosVuelo.id_vuelo],
@@ -184,6 +194,7 @@ function selectPort(){
     document.querySelector("#fs2").style.display = 'none'
 
     document.querySelector("#seccHead").innerHTML = 'SELECCION DE PUERTO'
+    
 }
 
 // addons 3
@@ -275,10 +286,16 @@ function realizarReserva(){
     let email = document.querySelector("#emailContact").value
     let phone = document.querySelector("#telContact").value
 
-    datosCompany.push(nombreComp, adress, city, prov, codPost, country, nombreContacto, email, phone)
+    datosCompany.push(nombreComp, adress, city, prov, codPost, country, nombreContacto, email, phone, companieExisteEnBD)
+
+    if(companieExisteEnBD){
+        idComp = document.querySelector("#idComp").value
+        datosCompany.push(idComp)
+    }
 
     for(item of datosCompany){
-        if(item == ""){
+        console.log(item)
+        if(item === ""){ //=== para poder enviar el false
             validate = false
         }
     }
@@ -290,6 +307,7 @@ function realizarReserva(){
         // Guardamos los datos del array en un objeto
         let datosEnviar = {}
         for(item of datosVueloSelectGEN){
+            if(item[0] != 'vehiculo' && item[0] != 'fecha' && item[0] != 'orbita') //No necesitamos estos datos para la reserva en el servidor, solo para mostrarlos durante el form
             datosEnviar[item[0]] = item[1]
         }
 
@@ -298,8 +316,26 @@ function realizarReserva(){
             body: JSON.stringify(datosEnviar),
             headers:{'Content-Type': 'application/json'}
         })
-        .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(resp => {
+        
+            console.log(resp.status)
+            if(resp.status == 200){
+                //Si todo sale bien OCULTAR TODO EL FORMULARIO
+                document.querySelector("#fs5").style.display = 'none'
+                document.querySelector("#padreDatosSelect").style.display = 'none'
+                document.querySelector("#seccHead").innerHTML = 'RESERVA REALIZADA'
+            }else if(resp.status == 404){
+                console.log('ERROR') //METER ERROR AQUI
+            }
+            return resp.json()
+        })
+        .then(data =>{
+            console.log(data)
+            tempAlert(4000, data.error)
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
     }else{
         tempAlert(3000, 'rellenarCamps')
     }
@@ -366,13 +402,6 @@ function valorMatriz(matriz, elemento){
     return salida
 }
 
-// Funcion sacar la fecha Guay
-function fechaFormato(fechaEnt){
-    let fecha = new Date(fechaEnt)
-    let mes = (fecha.getMonth() < 10)? '0'+(fecha.getMonth()+1) : (fecha.getMonth()+1)
-    return mes+"/"+fecha.getFullYear()  
-}
-
 // Sacar dinero guay
 function salidaDinero(suma){
     return (suma < 1000000)? (suma/1000)+'K €' : (suma/1000000)+'M €'
@@ -419,6 +448,72 @@ function actualizarDatosLanzador(vehiculo){
     })
 }
 
+//nombre Compañia para cargar datos
+function buscarComp(){
+
+    if(this.value != ""){
+        document.querySelector("#outputBusc").innerHTML = ''
+
+        fetch(`/api/company${this.value}`)
+        .then(resp => resp.json())
+        .then(data => {
+
+            if(data.length != undefined && data.length != 0){
+                for(item of data){
+                    document.querySelector("#outputBusc").innerHTML += `<option value="${item.cod_comp}">${item.nombre}, ${item.ciudad},${item.pais}</option>`
+                }
+            }else{
+                document.querySelector("#outputBusc").innerHTML = '<option value="-1">Sin resultados</option>'
+            }
+        })
+    }
+}
+
+//Carga de datos de compañia y contacto
+function cargarDatosComp(){
+    let idComp = document.querySelector("#outputBusc").value
+    let correoContact = document.querySelector("#correoComp").value
+
+    let datosEnvioC = {
+        id : idComp,
+        correo: correoContact
+    }
+
+    if(idComp != -1){
+        fetch('/api/company/data', {
+            method: 'POST',
+            body: JSON.stringify(datosEnvioC),
+            headers:{'Content-Type': 'application/json'}
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.error == undefined){
+                document.querySelector("#nameComp").value = data.datosCompany[0].nombre
+                document.querySelector("#adress").value = data.datosCompany[0].direccion
+                document.querySelector("#city").value = data.datosCompany[0].ciudad
+                document.querySelector("#prov").value = data.datosCompany[0].provincia
+                document.querySelector("#cod_Post").value = data.datosCompany[0].codigo_postal
+                document.querySelector("#country").value = data.datosCompany[0].pais
+                document.querySelector("#nameContact").value = data.datosContact[0].nombre
+                document.querySelector("#emailContact").value = data.datosContact[0].email
+                document.querySelector("#telContact").value = data.datosContact[0].telefono
+    
+                companieExisteEnBD = true
+                document.querySelector("#idComp").value = data.datosCompany[0].cod_comp
+
+            }else{
+                document.querySelector("#buscNameComp").value = ''
+                document.querySelector("#correoComp").value = ''
+                document.querySelector("#outputBusc").innerHTML = '<option value="-1">Sin resultados</option>'
+                tempAlert(4000, data.error)
+            }
+
+        })
+    }else{
+        tempAlert(4000, 'selectOptionModal')
+    }
+}
+
 // Alerta cuando vuelo no es compatible
 function alertaDisabled(){
     tempAlert(5000,'vueloPeso')
@@ -429,42 +524,7 @@ function alertaDisabledPort(){
     tempAlert(5000,'portPeso')
 }
 
-// Alerta que se auto cierra
-function tempAlert(duration, error){
-    var divAlerta = document.querySelector("#alerta2");
-    // Analizamos error
-    switch(error){
-        case 'blank':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir una masa!"
-            break;
-        case'portPeso':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este puerto."
-            break;
-        case'vueloPeso':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a>"
-            break;
-        case'rellenarCamps':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Debes rellenar todos los datos!"
-            break;
-        case 'noerror':
-            divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente"
-            break;
-        default:
-            divAlerta.innerHTML = ""
-    }
-
-    // Mostramos la alerta
-    divAlerta.style.opacity = '1'
-    setTimeout(function(){
-
-    divAlerta.style.opacity = '0'
-    divAlerta.className = ''
-    divAlerta.classList.add("alert")
-
-    },duration);
+// Alerta cuando no quedan puertos de este tipo
+function alertaPort0(){
+    tempAlert(5000,'port0')
 }

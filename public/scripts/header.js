@@ -1,8 +1,8 @@
 
 
-window.addEventListener("load", init)
+window.addEventListener("load", initHead)
 
-function init(){
+function initHead(){
     //Traemos el header   
     fetch("header.html")
     .then(response => {

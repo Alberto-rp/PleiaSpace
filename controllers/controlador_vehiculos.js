@@ -1,4 +1,4 @@
-var pool = require('../DataBase/conection')
+var pool = require('../config/conection')
 
 // Devolver vuelos por nombre
 exports.devolverDatosVehiculo = async (request, response) =>{
