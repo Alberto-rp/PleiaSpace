@@ -30,6 +30,18 @@ function initPaises(){
     })
 }
 
+function verPasswd(){ //Login y registro
+    const password = document.querySelector('#passwd');     
+    console.log(password)
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+
+    // Toggle the eye and bi-eye icon
+    this.classList.toggle('bi-eye');
+    
+}
+
+
 // Alerta que se auto cierra
 function tempAlert(duration, error){
     var divAlerta = document.querySelector("#alerta2");

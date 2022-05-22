@@ -2,24 +2,9 @@
     font-family: Montserrat;
     color: white;
     padding-top: 7rem;
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
-}
-.form-group {
-    width: 16rem;
 }
 
 /* input::-webkit-calendar-picker-indicator { display: none } */
-
-form i {
-    position: absolute;
-    margin-left: 100px;
-    margin-top: -30px;
-    color: black;
-    cursor: pointer;
-}
 
 #alerta2{
     opacity: 0;
@@ -30,34 +15,57 @@ form i {
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierra.jpg);
+        background-image: url(../img/backRegistro.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
+    }
+
+    form i {
+        position: absolute;
+        margin-left: 10rem;
+        margin-top: -30px;
+        color: black;
+        cursor: pointer;
     }
 } 
 
-@media screen and (min-width:800px) and (max-width:1280px){ 
+@media screen and (min-width:576px) and (max-width:1280px){ 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierraMed.jpg);
+        background-image: url(../img/backRegistroMED.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
     }
+
+    form i {
+        position: absolute;
+        margin-left: 10rem;
+        margin-top: -30px;
+        color: black;
+        cursor: pointer;
+    }
 }
 
-@media screen and (max-width:800px) { 
+@media screen and (max-width:576px) { 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierraXSmall.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
+    }
+
+    form i {
+        position: absolute;
+        margin-left: 8rem;
+        margin-top: -31px;
+        color: black;
+        cursor: pointer;
     }
 } 
