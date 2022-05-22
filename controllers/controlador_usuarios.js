@@ -75,7 +75,7 @@ exports.eliminarReserva = (request, response) =>{
                         console.log(error)
                         response.redirect('/vuela?error=error')
                     }else{
-                        response.redirect("/perfil")
+                        response.redirect("/perfil?error=reservDelet")
                     }
                 })
             }
@@ -128,27 +128,4 @@ exports.modificarReserva = (request, response) =>{
     }
 }
 
-exports.eliminarCuenta = (request, response) => {
-    try {
-        let idUsuario = request.body.UsuarioElimina
-        pool.query('SELECT * FROM reserva_asiento WHERE ?',[{id_usuario: idUsuario}], (error, results) => {
-            if(error){console.log(error)}
-            if(results.length == 0){
-                pool.query('DELETE FROM usuarios WHERE ?',[{id_usuario: idUsuario}], (error, results2) => {
-                    if(error){console.log(error)}
-                    else{
-                        response.clearCookie('jwt')
-                        response.clearCookie('usuario')
-                        response.redirect('/')
-                    }
-                })
-                console.log(idUsuario+" Eliminado")
-            }else{
-                // response.status(404).json({error : 'reservaActiva'})
-                response.redirect('/perfil?error=reservaActiva')
-            }
-        })
-    } catch (error) {
-        console.log(error)
-    }
-}
+

@@ -35,9 +35,33 @@ function tempAlert(duration, error){
     var divAlerta = document.querySelector("#alerta2");
     // Analizamos error
     switch(error){
+        case'fail': //LOGIN
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Usuario o contraseña incorrectos"
+            break;
+        case 'noerrorLog': //LOGIN
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente"
+            break;
+        case 'activationSucess': //LOGIN
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Bien!</strong> Su cuenta se ha activado correctamente"
+            break;
+        case 'auth': //LOGIN
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes iniciar sesión para reservar un vuelo"
+            break;
+        case 'activationError': //LOGIN
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes activar tú cuenta mediante el enlace que te hemos mandado al correo!"
+            break;
         case true: //PERFIL
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Error indeterminado"
+            break;
+        case 'reservDelet': //PERFIL
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Éxito</strong> Reserva eliminada."
             break;
         case'outAsientos': //PERFIL
             divAlerta.classList.add("alert-danger")
@@ -91,7 +115,7 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error!</strong> Este correo ya está registrado. Para cargar datos existentes pulse el botón CARGAR"
             break;
-        case'errorDesconocido': //VUELOCARGA
+        case'errorDesconocido': //VUELOCARGA //REGISTRO
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error!</strong> Algo ha salido mal"
             break;

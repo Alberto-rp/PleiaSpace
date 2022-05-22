@@ -4,6 +4,9 @@ const {promisify} = require("util")
 var pool = require('../config/conection')
 const { response } = require("express")
 const res = require("express/lib/response")
+//Enviar mails
+var transporter = require('../config/mailer')
+require('dotenv').config();
 
 
 // Método de registro
@@ -24,11 +27,53 @@ exports.registro = async (request, response) =>{
                 console.log(error)
                 response.redirect('/registro?error=duplicate')
             }else{
-                response.redirect('/login?error=noerror')
+                pool.query('SELECT id_usuario FROM usuarios WHERE email = ?',[email],(error, results) => {
+                    if(error){
+                        console.log(error)
+                        response.redirect('/registro?error=errorDesconocido')
+                    }else{
+                        let id_user = results[0].id_usuario
+                        let mailOpts = {
+                            from: '"PleiaSpace"', // sender address
+                            to: email, // list of receivers
+                            subject: "Bienvenido!", // Subject line
+                            html: correoBienvenida(nombre, surnames, id_user)
+                        }
+        
+                        transporter.sendMail(mailOpts, (error, info) => {
+                            if (error) {
+                                response.redirect('/registro?error=errorDesconocido')
+                            }
+                            else {
+                                console.log("enviado OK" + info.messageId)
+                                response.redirect('/login?error=noerrorLog')
+                            }
+                        })
+                    }
+                })
             }
         })
     } catch (error) {
         console.log(error)
+    }
+
+    function correoBienvenida(nombre, surnames, id_user){
+        return `
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    
+        <h1 style="background-color: #6699FF; color: white; padding:36px 48px;display:block; font-family: 'Montserrat', sans-serif;font-size:30px;font-weight:300;line-height:150%;margin:0;"><b>Bienvenido!</b></h1>
+    
+        <p>Estimado ${nombre+" "+surnames}, le damos la bienvenida de parte del equipo de PleiaSpace;
+        </p>
+    
+        <p>
+            Por favor, para activar su cuenta pulse <a href="${process.env.PAGE_URL}/api/activar_user?id=${id_user}">aquí</a>.
+        </p>
+        
+        <p>Saludos.</p>`
+
     }
 }
 
@@ -38,42 +83,47 @@ exports.login = async (request, response) =>{
         let email = request.body.email
         let password = request.body.passwd
 
-        console.log(email+" Se ha logeado")
-
         if(!email || !password){
             // response.redirect('/login?error=blank')
-            response.status(404).json({error : 'blank'})
+            response.status(400).json({error : 'blank'})
         }else{
             pool.query("SELECT * FROM usuarios WHERE email = ?", [email], async (error, results)=>{
                 if(error){console.log(error)}
 
                 if(results.length == 0 || ! (await bcryp.compare(password, results[0].password))){
                     // response.redirect('/login?error=fail')
-                    response.status(404).json({error : 'fail'})
+                    response.status(400).json({error : 'fail'})
                 }else{
-                    try {
-                        // INICIO CORRECTO
-                        // Creacion del token
-                        const id = results[0].id_usuario
-                        const token = jwt.sign({id:id}, process.env.JWT_SECRET, {
-                            expiresIn: process.env.JWT_TIEMPO_EXPIRA
-                        })
-    
-                        // Configuracion cookie
-                        const cookiesOptions = {
-                            expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-                            httpOnly: true
-                            // la linea de arriba es para que no sea visible en el cliente
+                    let activado = results[0].activado
+                    if(activado == 1){
+                        try {
+                            // INICIO CORRECTO
+                            // Creacion del token
+                            const id = results[0].id_usuario
+                            const token = jwt.sign({id:id}, process.env.JWT_SECRET, {
+                                expiresIn: process.env.JWT_TIEMPO_EXPIRA
+                            })
+        
+                            // Configuracion cookie
+                            const cookiesOptions = {
+                                expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
+                                httpOnly: true
+                                // la linea de arriba es para que no sea visible en el cliente
+                            }
+        
+                            response.cookie('jwt', token, cookiesOptions)
+                            let nombreHash = await bcryp.hash(results[0].nombre, 8)
+                            response.cookie('usuario',nombreHash, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000), exp: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
+
+                            // response.redirect('/vuela')
+                            console.log(email+" Se ha logeado")
+                            response.status(200).json({error : false}) //Se redirige desde el cliente
+                            
+                        } catch (error) {
+                            console.log(error)
                         }
-    
-                        response.cookie('jwt', token, cookiesOptions)
-                        let nombreHash = await bcryp.hash(results[0].nombre, 8)
-                        response.cookie('usuario',nombreHash, {expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000), exp: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000)})
-                        // response.redirect('/vuela')
-                        response.status(200).json({error : false})
-                        
-                    } catch (error) {
-                        console.log(error)
+                    }else{
+                        response.status(400).json({error : 'activationError'})
                     }
                 }
             })
@@ -133,4 +183,45 @@ exports.comprobarCookie = async (request, response) => {
         response.status(200).json({ok : false})
     }
     
+}
+
+exports.activarCuenta = async (request, response) => {
+    let id_usuario = request.query.id
+    pool.query('UPDATE `usuarios` SET activado = 1 WHERE id_usuario = ?',[id_usuario], (error, results) => {
+        if(error){
+            console.log(error)
+            response.redirect('/login?error=errorDesconocido')
+        }else{
+            response.redirect('/login?error=activationSucess')
+        }
+
+    })
+}
+
+exports.eliminarCuenta = (request, response) => {
+    try {
+        let idUsuario = request.body.UsuarioElimina
+        pool.query('SELECT * FROM reserva_asiento WHERE ?',[{id_usuario: idUsuario}], (error, results) => {
+            if(error){console.log(error)}
+            if(results.length == 0){
+                pool.query('DELETE FROM usuarios WHERE ?',[{id_usuario: idUsuario}], (error, results2) => {
+                    if(error){console.log(error)}
+                    else{
+                        response.cookie('jwt', 'logout', {
+                            expires: new Date(Date.now() + 5 * 1000),
+                            httpOnly: true
+                        });
+                        response.clearCookie('usuario')
+                        response.redirect('/')
+                    }
+                })
+                console.log(idUsuario+" Eliminado")
+            }else{
+                // response.status(404).json({error : 'reservaActiva'})
+                response.redirect('/perfil?error=reservaActiva')
+            }
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
