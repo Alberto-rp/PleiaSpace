@@ -12,6 +12,7 @@ function init(){
     tempAlert(2000, error)
 
     document.querySelector("#btnLogin").addEventListener("click", enviarDatos)
+    document.querySelector('#togglePassword').addEventListener("click", verPasswd)
 }
 
 function enviarDatos(){

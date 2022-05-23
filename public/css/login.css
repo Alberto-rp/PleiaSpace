@@ -7,19 +7,16 @@
     left: 50%;
     transform: translate(-50%, -50%); */
 }
-.form-group {
-    width: 16rem;
-}
 
 /* input::-webkit-calendar-picker-indicator { display: none } */
 
-form i {
+/* form i {
     position: absolute;
     margin-left: 100px;
     margin-top: -30px;
     color: black;
     cursor: pointer;
-}
+} */
 
 #alerta2{
     opacity: 0;
@@ -36,9 +33,17 @@ form i {
         background-color: #1a1a1a;
 
     }
+
+    i {
+        position: absolute;
+        margin-left: 5rem;
+        margin-top: -30px;
+        color: black;
+        cursor: pointer;
+    }
 } 
 
-@media screen and (min-width:800px) and (max-width:1280px){ 
+@media screen and (min-width:576px) and (max-width:1280px){ 
     html, body{
         width: 100%;
         height: 100%;
@@ -48,9 +53,17 @@ form i {
         background-color: #1a1a1a;
 
     }
+
+    i {
+        position: absolute;
+        margin-left: 5rem;
+        margin-top: -30px;
+        color: black;
+        cursor: pointer;
+    }
 }
 
-@media screen and (max-width:800px) { 
+@media screen and (max-width:576px) { 
     html, body{
         width: 100%;
         height: 100%;
@@ -59,5 +72,13 @@ form i {
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
+    }
+
+    i {
+        position: absolute;
+        margin-left: 8rem;
+        margin-top: -31px;
+        color: black;
+        cursor: pointer;
     }
 } 

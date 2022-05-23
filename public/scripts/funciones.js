@@ -32,7 +32,6 @@ function initPaises(){
 
 function verPasswd(){ //Login y registro
     const password = document.querySelector('#passwd');     
-    console.log(password)
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
     password.setAttribute('type', type);
 
@@ -90,6 +89,18 @@ function tempAlert(duration, error){
         case 'duplicate': //REGISTRO
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Este email ya está registrado!"
+            break;
+        case 'mayEdad': //REGISTRO
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes ser mayor de edad para registrarte!"
+            break;
+        case 'emailFail': //REGISTRO
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir un email válido!"
+            break;
+        case 'nameFail': //REGISTRO
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Tu nombre no puede contener números!"
             break;
         case 'blank': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
