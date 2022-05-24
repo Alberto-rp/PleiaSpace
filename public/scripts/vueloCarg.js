@@ -404,7 +404,7 @@ function valorMatriz(matriz, elemento){
 
 // Sacar dinero guay
 function salidaDinero(suma){
-    return (suma < 1000000)? (suma/1000)+'K €' : (suma/1000000)+'M €'
+    return (suma < 1000000)? Math.trunc(suma/1000)+'K €' : Math.trunc(suma/1000000)+'M €'
 }
 
 // Pintar Resumen

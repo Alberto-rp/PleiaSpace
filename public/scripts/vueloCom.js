@@ -84,12 +84,12 @@ function despFormulario(e){
                 // Reiniciamos la tabla de resultados y la mostramos
                 let tabla = ''
                 tabla += `<table class="table table-responsive bg-dark" id='LABELS'>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>FECHA</td>
-                                        <td>ORBITA</td>
-                                        <td>ASIENTOS</td>
-                                        <td>PRECIO</td>
+                                    <tr class='text-colcomp'>
+                                        <th>ID</th>
+                                        <th>FECHA</th>
+                                        <th>ORBITA</th>
+                                        <th>ASIENTOS</th>
+                                        <th>PRECIO</th>
                                     </tr>`
 
                 // Insertamos los datos de cada vuelo
@@ -101,18 +101,22 @@ function despFormulario(e){
                                         <td>${item.orbita_destino}</td>
                                         <td>${item.asientos_disponibles}</td>
                                         <td>${new Number(item.precio_asiento).toLocaleString("es-ES",{style:'currency',currency:'EUR'})}</td>
-                                        <td><button class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td>
+                                        <td><button class='btn btn-colcomp' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td>
                                         </tr>`
                         asientosDisponibles.push([item.id_vuelo, item.asientos_disponibles])
                     }
                 }
                 tabla += '</table>'
                 divCont.innerHTML = tabla
+                document.querySelector("#fs1_5").style.display = 'inline-block'
+                document.querySelector("#fs1").style.display = 'none'
                 asignarFuncion()
-
+                
             }else{
                 // Si no hay vuelos, mostrar mensaje:
-                divCont.innerHTML = `<div class="row bg-dark">
+                document.querySelector("#fs1_5").style.display = 'inline-block'
+                document.querySelector("#fs1").style.display = 'none'
+                divCont.innerHTML = `<div class="row darkColor">
                                         <div class="col text-center">
                                             <p>Lo sentimos, no hay vuelos para las fechas seleccionadas.<br> 
                                             Consulte la sección de <a href='/calendario'>Calendario</a> o contacte a <a href='#'>despegues@pleiaspace.com</a> 
@@ -152,9 +156,12 @@ function mesFormat(mes){
 }
 
 function nextStep(e){
+    document.querySelector("#fs1_8").style.display = 'inline-block'
+    pintarResumen(this.id)
     e.preventDefault()
     //Ocultamos el formulario inicial y mostramos el segundo
     document.querySelector("#fs1").style.display = "none"
+    document.querySelector("#fs1_5").style.display = "none"
     document.querySelector("#fs2").style.display = "inline-block"
     document.querySelector("#fs2").disabled = ""
 
@@ -178,5 +185,24 @@ function nextStep(e){
             item.style.display = "none"
         }
     }
+}
+
+// Pintar Resumen
+function pintarResumen(idVuelo){
+    let salida = document.querySelector("#datosSeleccionados")
+    salida.innerHTML = ""
+    let texto = ""
+
+    for(item of vuelosDisponibles){
+        if(item.id_vuelo == idVuelo){
+            texto += `${item.id_vuelo} | ${fechaFormato(item.fecha)} | ${item.orbita_destino} | ${salidaDinero(item.precio_asiento)}`
+        }
+    }
+    salida.innerHTML = texto
+}
+
+//Sacar dinero guay resumen
+function salidaDinero(suma){
+    return (suma < 1000000)? Number(suma/1000).toFixed(3)+'K €' : Number(suma/1000000).toFixed(3)+'M €'
 }
 

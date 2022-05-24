@@ -8,7 +8,7 @@
     src: url('../fonts/Montserrat-Bold.ttf');
 }
 
-b{
+b, th{
     font-family: Montserrat-Bold;
 }
 
@@ -18,4 +18,10 @@ b{
 
 .bg-colcomp{
     background-color: #6699FF;
+}
+
+.btn-colcomp{
+    background-color: #6699FF;
+    color: white;
+    cursor: pointer;
 }
