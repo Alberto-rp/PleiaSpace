@@ -25,3 +25,7 @@ b, th{
     color: white;
     cursor: pointer;
 }
+
+.darkColor{
+    background-color: #1a1a1a;
+}

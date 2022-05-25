@@ -59,20 +59,25 @@
                 Precio estimado:
                 <span id="precio">--</span>
             </div>
-            <div class="col-12 text-center darkColor">
+            <div id="resumen" class="col-12 pt-3 text-center darkColor">
+                <!-- <hr class="bg-colcomp"> -->
                 <span id="datosSeleccionados" class="text-muted"></span>
+                <hr class="bg-colcomp">
             </div>
             <div class="col-12 text-center mt-2">
                 <input id="btnComp" class="btn btn-primary" type="submit" value="Comprobar">
             </div>
         </div>
-        <fieldset id="fs2">
-            <div class="row text-center darkColor rounded">
-                <div class="col" id="tablaResult">sd</div>
-            </div>
-        </fieldset>
+        <div class="row justify-content-center text-center darkColor rounded">
+            <fieldset id="fs2">
+                <h4 class="mt-4"><b>Selección de vuelo</b></h4>
+                <hr class="bg-colcomp">
+                <div class="col" id="tablaResult"></div>
+                <hr class="bg-colcomp">
+            </fieldset>
+        </div>
         <div class="row text-center darkColor rounded">
-            <fieldset id="fs3" class="p-1 p-md-5 container">
+            <fieldset id="fs3" class="p-1  container">
 
                 <!-- Id VUELO y PRECIO hiden-->
                 <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
@@ -80,6 +85,11 @@
                 <input type="hidden" name="puertoSel" id="puertoSel" value="">
 
                 <div class="col-12">
+                    <!-- <div class="row">
+                        <div class="col">
+                            <h4 class=""><b>Selección de puerto</b></h4>  
+                        </div>
+                    </div> -->
                     <div class="row justify-content-between text-center bg-secondary">
                         <div class="col-12 col-sm-6 bg-white">
                             <div class="row">
@@ -186,7 +196,7 @@
                     <div class="col"></div>
                 </div>
 
-                <div class="row bg-dark pt-2 pb-2 justify-content-end rounded">
+                <div class="row darkColor pt-2 pb-2 justify-content-end rounded">
                     <div class="col-8 justify-content-start text-muted">
                         El total se añadirá al coste estimado
                     </div>
@@ -200,9 +210,10 @@
             <fieldset id="fs5" class="col-12 pt-2">
                 <div class="row bg-white">
                     <div class="col-12 bg-dark">
-                        <span class="h3 float-left">Datos Compañia</span>
+                        <h3 class="float-left mt-1"><b>Datos compañía</b></h3>                        
                         <button id="btnCargaDatosComp" class="btn btn-primary float-right css-tooltip"
-                            data-tooltip="Carga tus datos pulsando aquí" data-toggle="modal" data-target="#modalCargaDatos">Cargar</button>
+                            data-tooltip="Carga tus datos pulsando aquí" data-toggle="modal"
+                            data-target="#modalCargaDatos">Cargar</button>
                     </div>
                 </div>
                 <div class="row bg-white">
@@ -237,7 +248,7 @@
                     </div>
                 </div>
 
-                <h3 class="mt-2">Datos Contacto</h3>
+                <h5 class="mt-2"><b>Datos de contacto</b></h5> 
 
                 <div class="row bg-white pb-4">
                     <div class="col-12 col-md-4 text-dark">
@@ -283,37 +294,42 @@
         <!-- MODAL CARGAR DATOS -->
         <div class="container">
             <div class="row">
-              <div class="col">
-                <div class="modal" id="modalCargaDatos"> <!--modal-->
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-            
-                        <!-- Modal Header -->
-                        <div class="modal-header bg-primary">
-                            <h5 class="modal-title text-white">Cargar datos</h5>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
+                <div class="col">
+                    <div class="modal" id="modalCargaDatos">
+                        <!--modal-->
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
-                        <div class="modal-body">
-                            <p class="text-dark">Si ya ha reservado con anterioridad, debe cargar sus datos introduciendo el nombre de su empresa en el cuadro inferior</p>
-                            <input type="text" class="form-control" name="buscNameComp" id="buscNameComp" placeholder="Introduce el nombre de tu compañia">
-                            <select name="outputBusc" id="outputBusc" class="form-control mt-1">
-                                <option value="-1">Sin resultados</option>
-                            </select>
-                            <input type="text" class="form-control mt-1" name="correoComp" id="correoComp" placeholder="Correo de contacto para confirmar tú identidad" required>
-                        </div>
-            
-                        <!-- Modal footer -->
-                        <div class="modal-footer text-center justify-content-center">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="cargaDatos">Cargar</button>
-                        </div>
+                                <!-- Modal Header -->
+                                <div class="modal-header bg-primary">
+                                    <h5 class="modal-title text-white">Cargar datos</h5>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
 
-                        <!-- Modal body -->
-            
+                                <div class="modal-body">
+                                    <p class="text-dark">Si ya ha reservado con anterioridad, debe cargar sus datos
+                                        introduciendo el nombre de su empresa en el cuadro inferior</p>
+                                    <input type="text" class="form-control" name="buscNameComp" id="buscNameComp"
+                                        placeholder="Introduce el nombre de tu compañia">
+                                    <select name="outputBusc" id="outputBusc" class="form-control mt-1">
+                                        <option value="-1">Sin resultados</option>
+                                    </select>
+                                    <input type="text" class="form-control mt-1" name="correoComp" id="correoComp"
+                                        placeholder="Correo de contacto para confirmar tú identidad" required>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer text-center justify-content-center">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                        id="cargaDatos">Cargar</button>
+                                </div>
+
+                                <!-- Modal body -->
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
         </div>
 

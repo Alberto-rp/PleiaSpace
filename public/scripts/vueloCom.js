@@ -6,12 +6,13 @@ let asientosDisponibles = []
 // Errores
 const queryURL = window.location.search
 const parametros = new URLSearchParams(queryURL)
-let error = parametros.get('error')
+let errorURL = parametros.get('error')
 
 function init(){
     document.querySelector("#envio").addEventListener("click", despFormulario)
     let resp = Response
-    console.log(resp)
+
+    tempAlert(4000, errorURL)
 
     initPaises() //Inicializar paises Form
 
@@ -43,26 +44,8 @@ function init(){
         }
     })
 
-    
-    // Comprobar errores URL
-    let divAlerta = document.querySelector("#alerta")
-    switch(error){
-        case'error1':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.style.display = 'block'
-            divAlerta.children[0].innerHTML = "<strong>Error</strong> Ya has efectuado una reserva en este vuelo.<br> Puedes modificar o cancelar tu reserva en la sección <i><a href='/perfil'>Perfil</a></i>"
-            break;
-        case'error2':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.style.display = 'block'
-            divAlerta.children[0].innerHTML = "<strong>Error</strong> Algo ha salido mal"
-            break;
-        case'noerror':
-            divAlerta.classList.add("alert-success")
-            divAlerta.style.display = 'block'
-            divAlerta.children[0].innerHTML = "<strong>Exito! </strong>Reserva realizada correctamente"
-        break;
-    }
+    //Listeners
+    document.querySelector("#atras").addEventListener("click", atrasForm)
 }
 
 function despFormulario(e){
@@ -90,6 +73,7 @@ function despFormulario(e){
                                         <th>ORBITA</th>
                                         <th>ASIENTOS</th>
                                         <th>PRECIO</th>
+                                        <th></th>
                                     </tr>`
 
                 // Insertamos los datos de cada vuelo
@@ -130,6 +114,13 @@ function despFormulario(e){
     
 }
 
+function atrasForm(e){
+    e.preventDefault()
+    document.querySelector("#fs1").style.display = "inline-block"
+    document.querySelector("#fs1_5").style.display = "none"
+    document.querySelector("#fs2").style.display = "none"
+}
+
 async function consultaFecha(fecha){
     return fetch(`/api/vuelosCOM${fecha}`)
     .then(res => res.json())
@@ -156,7 +147,9 @@ function mesFormat(mes){
 }
 
 function nextStep(e){
-    document.querySelector("#fs1_8").style.display = 'inline-block'
+    document.body.style.paddingTop = '6rem'
+    document.querySelector("#jumbo").style.display = "none"
+    
     pintarResumen(this.id)
     e.preventDefault()
     //Ocultamos el formulario inicial y mostramos el segundo

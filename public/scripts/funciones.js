@@ -66,6 +66,14 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Debes activar tú cuenta mediante el enlace que te hemos mandado al correo!"
             break;
+        case 'error1': //VUELO_COMERCIAL
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Ya has efectuado una reserva en este vuelo.<br> Puedes modificar o cancelar tu reserva en la sección <i><a href='/perfil'>Perfil</a></i>"
+            break;
+        case 'noerrorVC': //VUELO_COMERCIAL
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Exito! </strong>Reserva realizada correctamente!"
+            break;
         case true: //PERFIL
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Error indeterminado"

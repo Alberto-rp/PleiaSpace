@@ -53,9 +53,19 @@
     display: none;
 }
 
+#resumen{
+    display: none;
+}
+
 #alerta2{
     opacity: 0;
     transition: 0.5s;
+    position: absolute;
+    min-width: 20rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
 }
 
 div[class~='col-12'] img{
@@ -93,7 +103,7 @@ select{
 
 body{
   min-height: 50rem;
-  padding-top: 9.5rem;
+  padding-top: 9rem;
   background-color: #1a1a1a;
 }
 
@@ -149,4 +159,10 @@ body{
     #datosSeleccionados{
         font-size: 0.9rem;
     }
+
+    body{
+        min-height: 50rem;
+        padding-top: 7rem;
+        background-color: #1a1a1a;
+      }
 } 
