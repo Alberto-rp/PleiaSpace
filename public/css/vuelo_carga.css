@@ -60,11 +60,11 @@
 #alerta2{
     opacity: 0;
     transition: 0.5s;
-    position: absolute;
+    /* position: absolute;
     min-width: 20rem;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     
 }
 

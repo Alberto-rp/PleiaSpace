@@ -1,10 +1,12 @@
+body{
+    min-height: 30rem;
+    padding-top: 1rem;
+    background-color: #1a1a1a;
+}
 
-/* body{
-    background: url(../img/tierra.jpg);
-    background-repeat: no-repeat;
-    background-size: 1920px; 
-    
-} */
+#anioActual{
+    font-weight: bold;
+}
 
 #principal{
     max-width: 800px;
@@ -58,5 +60,9 @@ div[class~='col-3'] img{
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
+    }
+
+    div.col{
+        max-height: 8rem;
     }
 } 

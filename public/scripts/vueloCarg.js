@@ -100,7 +100,7 @@ function calcularPrecio(){
                 tabla += '</table>'
                 salida.innerHTML = tabla
                 document.querySelector("#fs2").style.display = 'block'
-                document.querySelector("#seccHead").innerHTML = 'SELECCION DE VUELO'
+                document.querySelector("#seccHead").innerHTML = '<b>SELECCION DE VUELO</b>'
 
                 asignarFuncion('vtnVuelos', selectPort, 'click')
                 
@@ -198,7 +198,7 @@ function selectPort(){
     document.querySelector("#fs1").style.display = 'none'
     document.querySelector("#fs2").style.display = 'none'
 
-    document.querySelector("#seccHead").innerHTML = 'SELECCION DE PUERTO'
+    document.querySelector("#seccHead").innerHTML = '<b>SELECCION DE PUERTO</b>'
     
 }
 
@@ -223,7 +223,7 @@ function addon(){
     // Mostrar siguiente form
     document.querySelector("#fs3").style.display = 'none'
     document.querySelector("#fs4").style.display = "inline-block"
-    document.querySelector("#seccHead").innerHTML = 'COMPLETA TÚ VUELO'
+    document.querySelector("#seccHead").innerHTML = '<b>COMPLETA TÚ VUELO</b>'
 
     // Boton confirmar evento
     document.querySelector("#confirmDatosAddons").addEventListener("click", initDatosConct)
@@ -271,7 +271,7 @@ function initDatosConct(){
     // Mostrar los siguientes elementos
     document.querySelector("#fs4").style.display = 'none'
     document.querySelector("#fs5").style.display = "inline-block"
-    document.querySelector("#seccHead").innerHTML = 'DATOS DE CONTACTO'
+    document.querySelector("#seccHead").innerHTML = '<b>DATOS DE CONTACTO</b>'
     document.querySelector("#sumaCheckout").innerHTML = pintarPrecio(valorMatriz(datosVueloSelectGEN, 'coste'))
 
     document.querySelector("#btnReservar").addEventListener("click", realizarReserva)
@@ -331,7 +331,7 @@ function realizarReserva(){
                 //Si todo sale bien OCULTAR TODO EL FORMULARIO
                 document.querySelector("#fs5").style.display = 'none'
                 document.querySelector("#padreDatosSelect").style.display = 'none'
-                document.querySelector("#seccHead").innerHTML = 'RESERVA REALIZADA'
+                document.querySelector("#seccHead").innerHTML = '<b>RESERVA REALIZADA</b>'
             }else if(resp.status == 404){
                 console.log('ERROR') //METER ERROR AQUI
             }
