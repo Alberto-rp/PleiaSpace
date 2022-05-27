@@ -56,7 +56,7 @@ function init(){
                                 <td><input type="number" max="4" min="1" value="${vuelo.asientos_reservados}" class="noActiva" id="asients${vuelo.id_vuelo}" name="asients" readonly></td>
                                 <td><select class="noActiva" id="metpag${vuelo.id_vuelo}" disabled>${generarSel(vuelo.metodo_pago)}</select>
                                 <td><button class='btn btn-primary' name='btnModi[]' id="Modi${vuelo.id_vuelo}">Modificar</button></td>
-                                <td><button class="btn btn-primary" data-toggle="modal" data-target="#ModalAnul" name='btnModales[]' id='Anul${vuelo.id_vuelo}'>Anular</button></td>
+                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#ModalAnul" name='btnModales[]' id='Anul${vuelo.id_vuelo}'>Anular</button></td>
                               </tr>`
                 }
                 tabla += '</table>'
@@ -174,7 +174,7 @@ function EnviarModificacion(){
             btnAnul.addEventListener("click", asignarId)
             btnAnul.addEventListener("click", resetBotonAnular)
             btnAnul.innerHTML = "Anular"
-            btnAnul.className = 'btn btn-primary'
+            btnAnul.className = 'btn btn-danger'
             
         }else if(resp.status == 404){
             console.log('ERROR') //METER ERROR AQUI
@@ -213,7 +213,7 @@ function cancelarMod(){
     btnAnul.addEventListener("click", asignarId)
     btnAnul.addEventListener("click", resetBotonAnular)
     btnAnul.innerHTML = "Anular"
-    btnAnul.className = 'btn btn-primary'
+    btnAnul.className = 'btn btn-danger'
 
     // Boton modificar
     btnMod.innerHTML = "Modificar"

@@ -118,7 +118,7 @@ function calcularPrecio(){
                 document.querySelector("#tablaResult").innerHTML = `<div class="row bg-dark">
                                                                         <div class="col text-center">
                                                                             <p>Lo sentimos, no hay vuelos para las fechas seleccionadas.<br> 
-                                                                            Consulte la sección de <a href='/calendario'>Calendario</a> o contacte a <a href='#'>despegues@pleiaspace.com</a> 
+                                                                            Consulte la sección de <a href='/calendario'>Calendario</a> o contacte a <a href='mailto:pleiaspace@gmail.com'>pleiaspace@gmail.com</a> 
                                                                             </p>
                                                                         </div>
                                                                     </div>`
@@ -133,7 +133,7 @@ function calcularPrecio(){
                                                                 <div class="col text-center">
                                                                     <p>Lo sentimos, no hay puertos con tanta capacidad.<br> 
                                                                     Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a><br>
-                                                                    Si necesita un lanzamiento dedicado contacte a <a href='#'>despegues@pleiaspace.com</a> 
+                                                                    Si necesita un lanzamiento dedicado contacte a <a href='mailto:pleiaspace@gmail.com'>pleiaspace@gmail.com</a> 
                                                                     </p>
                                                                 </div>
                                                             </div>`

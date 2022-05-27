@@ -42,6 +42,10 @@ img.mr-5{
     background-color: #6699FF;
 }
 
+.darkColor{
+    background-color: #1a1a1a;
+}
+
 a[class~='nav-link']:hover{
     transition: 0.5s;
     color: rebeccapurple;

@@ -39,7 +39,7 @@ div[class~='col-3'] img{
     }
 } 
 
-@media screen and (min-width:800px) and (max-width:1280px){ 
+@media screen and (min-width:576px) and (max-width:1280px){ 
     html, body{
         width: 100%;
         height: 100%;
@@ -51,7 +51,7 @@ div[class~='col-3'] img{
     }
 }
 
-@media screen and (max-width:800px) { 
+@media screen and (max-width:576px) { 
     html, body{
         width: 100%;
         height: 100%;

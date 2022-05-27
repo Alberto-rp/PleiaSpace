@@ -23,6 +23,14 @@ router.get('/calendario', function(request, response){
     response.sendFile(path.join(__dirname + '/../public/calendario.html'));
 })
 
+router.get('/copyright', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/copyright.html'));
+})
+
+router.get('/avisoCookies', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/avisoCookies.html'));
+})
+
 router.get('/vuela', authController.isAutentic, function(request, response){
     response.sendFile(path.join(__dirname + '/../public/vuelo_comercial.html'));
 })

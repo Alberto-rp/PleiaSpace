@@ -38,9 +38,10 @@ function initHead(){
         document.getElementById("avisadoCookies").addEventListener("click", ocultarAvisoCookies)
 
         //Comprobamos el aviso de cookies
-        if(getCookie('avisoCookies') != undefined){
-            document.querySelector("#avisoCookies").style.visibility = 'hidden'
-            document.querySelector("footer").style.zIndex = '-1'
+        if(getCookie('avisoCookies') != undefined && getCookie('avisoCookies') == 'true'){
+            // document.querySelector("#avisoCookies").style.visibility = 'hidden'
+            document.querySelector("#avc2").style.display = 'none'
+            // document.querySelector("footer").style.zIndex = '-1'
         }
     })
     
@@ -87,6 +88,7 @@ function getCookie(name) {
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
+//OCULTAR AVISO COOKIES
 function ocultarAvisoCookies(){
     let textoCookie = `avisoCookies=${encodeURIComponent('true')};`
     let fechaAct = new Date()
@@ -95,7 +97,6 @@ function ocultarAvisoCookies(){
     
     document.cookie = textoCookie
 
-    document.querySelector("#avisoCookies").style.visibility = 'hidden'
-    document.querySelector("footer").style.zIndex = '-1'
+    document.querySelector("#avc2").style.display = 'none'
     //ARREGLAR DISPLAY
 }
