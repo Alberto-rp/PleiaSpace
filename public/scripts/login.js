@@ -6,8 +6,8 @@ window.addEventListener('load', init)
 
 function init(){
     // Si hay una cookie de Sesion, evita acceder a Login
-    if(document.cookie != ''){
-        window.location.replace('/perfil')
+    if(getCookie('usuario') != undefined){
+        window.location.replace('/')
     }
     tempAlert(2000, error)
 

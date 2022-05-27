@@ -5,6 +5,14 @@
     color: white;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
 /* body {
     margin: 0px;
     padding: 0px;

@@ -40,6 +40,13 @@ function verPasswd(){ //Login y registro
     
 }
 
+//Devolver valor de una cookie
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 
 // Alerta que se auto cierra
 function tempAlert(duration, error){
