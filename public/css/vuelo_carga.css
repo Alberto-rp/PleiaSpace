@@ -15,6 +15,8 @@
   position: relative;
   
 }
+
+/* Tooltip cargar datos */
 .css-tooltip:hover:after{
   content:attr(data-tooltip);
   background:#000;
@@ -60,8 +62,9 @@
 #alerta2{
     opacity: 0;
     transition: 0.5s;
-    /* position: absolute;
-    min-width: 20rem;
+    /* position: fixed;
+    z-index: 1;
+
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%); */
@@ -161,8 +164,12 @@ body{
     }
 
     body{
-        min-height: 50rem;
+        min-height: 60rem;
         padding-top: 7rem;
         background-color: #1a1a1a;
-      }
+    }
+
+    #reinicio{
+        margin-bottom: 1.5rem;
+    }
 } 

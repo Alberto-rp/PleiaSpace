@@ -50,7 +50,10 @@ function getCookie(name) {
 
 // Alerta que se auto cierra
 function tempAlert(duration, error){
-    var divAlerta = document.querySelector("#alerta2");
+    let divAlerta = document.querySelector("#alerta2");
+    divAlerta.style.display = 'none'
+    let defaultAlert = false
+
     // Analizamos error
     switch(error){
         case'fail': //LOGIN
@@ -72,6 +75,14 @@ function tempAlert(duration, error){
         case 'activationError': //LOGIN
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Debes activar tú cuenta mediante el enlace que te hemos mandado al correo!"
+            break;
+        case 'oldActivation': //LOGIN
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Esta cuenta ya ha sido activada!"
+            break;
+        case 'blankLog': //LOGIN
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Campos vacios!"
             break;
         case 'error1': //VUELO_COMERCIAL
             divAlerta.classList.add("alert-danger")
@@ -119,7 +130,7 @@ function tempAlert(duration, error){
             break;
         case 'blank': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir una masa!"
+            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir una masa válida!"
             break;
         case'portPeso': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
@@ -171,15 +182,44 @@ function tempAlert(duration, error){
             break;
         default: 
             divAlerta.innerHTML = ""
+            defaultAlert = true
     }
     // Mostramos la alerta
 
-    divAlerta.style.opacity = '1'
+    if(! defaultAlert){
+        divAlerta.style.display = 'block'
+    }
+    setTimeout(()=>{
+        divAlerta.style.opacity = '1'
+    },100)
     setTimeout(function(){
 
     divAlerta.style.opacity = '0'
     divAlerta.className = ''
     divAlerta.classList.add("alert")
 
+    setTimeout(() => {
+        divAlerta.style.display = 'none'
+    }, 100);
+
     },duration);
 }
+
+// Mostramos la alerta
+
+// divAlerta.style.opacity = '1'
+// divAlerta.style.width = 'auto'
+// divAlerta.style.height = 'auto'
+// setTimeout(() => {
+
+// divAlerta.style.opacity = '0'
+// divAlerta.className = ''
+// divAlerta.classList.add("alert")
+
+// // Establecemos otro timeout para cuando acabe de ocultarse la alerta, no interfiera el ancho o alto
+// setTimeout(() => {
+//     divAlerta.style.width = '0px'
+//     divAlerta.style.height = '0px'
+// }, 1000);
+
+// },duration)

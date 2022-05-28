@@ -85,7 +85,7 @@ exports.login = async (request, response) =>{
 
         if(!email || !password){
             // response.redirect('/login?error=blank')
-            response.status(400).json({error : 'blank'})
+            response.status(400).json({error : 'blankLog'})
         }else{
             pool.query("SELECT * FROM usuarios WHERE email = ?", [email], async (error, results)=>{
                 if(error){console.log(error)}
@@ -187,14 +187,26 @@ exports.comprobarCookie = async (request, response) => {
 
 exports.activarCuenta = async (request, response) => {
     let id_usuario = request.query.id
-    pool.query('UPDATE `usuarios` SET activado = 1 WHERE id_usuario = ?',[id_usuario], (error, results) => {
+    pool.query('SELECT activado FROM `usuarios` WHERE id_usuario = ?',[id_usuario], (error, resultsOri) => {
         if(error){
             console.log(error)
             response.redirect('/login?error=errorDesconocido')
         }else{
-            response.redirect('/login?error=activationSucess')
-        }
+            if(resultsOri[0].activado == 0){ //Si no estaba activado
+                pool.query('UPDATE `usuarios` SET activado = 1 WHERE id_usuario = ?',[id_usuario], (error, results) => {
+                    if(error){
+                        console.log(error)
+                        response.redirect('/login?error=errorDesconocido')
+                    }else{
+                        response.redirect('/login?error=activationSucess')
+                    }
+            
+                })
 
+            }else{
+                response.redirect('/login?error=oldActivation')
+            }
+        }
     })
 }
 

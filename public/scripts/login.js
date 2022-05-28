@@ -33,6 +33,6 @@ function enviarDatos(){
             return resp.json()
         }
     }).then(data => {
-        tempAlert(2000, data.error)
+        tempAlert(4000, data.error)
     })
 }
