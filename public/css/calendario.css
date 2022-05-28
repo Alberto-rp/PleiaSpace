@@ -1,6 +1,6 @@
 body{
     min-height: 30rem;
-    padding-top: 1rem;
+    padding-top: 0.4rem;
     background-color: #1a1a1a;
 }
 
@@ -11,6 +11,7 @@ body{
 #principal{
     max-width: 800px;
     margin-top: 100px;
+    /* padding-bottom: 2.3rem; */
     font-family: Montserrat;
 }
 .col:not(.but){

@@ -62,7 +62,7 @@ function tempAlert(duration, error){
             break;
         case 'noerrorLog': //LOGIN
             divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente"
+            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente; Le hemos enviado un mail para activar su cuenta"
             break;
         case 'activationSucess': //LOGIN
             divAlerta.classList.add("alert-success")
@@ -179,6 +179,22 @@ function tempAlert(duration, error){
         case 'reservElim': //VUELOCARGA
             divAlerta.classList.add("alert-success")
             divAlerta.innerHTML = "<strong>Bien!</strong> Reserva eliminada correctamente."
+            break;
+        case 'size': //WORKWITHUS
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> El CV no debe superar los 512KB!"
+            break;
+        case 'wwusBlank'://WORKWITHUS
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Debe rellenar los datos!"
+            break;
+        case 'pdf'://WORKWITHUS
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> El archivo debe ser en formato PDF"
+            break;
+        case 'noerrorWWU'://WORKWITHUS
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Bien!</strong> Datos registrados!"
             break;
         default: 
             divAlerta.innerHTML = ""

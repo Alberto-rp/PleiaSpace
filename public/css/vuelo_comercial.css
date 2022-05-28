@@ -1,6 +1,7 @@
 #cuerpo{
     font-family: Montserrat;
     color: white;
+    padding-bottom: 1.5rem;
 }
 
 .darkColor{
@@ -29,7 +30,7 @@ select{
 
 
 body{
-  min-height: 50rem;
+  /* min-height: 50rem; */
   padding-top: 9.5rem;
 }
 

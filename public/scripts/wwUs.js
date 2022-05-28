@@ -1,56 +1,61 @@
 window.addEventListener("load", init)
 
-// Recogemos parametros error de la URL
-// const queryURL = window.location.search
-// const parametros = new URLSearchParams(queryURL)
-// let errorURL = parametros.get('error')
-
 function init(){
     document.querySelector("#enviarFetch").addEventListener("click", enviarData)
     document.querySelector('#cv').addEventListener("change", pintarSize)
 }
 
 function enviarData(){
-    // let datosEnviar = {
-    //     email : document.querySelector("#email").value,
-    //     passwd : document.querySelector("#passwd").value
-    // }
+    window.scrollTo(0, 0);//Para volver arriba de la pag
 
-    let nombre = document.querySelector('#name')
-    let apellidos = document.querySelector('#surnames')
-    let email = document.querySelector('#email')
-    let phone = document.querySelector('#phone')
-    let ciudad = document.querySelector('#city')
+    let nombre = document.querySelector('#name').value
+    let apellidos = document.querySelector('#surnames').value
+    let email = document.querySelector('#email').value
+    let phone = document.querySelector('#phone').value
+    let ciudad = document.querySelector('#city').value
+
+    let arrayComprov = [nombre, apellidos, email, phone, ciudad]
+    let validate = true
+    for(item of arrayComprov){
+        if(item === ''){
+            validate = false
+        }
+    }
     let cv = document.querySelector('#cv')
 
-    //Limitar el tamaño del archivo
-    // console.log(cv.files[0].size+" "+cv.files[0].name)
-    if(cv.files[0].size < (1024 * 512)){
-        if((cv.files[0].name).slice(((cv.files[0].name).length)- 4) == '.pdf'){
-            let datos = new FormData()
-            datos.append('cv', cv.files[0])
-            datos.append('nombre', document.querySelector('#name').value)
-            datos.append('apellidos', document.querySelector('#surnames').value)
-            datos.append('email', document.querySelector('#email').value)
-            datos.append('phone', document.querySelector('#phone').value)
-            datos.append('ciudad', document.querySelector('#city').value)
-        
-            fetch('/api/file', {
-                method: 'POST',
-                body: datos,
-                // headers:{'Content-Type': 'application/json'}
-            })
-            .then(resp => resp.json())
-            .then(data => {
-                tempAlert(2500, data.error)
-                borrarCampos()
-            })
+    if(validate && cv.files[0] != undefined){
+        //Limitar el tamaño del archivo
+        // console.log(cv.files[0].size+" "+cv.files[0].name)
+        if(cv.files[0].size < (1024 * 512)){
+            if((cv.files[0].name).slice(((cv.files[0].name).length)- 4) == '.pdf'){
+                let datos = new FormData()
+                datos.append('cv', cv.files[0])
+                datos.append('nombre', nombre)
+                datos.append('apellidos', apellidos)
+                datos.append('email', email)
+                datos.append('phone', phone)
+                datos.append('ciudad', ciudad)
+            
+                fetch('/api/file', {
+                    method: 'POST',
+                    body: datos,
+                    // headers:{'Content-Type': 'application/json'}
+                })
+                .then(resp => resp.json())
+                .then(data => {
+                    tempAlert(2500, data.error)
+                    borrarCampos()
+                })
+            }else{
+                tempAlert(2000,'pdf')
+            }
         }else{
-            tempAlert(2000,'pdf')
+            tempAlert(2000,'size')
         }
     }else{
-        tempAlert(2000,'size')
+        tempAlert(2000,'wwusBlank')
     }
+
 }
 
 function pintarSize(){
@@ -82,41 +87,4 @@ function borrarCampos(){
     document.querySelector('#phone').value = ""
     document.querySelector('#city').value = ""
 
-}
-
-// Alerta que se auto cierra
-function tempAlert(duration, error){
-    console.log(error)
-    var divAlerta = document.querySelector("#alerta2");
-    // Analizamos error
-    switch(error){
-        case 'size':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> El CV no debe superar los 512KB!"
-            break;
-        case 'error':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> Algo ha salido mal"
-            break;
-        case 'pdf':
-            divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error!</strong> El archivo debe ser en formato PDF"
-            break;
-        case 'noerror':
-            divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Datos registrados!"
-            break;
-        default:
-            divAlerta.innerHTML = ""
-    }
-
-    // Mostramos la alerta
-    divAlerta.style.opacity = '1'
-    setTimeout(function(){
-
-    divAlerta.style.opacity = '0'
-    divAlerta.className = ''
-    divAlerta.classList.add("alert")
-
-    },duration);
 }

@@ -1,6 +1,7 @@
 #cuerpo{
     font-family: Montserrat;
     color: white;
+    padding-bottom: 1.5rem;
 }
 
 .darkColor{
@@ -105,7 +106,7 @@ select{
 
 
 body{
-  min-height: 50rem;
+  /* min-height: 50rem; */
   padding-top: 9rem;
   background-color: #1a1a1a;
 }
@@ -147,7 +148,7 @@ body{
         background-image: url(../img/cargaImgXSmall.png);
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: black
+        background-color: #1a1a1a;
 
     }
 
@@ -163,13 +164,7 @@ body{
         font-size: 0.9rem;
     }
 
-    body{
-        min-height: 60rem;
-        padding-top: 7rem;
-        background-color: #1a1a1a;
-    }
-
-    #reinicio{
+    /* #reinicio{
         margin-bottom: 1.5rem;
-    }
+    } */
 } 

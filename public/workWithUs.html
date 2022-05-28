@@ -8,6 +8,7 @@
     <title>Pleia Space</title>
     <script src="scripts/header.js"></script>
     <script src="scripts/wwUs.js"></script>
+    <script src="scripts/funciones.js"></script>
     <link rel="stylesheet" href="css/fuente.css">
     <link rel="stylesheet" href="css/wwUs.css">
     <!-- Bootstrap CSS -->
@@ -27,6 +28,8 @@
                 <span class="h4">UNETE</span><br>
                 <h2 class="display-5"> <b>AL EQUIPO</b></h2>
                 <p class="lead">Envianos tus datos y háblanos de tí</p>
+                <!-- ALERTA -->
+                <div class="alert" role="alert" id="alerta2"></div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
@@ -60,14 +63,14 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    <label for="city">Ciudad</label>
+                    <label for="city">Ciudad <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="city" name="city"
                         placeholder="Introduce la ciudad en la que resides">
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    <label for="cv">Curriculum</label>
+                    <label for="cv">Curriculum <span class="text-danger">*</span></label>
                     <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
                     <small id="cvHelp" class="form-text">Tamaño del archivo: </small>
                 </div>
@@ -81,7 +84,6 @@
             
         </div>
     </div>
-    <div class="alert" role="alert" id="alerta2"></div>
     <footer></footer>
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->
