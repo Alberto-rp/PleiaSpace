@@ -1,29 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
     <script src="scripts/header.js"></script>
+    <script src="scripts/index.js"></script>
     <link rel="stylesheet" href="css/fuente.css">
     <link rel="stylesheet" href="css/index.css">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!-- Miniatura se carga en el header -->
     <link rel="icon" href="img/Minitura.png">
     <!-- BUSCAR COMO INCLUIR LINKS -->
 </head>
+
 <body>
     <nav></nav>
 
-    <div id="cuerpo" class="container">
-        <div class="row">
-            <div class="col">
-                <h3>TE OFRECEMOS</h3>
-                <h1 class="display-4">ACCESO AL <b>ESPACIO</b></h1>
+    <div id="cuerpo" class="container-fluid">
+        <div class="row" id="row1">
+            <div id="titulo" class="col">
+                <span class="h3">TE OFRECEMOS</span>
+                <h1 class=""><b>ACCESO AL ESPACIO</b></h1>
                 <p class="lead">Líder en el sector aeroespacial español</p>
+            </div>
+        </div>
+        <div class="row bg-dark " id="row2">
+            <div class="col">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center darkColor pt-3">
+                        <span class="h5"><b>FIABILIDAD</b></span>
+                        <hr class="bg-colcomp">
+                    </div>
+                    <div class="col-auto col-md-4 text-center mt-4">
+                        <span id="contador" class="h2"><b>00</b></span><br>
+                        <span><small> LANZAMIENTOS <br> COMERCIALES</small></span>
+                    </div>
+                    <div class="col-auto col-md-4 text-center mt-4">
+                        <span id="contadorCarg" class="h2"><b>00</b></span><br>
+                        <span><small> LANZAMIENTOS <br> DE CARGA</small></span>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-8 mt-5">
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum culpa minus perferendis doloremque dicta omnis quisquam eum animi, possimus sunt nostrum commodi consequatur voluptatum quae, dolore atque quia. Cumque, hic?
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum culpa minus perferendis doloremque dicta omnis quisquam eum animi, possimus sunt nostrum commodi consequatur voluptatum quae, dolore atque quia. Cumque, hic?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <span class="h5"><b>EXPERIENCIA</b></span>
+                <hr class="bg-colcomp">
+            </div>
+            <div class="embed-responsive embed-responsive-16by9">
+                <video id="videoDesp" autoplay muted="muted" loop>
+                    <source src="video/cUh9yK0UOJmhaig9.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="row" id="row4">
+            <div class="col">
+                sdjshd
             </div>
         </div>
     </div>
@@ -31,8 +79,15 @@
 
     <!-- <div class="fondo"></div> -->
     <!-- Meter Scripts en un fichero js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

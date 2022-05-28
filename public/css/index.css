@@ -1,18 +1,20 @@
 #cuerpo{
     font-family: Montserrat;
     color: white;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 /* body{
-    background: url(../img/tierra.jpg);
-    background-repeat: no-repeat;
-    background-size: 1920px; 
-    /* COVER 
+    /* padding-top: 8rem; 
 } */
+
+#titulo{
+    opacity: 1;
+}
+
 
 @media screen and (min-width:1280px) { 
     html, body{
@@ -23,6 +25,16 @@
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
+    }
+
+    #row1{
+        background-image: url(../img/tierra.jpg);
+        padding-top: 24rem;
+        padding-bottom: 24rem;
+    }
+
+    #row2{
+        min-height: 52rem;
     }
 } 
 
@@ -36,6 +48,16 @@
         background-color: #1a1a1a;
 
     }
+
+    #row1{
+        background-image: url(../img/tierraXSmall.jpg);
+        padding-top: 24rem;
+        padding-bottom: 24rem;
+    }
+
+    #row2{
+        min-height: 52rem;
+    }
 }
 
 @media screen and (max-width:576px) { 
@@ -47,5 +69,15 @@
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
+    }
+
+    #row1{
+        background-image: url(../img/tierraMed.jpg);
+        padding-top: 14rem;
+        padding-bottom: 13rem;
+    }
+
+    #row2{
+        min-height: 36rem;
     }
 } 
