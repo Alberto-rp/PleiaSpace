@@ -1,20 +1,34 @@
 window.addEventListener('load', init)
 lanzada = false
-lanzadaDesvan = true
-// let timer
+let contadorParp = 1
 
 
 function init() {
-    window.addEventListener('scroll', prueba)
+    window.addEventListener('scroll', anims)
+
+    let num1Inicio = (window.scrollY * 100)/300
+    let convertidaInicio = (1 - (num1Inicio/100))
+
+    document.querySelector("#titulo").style.opacity = convertidaInicio
+    parpadeo()
 }
 
 let contador = 0
 let contadorcarg = 0
-function prueba() {
-    // console.log(window.scrollY)
-    if(window.scrollY < 50){
-        document.querySelector("#titulo").style.opacity = 1
-        contadorDesvanecer = 1
+function anims() {
+
+    if(window.scrollY <= 300){
+        //Para desvanecer el titulo, cogemos la posición Y, y calculamos su porcentaje sabiendo que 300 es el 100% donde debe desaparecer
+        let num1 = (window.scrollY * 100)/300
+    
+        //Convertimos ese valor en uno apto para opacity; el pixel Y0 equivale ahora a 1, y el pixel Y300 equivale a 0
+        let convertida = (1 - (num1/100))
+    
+        document.querySelector("#titulo").style.opacity = convertida
+    }
+
+    //Reiniciamos los números
+    if(window.scrollY < 80){
         contadorcarg = 0
         contador = 0
         lanzada = false
@@ -22,19 +36,40 @@ function prueba() {
         document.querySelector("#contadorCarg").innerHTML = '<b>00</b>'
     }
     
+    //Lanzamos los números
     if(window.scrollY >= 200 && !lanzada){
         lanzada = true
         contCom()
         contCar()
     }
 
-    if(window.scrollY >= 50 && window.scrollY < 100){
-        desvanecer() //Meterlo en un if con diferente scrolly
-    }
-
 
     
 }
+
+//Parpadeo para invitar a bajar
+function parpadeo(){
+    let objetivo = document.querySelector("#slideDown")
+    if(window.scrollY <= 400){
+
+    
+        if(contadorParp <= 1 && contadorParp > 0){
+            setTimeout(parpadeo, 100)
+        }else{
+            contadorParp = 1
+            objetivo.style.opacity = 1
+            setTimeout(parpadeo, 100)
+        }
+    
+
+        contadorParp -= 0.1
+        objetivo.style.opacity = contadorParp
+        
+    }else{
+        objetivo.style.opacity = 0
+    }
+}
+
 function contCom(){
     if(contador < 24){
         if(contador <= 16){
@@ -62,42 +97,6 @@ function contCar(){
 
 }
 
-let contadorDesvanecer = 1
-function desvanecer(){
-    if(contadorDesvanecer > 0.0){
-        setTimeout(desvanecer, 40)
-    }
-    if(contadorDesvanecer > 0.0){
-        contadorDesvanecer -= 0.01
-        document.querySelector("#titulo").style.opacity = contadorDesvanecer
-    }
-
-}
-
 function salidaContadores(number){
     return (number <= 9)? '0'+number : number
 }
-
-// function fade(element) {
-//     var op = 1;  // initial opacity
-//     timer = setInterval(function () {
-//         if (op <= 0){
-//             clearInterval(timer);
-//         }
-//         element.style.opacity = op;
-//         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-//         op -= op * 0.1;
-//     }, 50);
-// }
-
-// function fadeOut(element) {
-//     var op = 0;  // initial opacity
-//     var timer = setInterval(function () {
-//         if (op >= 1){
-//             clearInterval(timer);
-//         }
-//         element.style.opacity = op;
-//         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-//         op += op * 0.1;
-//     }, 50);
-// }

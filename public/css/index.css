@@ -20,7 +20,7 @@
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierra.jpg);
+        /* background-image: url(../img/tierra.jpg); */
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
@@ -28,13 +28,27 @@
     }
 
     #row1{
-        background-image: url(../img/tierra.jpg);
+        background-image: url(../img/backIndex2.jpg);
         padding-top: 24rem;
         padding-bottom: 24rem;
     }
 
     #row2{
         min-height: 52rem;
+        max-width: 70rem;
+    }
+
+    #row3{
+        max-width: 70rem;
+    }
+    #row4{
+        max-width: 70rem;
+    }
+
+    #row5{
+        background-image: url(../img/tierra.jpg);
+        padding-top: 26rem;
+        padding-bottom: 26rem;
     }
 } 
 
@@ -42,7 +56,7 @@
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierraMed.jpg);
+        /* background-image: url(../img/tierraMed.jpg); */
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
@@ -50,7 +64,7 @@
     }
 
     #row1{
-        background-image: url(../img/tierraXSmall.jpg);
+        background-image: url(../img/backIndex2MED.jpg);
         padding-top: 24rem;
         padding-bottom: 24rem;
     }
@@ -58,13 +72,19 @@
     #row2{
         min-height: 52rem;
     }
+
+    #row5{
+        background-image: url(../img/tierraXSmall.jpg);
+        padding-top: 27rem;
+        padding-bottom: 27rem;
+    }
 }
 
 @media screen and (max-width:576px) { 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierraXSmall.jpg);
+        /* background-image: url(../img/tierraXSmall.jpg); */
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
@@ -72,12 +92,18 @@
     }
 
     #row1{
-        background-image: url(../img/tierraMed.jpg);
+        background-image: url(../img/backIndex2SM.jpg);
         padding-top: 14rem;
         padding-bottom: 13rem;
     }
 
     #row2{
         min-height: 36rem;
+    }
+
+    #row5{
+        background-image: url(../img/tierraMed.jpg);
+        padding-top: 18rem;
+        padding-bottom: 18rem;
     }
 } 
