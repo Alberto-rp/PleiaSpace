@@ -59,4 +59,9 @@ router.get('/carga', function(request, response){
     // response.redirect('/registro')
 })
 
+router.get('/historia', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/history.html'))
+    // response.redirect('/registro')
+})
+
 module.exports = router
