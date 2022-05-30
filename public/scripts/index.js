@@ -1,9 +1,9 @@
-window.addEventListener('load', init)
+window.addEventListener('load', initIndex)
 lanzada = false
 let contadorParp = 1
 
 
-function init() {
+function initIndex() {
     window.addEventListener('scroll', anims)
 
     let num1Inicio = (window.scrollY * 100)/300

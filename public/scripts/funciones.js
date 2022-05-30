@@ -142,7 +142,7 @@ function tempAlert(duration, error){
             break;
         case'vueloPeso': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a>"
+            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='/vehiculos'>Vehiculos</a>"
             break;
         case'rellenarCamps': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
