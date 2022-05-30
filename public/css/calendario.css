@@ -1,14 +1,17 @@
+body{
+    min-height: 30rem;
+    padding-top: 0.4rem;
+    background-color: #1a1a1a;
+}
 
-/* body{
-    background: url(../img/tierra.jpg);
-    background-repeat: no-repeat;
-    background-size: 1920px; 
-    
-} */
+#anioActual{
+    font-weight: bold;
+}
 
 #principal{
     max-width: 800px;
     margin-top: 100px;
+    /* padding-bottom: 2.3rem; */
     font-family: Montserrat;
 }
 .col:not(.but){
@@ -37,7 +40,7 @@ div[class~='col-3'] img{
     }
 } 
 
-@media screen and (min-width:800px) and (max-width:1280px){ 
+@media screen and (min-width:576px) and (max-width:1280px){ 
     html, body{
         width: 100%;
         height: 100%;
@@ -49,7 +52,7 @@ div[class~='col-3'] img{
     }
 }
 
-@media screen and (max-width:800px) { 
+@media screen and (max-width:576px) { 
     html, body{
         width: 100%;
         height: 100%;
@@ -58,5 +61,9 @@ div[class~='col-3'] img{
         background-repeat: no-repeat;
         background-color: #1a1a1a;
 
+    }
+
+    div.col{
+        max-height: 8rem;
     }
 } 

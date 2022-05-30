@@ -1,26 +1,29 @@
 #cuerpo{
     font-family: Montserrat;
     color: white;
-    position: absolute;
-    margin-top: 8rem;
+    margin-top: 7rem;
+    padding-bottom: 1rem;
+    max-width: 60rem;
 }
 
-/* body{
-    background: url(../img/tierra.jpg);
-    background-repeat: no-repeat;
-    background-size: 1920px; 
-    /* COVER 
-} */
+body{
+    min-height: 50rem;
+    padding-top: 0.1rem;
+    background-color: #1a1a1a;
+}
+
+
 #alerta2{
     opacity: 0;
     transition: 0.5s;
+    display: none;
 }
 
 @media screen and (min-width:1280px) { 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierra.jpg);
+        background-image: url(../img/sunrise2.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
@@ -28,11 +31,11 @@
     }
 } 
 
-@media screen and (min-width:800px) and (max-width:1280px){ 
+@media screen and (min-width:576px) and (max-width:1280px){ 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierraMed.jpg);
+        background-image: url(../img/sunrise2_MD.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;
@@ -40,11 +43,11 @@
     }
 }
 
-@media screen and (max-width:800px) { 
+@media screen and (max-width:576px) { 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/tierraXSmall.jpg);
+        background-image: url(../img/sunrise2_SM.jpg);
         background-size: cover;
         background-repeat: no-repeat;
         background-color: #1a1a1a;

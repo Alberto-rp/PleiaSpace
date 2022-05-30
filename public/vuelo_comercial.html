@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-dark">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,141 +14,167 @@
     <script src="scripts/vueloCom.js"></script>
     <script src="scripts/funciones.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="icon" href="img/Minitura.png">
 
     <!-- BUSCAR COMO INCLUIR LINKS -->
 </head>
-<body class="darkColor">
+
+<body class="bg-dark">
     <nav></nav>
 
     <div id="cuerpo" class="container">
         <div class="row" id="jumbo">
             <div class="col text-center align-items-center">
                 <h1 class="dispMov"><b>RESERVA TU VUELO</b></h1>
-                <p class="dispMovSub">LA EXPERIENCIA QUE CAMBIARÁ TÚ VIDA</p>
+                <p class="dispMovSub"><b>LA EXPERIENCIA QUE CAMBIARÁ TÚ VIDA</b></p>
             </div>
         </div>
-        
-        <!-- FORM -->
-        <form action="/api/usuario/reserva" method="post" class="text-center darkColor" id="formulario1">
-            <fieldset id="fs1">
-                <div class="row darkColor text-center">
-                    <div class="col-sm-8 m-auto">
-                        <label for="fechaIn">No antes de:</label>
-                        <input type="month" class="form-control" id="fechaIn" name="fechaIn">
-                    </div>
-                    
-                    <div class="col-12 text-center mt-2">
-                        <input id="envio" class="btn btn-primary" type="submit" value="Comprobar">
-                    </div>
-                </div>
-            </fieldset>
 
-            <div class="row">
-                <div class="col" id="tablaResult"></div>
+        <form action="/api/usuario/reserva" method="post" class="" id="formulario1">
+            <div class="row justify-content-center">
+                <div id="contForm" class="col darkColor text-center rounded">
+                    <div class="row justify-content-center">
+                        <fieldset id="fs1" class="col-12 col-sm-12 col-md-10 col-lg-8 darkColor rounded p-3">
+                            <label for="fechaIn">No antes de:</label>
+                            <!-- <hr class="bg-colcomp"> -->
+                            <input type="month" class="form-control" id="fechaIn" name="fechaIn">
+                            <input id="envio" class="btn btn-primary mt-2" type="button" value="Comprobar">
+                        </fieldset>
+                    </div>
+                    <div class="row justify-content-center">
+                        <fieldset id="fs1_5">
+                            <h4 class="mt-2" id=""><b>Selección de vuelo</b></h4>
+                            <hr class="bg-colcomp">
+                            <div class="col" id="tablaResult"></div>
+                            <hr class="bg-colcomp">
+                            <button id="atras" class="btn btn-secondary">Atras</button>
+                        </fieldset>
+                    </div>
+                    <fieldset disabled="disabled" id="fs2" class="p-1">
+                        <div class="row">
+                            <div class="col-12 pt-3">
+                                <span id="datosSeleccionados" class="text-muted"></span>
+                            </div>
+                            <div class="col-12">
+                                <hr class="bg-colcomp">
+                                <h3><b>Contacto</b></h3>
+                                <hr class="bg-colcomp">
+                            </div>
+                            <div class="col-12">
+                                <div class="row mt-2 text-center">
+                                    <div class="col-12 col-sm-6">
+                                        <label for="name">Nombre</label><br>
+                                        <input class="form-control" type="text" name="name" id="name" required
+                                            placeholder="Nombre" readonly>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label for="surnames">Apellidos</label><br>
+                                        <input class="form-control" type="text" name="surnames" id="surnames" required
+                                            readonly>
+                                    </div>
+                                </div>
+                                <!-- Email -->
+                                <div class="row mt-2 text-center">
+                                    <div class="col">
+                                        <label for="email">Email</label><br>
+                                        <input class="form-control" type="email" name="email" id="email" required>
+                                    </div>
+                                </div>
+                                <!-- Telefono -->
+                                <div class="row mt-2 text-center">
+                                    <div class="col">
+                                        <label for="phone">Teléfono</label><br>
+                                        <input class="form-control" type="tel" name="phone" id="phone" required>
+                                    </div>
+                                </div>
+                                <!-- Pais y provincia -->
+                                <div class="row mt-2 text-center">
+                                    <div class="col-12 col-sm-6">
+                                        <label for="country">País</label><br>
+                                        <select class="form-control" name="country" id="country" required></select>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label for="stateProv">Provincia</label><br>
+                                        <input class="form-control" type="text" name="stateProv" id="stateProv"
+                                            required>
+                                    </div>
+                                </div>
+                                <!-- Ciudad y código postal -->
+                                <div class="row mt-2 text-center">
+                                    <div class="col-12 col-sm-6">
+                                        <label for="city">Ciudad</label><br>
+                                        <input class="form-control" type="text" name="city" id="city" required>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label for="codPost">Código Postal</label><br>
+                                        <input class="form-control" type="number" name="codPost" id="codPost" required>
+                                    </div>
+                                </div>
+                                <!-- Dirección y metodoPago-->
+                                <div class="row mt-2 text-center">
+                                    <div class="col-12 col-sm-6">
+                                        <label for="adress">Dirección</label><br>
+                                        <input class="form-control" type="text" name="adress" id="adress" required>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <label for="payMeth">Método de pago</label><br>
+                                        <select class="form-control" name="payMeth" id="payMeth" required></select>
+                                    </div>
+                                </div>
+                                <!-- Asientos -->
+                                <div class="row mt-2 text-center">
+                                    <div class="col">
+                                        <label for="numAsients">Asientos</label><br>
+                                        <select class="form-control" name="numAsients" id="numAsients"
+                                            required></select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12">
+                                <!-- sobreti -->
+                                <hr class="bg-colcomp">
+                                <h4><b>Háblanos de tí</b></h4>
+                                <hr class="bg-colcomp">
+                            </div>
+                            <div class="col-12">
+                                <label for="info">¿Porqué quieres ir al espacio?</label><br>
+                                <textarea class="form-control" name="info" id="info" cols="30" rows="5"
+                                    maxlength="500"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Id VUELO -->
+                        <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
+                        <input type="hidden" name="idUsuario" id="idUsuario" value="">
+
+                        <!-- SUBMIT -->
+                        <div class="row mt-2 text-center">
+                            <div class="col">
+                                <input class="btn btn-primary" type="submit" value="Reservar">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
             </div>
-
-            <fieldset disabled="disabled" id="fs2" class="p-1 p-md-5">
-                <!-- Nombre y apellidos -->
-                <h2 class="text-center">Contacto</h2>
-                <div class="row mt-2 text-center">
-                    <div class="col-12 col-sm-6">
-                        <label for="name">Nombre</label><br>
-                        <input type="text" name="name" id="name" required placeholder="Nombre" readonly>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <label for="surnames">Apellidos</label><br>
-                        <input type="text" name="surnames" id="surnames" required readonly>
-                    </div>
-                </div>
-                <!-- Email -->
-                <div class="row mt-2 text-center">
-                    <div class="col">
-                        <label for="email">Email</label><br>
-                        <input type="email" name="email" id="email" required>
-                    </div>
-                </div>
-                <!-- Telefono -->
-                <div class="row mt-2 text-center">
-                    <div class="col">
-                        <label for="phone">Teléfono</label><br>
-                        <input type="tel" name="phone" id="phone" required>
-                    </div>
-                </div>
-                <!-- Pais y provincia -->
-                <div class="row mt-2 text-center">
-                    <div class="col-12 col-sm-6">
-                        <label for="country">País</label><br>
-                        <select name="country" id="country" required></select>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <label for="stateProv">Provincia</label><br>
-                        <input type="text" name="stateProv" id="stateProv" required>
-                    </div>
-                </div>
-                <!-- Ciudad y código postal -->
-                <div class="row mt-2 text-center">
-                    <div class="col-12 col-sm-6">
-                        <label for="city">Ciudad</label><br>
-                        <input type="text" name="city" id="city" required>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <label for="codPost">Código Postal</label><br>
-                        <input type="number" name="codPost" id="codPost" required>
-                    </div>
-                </div>
-                <!-- Dirección y metodoPago-->
-                <div class="row mt-2 text-center">
-                    <div class="col-12 col-sm-6">
-                        <label for="adress">Dirección</label><br>
-                        <input type="text" name="adress" id="adress" required>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <label for="payMeth">Método de pago</label><br>
-                        <select name="payMeth" id="payMeth" required></select>
-                    </div>
-                </div>
-                <!-- Asientos -->
-                <div class="row mt-2 text-center">
-                    <div class="col">
-                        <label for="numAsients">Asientos</label><br>
-                        <select name="numAsients" id="numAsients" required></select>
-                    </div>
-                </div>
-
-                <!-- sobreti -->
-                <h2 class="text-center mt-5">Sobre ti</h2>
-                <div class="row mt-2 text-center">
-                    <div class="col">
-                        <label for="info">¿Porqué quieres ir al espacio?</label><br>
-                        <textarea name="info" id="info" cols="30" rows="5" maxlength="500"></textarea>
-                    </div>
-                </div>
-
-                <!-- Id VUELO -->
-                <input type="hidden" name="idVueloSel" id="idVueloSel" value="">
-                <input type="hidden" name="idUsuario" id="idUsuario" value="">
-
-                <!-- SUBMIT -->
-                <div class="row mt-2 text-center">
-                    <div class="col">
-                        <input class="btn btn-primary" type="submit" value="Reservar">
-                    </div>
-                </div>
-            </fieldset>
         </form>
-        <div class="alert alert-dismissible fade show" role="alert"  id="alerta">
-            <span></span>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="btnCierraAlert">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        <!-- ALERTA -->
+        <div class="alert" role="alert" id="alerta2"></div>
+
     </div>
-    <!-- <div class="fondo"></div> -->
+    <footer></footer>
     <!-- Meter Scripts en un fichero js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

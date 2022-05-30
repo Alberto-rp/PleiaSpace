@@ -6,12 +6,13 @@ window.addEventListener('load', init)
 
 function init(){
     // Si hay una cookie de Sesion, evita acceder a Login
-    if(document.cookie != ''){
-        window.location.replace('/perfil')
+    if(getCookie('usuario') != undefined){
+        window.location.replace('/')
     }
     tempAlert(2000, error)
 
     document.querySelector("#btnLogin").addEventListener("click", enviarDatos)
+    document.querySelector('#togglePassword').addEventListener("click", verPasswd)
 }
 
 function enviarDatos(){
@@ -32,6 +33,6 @@ function enviarDatos(){
             return resp.json()
         }
     }).then(data => {
-        tempAlert(2000, data.error)
+        tempAlert(4000, data.error)
     })
 }

@@ -5,6 +5,18 @@
     color: white;
 }
 
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+#avisadoCookies{
+    width: 6rem;
+}
+
 /* body {
     margin: 0px;
     padding: 0px;
@@ -32,6 +44,10 @@ img.mr-5{
 
 .colorComp{
     background-color: #6699FF;
+}
+
+.darkColor{
+    background-color: #1a1a1a;
 }
 
 a[class~='nav-link']:hover{

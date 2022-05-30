@@ -40,11 +40,12 @@ function init(){
 
 // Calcular precio 1
 function calcularPrecio(){
+    window.scrollTo(0, 0); //Para volver arriba de la pag
     let orbitaSelect = document.querySelector("#orbit")[ document.querySelector("#orbit").selectedIndex].value
     let masaInput = document.querySelector("#peso").value
     let fechaValue = document.querySelector("[name='fechaIn']").value
 
-    if(masaInput != '' && masaInput < 750){
+    if(masaInput != '' && masaInput < 750 && masaInput > 0){
         let datosEnviar = {
             orbita : orbitaSelect,
             fecha: fechaValue
@@ -66,13 +67,14 @@ function calcularPrecio(){
                 let salida = document.querySelector("#tablaResult")
                 tabla += `<table class="table table-responsive bg-dark" id='LABELS'>
                                     <tr>
-                                        <td>ID</td>
-                                        <td>FECHA</td>
-                                        <td>ORBITA</td>
-                                        <td>PORT-A</td>
-                                        <td>PORT-B</td>
-                                        <td>VEHICULO</td>
-                                        <td>PRECIO</td>
+                                        <th class='text-colcomp'>ID</th>
+                                        <th class='text-colcomp'>FECHA</th>
+                                        <th class='text-colcomp'>ORBITA</th>
+                                        <th class='text-colcomp'>PORT-A</th>
+                                        <th class='text-colcomp'>PORT-B</th>
+                                        <th class='text-colcomp'>VEHICULO</th>
+                                        <th class='text-colcomp'>PRECIO</th>
+                                        <th></th>
                                     </tr>`
     
                 // Insertamos los datos de cada vuelo
@@ -87,9 +89,9 @@ function calcularPrecio(){
                                         <td>${item.lanzador}</td>
                                         <td>${new Number(item.precio_kg).toLocaleString("es-ES",{style:'currency',currency:'EUR'})}/Kg</td>`
                                         if(masaInput > 100 && item.lanzador == 'ELECTRA'){
-                                            tabla += `<td><button disabled class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td></tr>`
+                                            tabla += `<td><button disabled class='btn btn-colcomp' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td></tr>`
                                         }else{
-                                            tabla += `<td><button class='btn btn-primary' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td></tr>`
+                                            tabla += `<td><button class='btn btn-colcomp' name='vtnVuelos' id='${item.id_vuelo}'>Seleccionar</button></td></tr>`
                                         }
                                         
                         vuelosTOTAL.push(item)
@@ -98,7 +100,7 @@ function calcularPrecio(){
                 tabla += '</table>'
                 salida.innerHTML = tabla
                 document.querySelector("#fs2").style.display = 'block'
-                document.querySelector("#seccHead").innerHTML = 'SELECCION DE VUELO'
+                document.querySelector("#seccHead").innerHTML = '<b>SELECCION DE VUELO</b>'
 
                 asignarFuncion('vtnVuelos', selectPort, 'click')
                 
@@ -116,22 +118,22 @@ function calcularPrecio(){
                 document.querySelector("#tablaResult").innerHTML = `<div class="row bg-dark">
                                                                         <div class="col text-center">
                                                                             <p>Lo sentimos, no hay vuelos para las fechas seleccionadas.<br> 
-                                                                            Consulte la sección de <a href='/calendario'>Calendario</a> o contacte a <a href='#'>despegues@pleiaspace.com</a> 
+                                                                            Consulte la sección de <a href='/calendario'>Calendario</a> o contacte a <a href='mailto:pleiaspace@gmail.com'>pleiaspace@gmail.com</a> 
                                                                             </p>
                                                                         </div>
                                                                     </div>`
             }
         })
 
-    }else if(masaInput == ''){
+    }else if(masaInput == '' || masaInput == 0){
         tempAlert(2000,'blank')
     }else{
         document.querySelector("#fs2").style.display = 'block'
         document.querySelector("#tablaResult").innerHTML = `<div class="row bg-dark">
                                                                 <div class="col text-center">
                                                                     <p>Lo sentimos, no hay puertos con tanta capacidad.<br> 
-                                                                    Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a><br>
-                                                                    Si necesita un lanzamiento dedicado contacte a <a href='#'>despegues@pleiaspace.com</a> 
+                                                                    Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='/vehiculos'>Vehiculos</a><br>
+                                                                    Si necesita un lanzamiento dedicado contacte a <a href='mailto:pleiaspace@gmail.com'>pleiaspace@gmail.com</a> 
                                                                     </p>
                                                                 </div>
                                                             </div>`
@@ -151,6 +153,7 @@ function asignarFuncion(nombre, funcion, disparador){
 
 // Funcion Seleccion puerto 2
 function selectPort(){
+    window.scrollTo(0, 0);//Para volver arriba de la pag
     //Seleccionamos la salida y buscamos el vuelo seleccionado
     let datosSel = document.querySelector("#datosSeleccionados")
     let datosVuelo = ''
@@ -183,6 +186,8 @@ function selectPort(){
                         ['peso', masaInput],
                         ['coste', document.querySelector("#precioEstimado").value]
                         ]
+    //Mostramos el resumen
+    document.querySelector("#resumen").style.display = "inline-block"
     pintarResumen()
     datosSel.style.opacity = 1
     document.querySelector("#fs3").style.display = "inline-block"
@@ -193,12 +198,13 @@ function selectPort(){
     document.querySelector("#fs1").style.display = 'none'
     document.querySelector("#fs2").style.display = 'none'
 
-    document.querySelector("#seccHead").innerHTML = 'SELECCION DE PUERTO'
+    document.querySelector("#seccHead").innerHTML = '<b>SELECCION DE PUERTO</b>'
     
 }
 
 // addons 3
 function addon(){
+    window.scrollTo(0, 0);//Para volver arriba de la pag
     // Guardamos la seleccion en un input oculto
     document.querySelector("#puertoSel").value = this.id
     datosVueloSelectGEN.push(['puerto',this.id])
@@ -217,7 +223,7 @@ function addon(){
     // Mostrar siguiente form
     document.querySelector("#fs3").style.display = 'none'
     document.querySelector("#fs4").style.display = "inline-block"
-    document.querySelector("#seccHead").innerHTML = 'COMPLETA TÚ VUELO'
+    document.querySelector("#seccHead").innerHTML = '<b>COMPLETA TÚ VUELO</b>'
 
     // Boton confirmar evento
     document.querySelector("#confirmDatosAddons").addEventListener("click", initDatosConct)
@@ -225,6 +231,7 @@ function addon(){
 
 // PASO 5/5
 function initDatosConct(){ 
+    window.scrollTo(0, 0);//Para volver arriba de la pag
     // Aztualizar Datos pasamos el coste de addons al total
 
     // Si se ha seleccionado y luego dejado a 0, eliminamos los indices
@@ -264,7 +271,7 @@ function initDatosConct(){
     // Mostrar los siguientes elementos
     document.querySelector("#fs4").style.display = 'none'
     document.querySelector("#fs5").style.display = "inline-block"
-    document.querySelector("#seccHead").innerHTML = 'DATOS DE CONTACTO'
+    document.querySelector("#seccHead").innerHTML = '<b>DATOS DE CONTACTO</b>'
     document.querySelector("#sumaCheckout").innerHTML = pintarPrecio(valorMatriz(datosVueloSelectGEN, 'coste'))
 
     document.querySelector("#btnReservar").addEventListener("click", realizarReserva)
@@ -272,6 +279,7 @@ function initDatosConct(){
 
 // Completar la reserva y enviar los datos
 function realizarReserva(){
+    window.scrollTo(0, 0);//Para volver arriba de la pag
     //Recogemos los nuevos datos y comprobamos que están rellenos
     let datosCompany = []
     let validate = true
@@ -323,7 +331,7 @@ function realizarReserva(){
                 //Si todo sale bien OCULTAR TODO EL FORMULARIO
                 document.querySelector("#fs5").style.display = 'none'
                 document.querySelector("#padreDatosSelect").style.display = 'none'
-                document.querySelector("#seccHead").innerHTML = 'RESERVA REALIZADA'
+                document.querySelector("#seccHead").innerHTML = '<b>RESERVA REALIZADA</b>'
             }else if(resp.status == 404){
                 console.log('ERROR') //METER ERROR AQUI
             }
@@ -404,7 +412,7 @@ function valorMatriz(matriz, elemento){
 
 // Sacar dinero guay
 function salidaDinero(suma){
-    return (suma < 1000000)? (suma/1000)+'K €' : (suma/1000000)+'M €'
+    return (suma < 1000000)? Number(suma/1000).toFixed(1)+'K €' : Number(suma/1000000).toFixed(2)+'M €'
 }
 
 // Pintar Resumen
@@ -516,15 +524,18 @@ function cargarDatosComp(){
 
 // Alerta cuando vuelo no es compatible
 function alertaDisabled(){
+    window.scrollTo(0, 0);//Para volver arriba de la pag
     tempAlert(5000,'vueloPeso')
 }
 
 // Alerta cuando peso excede puerto
 function alertaDisabledPort(){
+    window.scrollTo(0, 0);//Para volver arriba de la pag
     tempAlert(5000,'portPeso')
 }
 
 // Alerta cuando no quedan puertos de este tipo
 function alertaPort0(){
+    window.scrollTo(0, 0);//Para volver arriba de la pag
     tempAlert(5000,'port0')
 }

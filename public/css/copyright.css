@@ -1,0 +1,12 @@
+#cuerpo{
+    font-family: Montserrat;
+    padding-top: 7rem;
+}
+
+ul, li{
+    list-style: none;
+}
+
+h5 b{
+    color: #6699FF;
+}

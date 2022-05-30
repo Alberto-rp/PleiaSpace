@@ -12,8 +12,8 @@ function init(){
         if(contador == 0){
             cadena += `<div class="row">`
         }
-        cadena += `<div class="col">
-                    <h6>${arrayMeses[i]}</h6>
+        cadena += `<div class="col" style="background-color:rgba(0, 0, 0, 0.3);">
+                    <span class='h6'><b>${arrayMeses[i]}</b></span>
                     <div id="m${i+1}"></div>
                    </div>`
         contador++
@@ -61,10 +61,10 @@ async function cambiarCalendario(){
             if(document.querySelector("#anioActual").innerHTML == fechaVuelo.getFullYear()){
                 let id = "#m"+(fechaVuelo.getMonth()+1)
                 document.querySelector(id).innerHTML += `<div class='elemVuelo'>
-                                                            Vuelo: ${item.id_vuelo}<br>
-                                                            Orbita: ${item.orbita_destino}<br>
-                                                            Tipo: ${item.tipo_vuelo}<br>
-                                                            Vehiculo: ${item.lanzador}
+                                                            Vuelo: <i>${item.id_vuelo}</i><br>
+                                                            Orbita: <i>${item.orbita_destino}</i><br>
+                                                            Tipo: <i>${item.tipo_vuelo}</i><br>
+                                                            Vehiculo: <i>${item.lanzador}</i>
                                                         </div>`
             }
         }

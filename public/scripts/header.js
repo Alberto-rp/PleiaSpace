@@ -3,6 +3,8 @@
 window.addEventListener("load", initHead)
 
 function initHead(){
+    
+    
     //Traemos el header   
     fetch("header.html")
     .then(response => {
@@ -12,10 +14,10 @@ function initHead(){
         // Cargar la cabecera en cada página
         document.querySelector("nav").innerHTML = data;
         document.querySelector("nav").classList = "navbar fixed-top navbar-expand-lg header"
-    
+        
         // Cargar el logo de la pestaña
         document.querySelector("head").innerHTML += `<link rel="shortcut icon" href="img/Minitura.png">`
-    
+        
         // Iluminar colores
         let elementos = document.querySelectorAll(".nav-item")
         for(item of elementos){
@@ -23,10 +25,29 @@ function initHead(){
             item.addEventListener("mouseout", borrarBtn)
         }
     });
+    
+    //Traemos footer
+    fetch("footer.html")
+    .then(response => {
+        return response.text()
+    })
+    .then(data => {
+        // Cargar la cabecera en cada página
+        document.querySelector("footer").innerHTML = data
+        document.querySelector("footer").className = 'footer'
+        document.getElementById("avisadoCookies").addEventListener("click", ocultarAvisoCookies)
 
+        //Comprobamos el aviso de cookies
+        if(getCookie('avisoCookies') != undefined && getCookie('avisoCookies') == 'true'){
+            // document.querySelector("#avisoCookies").style.visibility = 'hidden'
+            document.querySelector("#avc2").style.display = 'none'
+            // document.querySelector("footer").style.zIndex = '-1'
+        }
+    })
+    
 
     // Funcion que comprueba el nombre de usuario codificado en el servidor
-    if(document.cookie != ''){
+    if(document.cookie != '' && getCookie('usuario') != undefined){
         fetch('/api/compCookie'+getCookie('usuario'))
         .then(res => res.json())
         .then(data => {
@@ -44,6 +65,7 @@ function initHead(){
         })
 
     }
+
     
 }
 
@@ -64,4 +86,17 @@ function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
-  }
+}
+
+//OCULTAR AVISO COOKIES
+function ocultarAvisoCookies(){
+    let textoCookie = `avisoCookies=${encodeURIComponent('true')};`
+    let fechaAct = new Date()
+    fechaAct.setFullYear(fechaAct.getFullYear() + 1)
+    textoCookie += `expires=${fechaAct.toUTCString()};`
+    
+    document.cookie = textoCookie
+
+    document.querySelector("#avc2").style.display = 'none'
+    //ARREGLAR DISPLAY
+}

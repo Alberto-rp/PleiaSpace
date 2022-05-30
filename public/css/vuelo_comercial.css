@@ -1,22 +1,27 @@
 #cuerpo{
     font-family: Montserrat;
     color: white;
+    padding-bottom: 1.5rem;
 }
 
 .darkColor{
     background-color: #1a1a1a;
 }
 
+#contForm{
+    max-width: 50rem;
+}
 #tablaResult{
     display: none;
 }
 
-#fs2{
+#fs2, #fs1_5{
     display: none;
 }
 
-#alerta{
-    display: none;
+#alerta2{
+    opacity: 0;
+    transition: 0.5s;
 }
 
 select{
@@ -25,49 +30,47 @@ select{
 
 
 body{
-  min-height: 50rem;
+  /* min-height: 50rem; */
   padding-top: 9.5rem;
-  background-color: #1a1a1a;
 }
 
 @media screen and (min-width:1280px) { 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/cupula.jpg);
+        background-image: url(../img/backVuela.jpg);
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: #1a1a1a;
 
     }
 }
 
-@media screen and (min-width:800px) and (max-width:1280px){ 
+@media screen and (min-width:576px) and (max-width:1280px){ 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/cupulaSmall.png);
+        background-image: url(../img/backVuelaMD.jpg);
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: #1a1a1a;
 
     }
 }
 
-@media screen and (max-width:800px) { 
+@media screen and (max-width:576px) { 
     html, body{
         width: 100%;
         height: 100%;
-        background-image: url(../img/cupulaXSmall.png);
+        background-image: url(../img/backVuelaSM.jpg);
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: #1a1a1a;
     }
 
     .dispMov{
         font-size: 1.8rem;
+        /* display: none; */
     }
     .dispMovSub{
         font-size: 1rem;
+        /* display: none; */
     }
 } 

@@ -30,9 +30,30 @@ function initPaises(){
     })
 }
 
+function verPasswd(){ //Login y registro
+    const password = document.querySelector('#passwd');     
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+
+    // Toggle the eye and bi-eye icon
+    this.classList.toggle('bi-eye');
+    
+}
+
+//Devolver valor de una cookie
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+
 // Alerta que se auto cierra
 function tempAlert(duration, error){
-    var divAlerta = document.querySelector("#alerta2");
+    let divAlerta = document.querySelector("#alerta2");
+    divAlerta.style.display = 'none'
+    let defaultAlert = false
+
     // Analizamos error
     switch(error){
         case'fail': //LOGIN
@@ -41,7 +62,7 @@ function tempAlert(duration, error){
             break;
         case 'noerrorLog': //LOGIN
             divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente"
+            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente; Le hemos enviado un mail para activar su cuenta"
             break;
         case 'activationSucess': //LOGIN
             divAlerta.classList.add("alert-success")
@@ -54,6 +75,22 @@ function tempAlert(duration, error){
         case 'activationError': //LOGIN
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Debes activar tú cuenta mediante el enlace que te hemos mandado al correo!"
+            break;
+        case 'oldActivation': //LOGIN
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Esta cuenta ya ha sido activada!"
+            break;
+        case 'blankLog': //LOGIN
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Campos vacios!"
+            break;
+        case 'error1': //VUELO_COMERCIAL
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Ya has efectuado una reserva en este vuelo.<br> Puedes modificar o cancelar tu reserva en la sección <i><a href='/perfil'>Perfil</a></i>"
+            break;
+        case 'noerrorVC': //VUELO_COMERCIAL
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Exito! </strong>Reserva realizada correctamente!"
             break;
         case true: //PERFIL
             divAlerta.classList.add("alert-danger")
@@ -79,9 +116,21 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Este email ya está registrado!"
             break;
+        case 'mayEdad': //REGISTRO
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes ser mayor de edad para registrarte!"
+            break;
+        case 'emailFail': //REGISTRO
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir un email válido!"
+            break;
+        case 'nameFail': //REGISTRO
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Tu nombre no puede contener números!"
+            break;
         case 'blank': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir una masa!"
+            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir una masa válida!"
             break;
         case'portPeso': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
@@ -93,7 +142,7 @@ function tempAlert(duration, error){
             break;
         case'vueloPeso': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
-            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='#'>Vehiculos</a>"
+            divAlerta.innerHTML = "La masa que has elegido excede las capacidades de este vehiculo.<br> Para revisar las capacidades de nuestros vehiculos consulte la seccion <a href='/vehiculos'>Vehiculos</a>"
             break;
         case'rellenarCamps': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
@@ -131,17 +180,62 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-success")
             divAlerta.innerHTML = "<strong>Bien!</strong> Reserva eliminada correctamente."
             break;
+        case 'size': //WORKWITHUS
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> El CV no debe superar los 512KB!"
+            break;
+        case 'wwusBlank'://WORKWITHUS
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> Debe rellenar los datos!"
+            break;
+        case 'pdf'://WORKWITHUS
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error!</strong> El archivo debe ser en formato PDF"
+            break;
+        case 'noerrorWWU'://WORKWITHUS
+            divAlerta.classList.add("alert-success")
+            divAlerta.innerHTML = "<strong>Bien!</strong> Datos registrados!"
+            break;
         default: 
             divAlerta.innerHTML = ""
+            defaultAlert = true
     }
     // Mostramos la alerta
 
-    divAlerta.style.opacity = '1'
+    if(! defaultAlert){
+        divAlerta.style.display = 'block'
+    }
+    setTimeout(()=>{
+        divAlerta.style.opacity = '1'
+    },100)
     setTimeout(function(){
 
     divAlerta.style.opacity = '0'
     divAlerta.className = ''
     divAlerta.classList.add("alert")
 
+    setTimeout(() => {
+        divAlerta.style.display = 'none'
+    }, 100);
+
     },duration);
 }
+
+// Mostramos la alerta
+
+// divAlerta.style.opacity = '1'
+// divAlerta.style.width = 'auto'
+// divAlerta.style.height = 'auto'
+// setTimeout(() => {
+
+// divAlerta.style.opacity = '0'
+// divAlerta.className = ''
+// divAlerta.classList.add("alert")
+
+// // Establecemos otro timeout para cuando acabe de ocultarse la alerta, no interfiera el ancho o alto
+// setTimeout(() => {
+//     divAlerta.style.width = '0px'
+//     divAlerta.style.height = '0px'
+// }, 1000);
+
+// },duration)
