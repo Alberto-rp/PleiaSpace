@@ -10,13 +10,13 @@ function init() {
     let convertidaInicio = (1 - (num1Inicio/100))
 
     document.querySelector("#titulo").style.opacity = convertidaInicio
+    document.querySelector("#contacto").style.opacity = 0
     parpadeo()
 }
 
 let contador = 0
 let contadorcarg = 0
 function anims() {
-
     if(window.scrollY <= 300){
         //Para desvanecer el titulo, cogemos la posición Y, y calculamos su porcentaje sabiendo que 300 es el 100% donde debe desaparecer
         let num1 = (window.scrollY * 100)/300
@@ -25,6 +25,31 @@ function anims() {
         let convertida = (1 - (num1/100))
     
         document.querySelector("#titulo").style.opacity = convertida
+    }
+
+    //Desvanecer contacto
+    let media_queryPEQUE = 'screen and (max-width:576px)';
+    let media_queryMED = 'screen and (min-width:576px) and (max-width:1280px)';
+    let dependiente = 0
+
+    //Comprobar el mediaquery activo
+    let coincidePeque = window.matchMedia(media_queryPEQUE).matches
+    let coincideMed = window.matchMedia(media_queryMED).matches
+
+    if(coincidePeque){
+        dependiente = 2630
+    }else if(coincideMed){
+        dependiente = 2830
+    }else{
+        dependiente = 2950
+    }
+
+    if(window.scrollY >= dependiente){
+        let num1 = ((window.scrollY - dependiente) * 100)/200
+        let convertida = (num1/100)
+
+    
+        document.querySelector("#contacto").style.opacity = convertida
     }
 
     //Reiniciamos los números

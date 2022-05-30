@@ -39,7 +39,7 @@
     }
 
     #row2{
-        min-height: 52rem;
+        /* min-height: 52rem; */
         max-width: 70rem;
     }
 
@@ -74,9 +74,9 @@
         padding-bottom: 24rem;
     }
 
-    #row2{
-        min-height: 52rem;
-    }
+    /* #row2{
+        /* min-height: 52rem;
+    } */
 
     #row5{
         background-image: url(../img/tierraXSmall.jpg);
@@ -102,9 +102,9 @@
         padding-bottom: 13rem;
     }
 
-    #row2{
-        min-height: 36rem;
-    }
+    /* #row2{
+        /* min-height: 36rem;
+    } */
 
     #row5{
         background-image: url(../img/tierraMed.jpg);
