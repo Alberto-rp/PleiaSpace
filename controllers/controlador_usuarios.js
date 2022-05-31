@@ -36,12 +36,31 @@ exports.reservarVuelo = async (request, response) => {
                 pool.query('UPDATE vuelos_comerciales vc SET asientos_disponibles = asientos_disponibles - (SELECT asientos_reservados FROM reserva_asiento WHERE id_vuelo = vc.id_vuelo AND id_usuario = ?) WHERE id_vuelo = ?', [idUsuario, idVuelo],(error, results) =>{
                     if(error){
                         console.log(error)
-                        response.redirect('/vuela?error=errorDesconocido')
+                        //Si hay un error eliminamos la reserva
+                        pool.query('DELETE FROM reserva_asiento WHERE ?', {id_usuario: idUsuario, id_vuelo: idVuelo}, (error, results) =>{
+                            if(error){console.log(error)}
+                            else{
+                                response.redirect('/vuela?error=errorDesconocido')
+                            }
+                        })
+
                     }else{
                         pool.query('UPDATE usuarios SET ? WHERE id_usuario = ?', [{email: email, pais: country, telefono: phone, provincia: prov, ciudad: ciudad, cod_postal: codPost, direccion: direccion}, idUsuario],(error, results) =>{
                             if(error){
                                 console.log(error)
-                                response.redirect('/vuela?error=errorDesconocido')
+
+                                //Si hay un error dejamos los asientos como estaban y eliminamos la reserva
+                                pool.query('UPDATE vuelos_comerciales vc SET asientos_disponibles = asientos_disponibles + (SELECT asientos_reservados FROM reserva_asiento WHERE id_vuelo = vc.id_vuelo AND id_usuario = ?) WHERE id_vuelo = ?', [idUsuario, idVuelo],(error, results) =>{
+                                    if(error){console.log(error)}
+                                    else{
+                                        pool.query('DELETE FROM reserva_asiento WHERE ?', {id_usuario: idUsuario, id_vuelo: idVuelo}, (error, results) =>{
+                                            if(error){console.log(error)}
+                                            else{
+                                                response.redirect('/vuela?error=errorDesconocido')
+                                            }
+                                        })
+                                    }
+                                })
                             }else{
                                 response.redirect('/vuela?error=noerrorVC')
                             }
