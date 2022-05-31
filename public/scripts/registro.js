@@ -13,7 +13,8 @@ function init(){
 }
 
 function enviarForm(e){
-    if(!(validarFecha() && validarEmail() && validarNames())){
+    window.scrollTo(0, 0);//Para volver arriba de la pag donde esta el alert
+    if(!(validarFecha() && validarEmail() && validarNames() && validarPassword())){
         e.preventDefault() //Evitamos que se envie el formulario
 
         let alerta = ''
@@ -23,6 +24,8 @@ function enviarForm(e){
             alerta = "emailFail"
         }else if(!validarFecha()){
             alerta = "mayEdad"
+        }else if(!validarPassword()){
+            alerta = 'wrongPsw'
         }
 
         tempAlert(5000, alerta)
@@ -49,4 +52,11 @@ function validarEmail(){
     let emailValue = document.querySelector("#email").value
     let regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
     return (regEmail.test(emailValue))
+}
+
+function validarPassword(){
+    let passwd = document.querySelector("#passwd").value
+    let regPass = /.*[0-9].*/g
+    
+    return (passwd.length >= 8) && (regPass.test(passwd))
 }

@@ -46,6 +46,7 @@ function init(){
 
     //Listeners
     document.querySelector("#atras").addEventListener("click", atrasForm)
+    document.querySelector("#formulario1").addEventListener("submit", validarForm)
 }
 
 function despFormulario(e){
@@ -177,6 +178,23 @@ function nextStep(e){
         if(item.id != `FILA${this.id}` && item.id != 'LABELS'){
             item.style.display = "none"
         }
+    }
+}
+
+//Validaciones
+
+function validarForm(e){
+    window.scrollTo(0, 0);//Para volver arriba de la pag donde esta el alert
+
+    let telf = document.querySelector("#phone").value
+    let codPost = document.querySelector("#codPost").value
+
+    if(telf.length != 9){
+        e.preventDefault()
+        tempAlert(4000, 'errorTel')
+    }else if(codPost.length != 5){
+        e.preventDefault()
+        tempAlert(4000, 'errorCodP')
     }
 }
 

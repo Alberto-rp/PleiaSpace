@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-dark">
+<html lang="en" class="darkColor">
 
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
     <!-- BUSCAR COMO INCLUIR LINKS -->
 </head>
 
-<body class="bg-dark">
+<body class="">
     <nav></nav>
 
     <div id="cuerpo" class="container">
@@ -31,6 +31,9 @@
                 <p class="dispMovSub"><b>LA EXPERIENCIA QUE CAMBIARÁ TÚ VIDA</b></p>
             </div>
         </div>
+
+        <!-- ALERTA -->
+        <div class="alert" role="alert" id="alerta2"></div>
 
         <form action="/api/usuario/reserva" method="post" class="" id="formulario1">
             <div class="row justify-content-center">
@@ -79,14 +82,14 @@
                                 <div class="row mt-2 text-center">
                                     <div class="col">
                                         <label for="email">Email</label><br>
-                                        <input class="form-control" type="email" name="email" id="email" required>
+                                        <input class="form-control" type="email" name="email" id="email" readonly>
                                     </div>
                                 </div>
                                 <!-- Telefono -->
                                 <div class="row mt-2 text-center">
                                     <div class="col">
                                         <label for="phone">Teléfono</label><br>
-                                        <input class="form-control" type="tel" name="phone" id="phone" required>
+                                        <input class="form-control" type="tel" name="phone" id="phone" minlength="9" maxlength="9" required>
                                     </div>
                                 </div>
                                 <!-- Pais y provincia -->
@@ -109,7 +112,7 @@
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label for="codPost">Código Postal</label><br>
-                                        <input class="form-control" type="number" name="codPost" id="codPost" required>
+                                        <input class="form-control" type="number" name="codPost" id="codPost" min="00000" max="99999" required>
                                     </div>
                                 </div>
                                 <!-- Dirección y metodoPago-->
@@ -141,8 +144,7 @@
                             </div>
                             <div class="col-12">
                                 <label for="info">¿Porqué quieres ir al espacio?</label><br>
-                                <textarea class="form-control" name="info" id="info" cols="30" rows="5"
-                                    maxlength="500"></textarea>
+                                <textarea class="form-control" name="info" id="info" cols="30" rows="5" maxlength="500" placeholder="Opcional"></textarea>
                             </div>
                         </div>
 
@@ -160,8 +162,7 @@
                 </div>
             </div>
         </form>
-        <!-- ALERTA -->
-        <div class="alert" role="alert" id="alerta2"></div>
+        
 
     </div>
     <footer></footer>

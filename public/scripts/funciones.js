@@ -88,6 +88,14 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Ya has efectuado una reserva en este vuelo.<br> Puedes modificar o cancelar tu reserva en la sección <i><a href='/perfil'>Perfil</a></i>"
             break;
+        case 'errorTel': //VUELO_COMERCIAL
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> El teléfono debe tener 9 dígitos!"
+            break;
+        case 'errorCodP': //VUELO_COMERCIAL
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> El código postal debe ser de 5 dígitos!"
+            break;
         case 'noerrorVC': //VUELO_COMERCIAL
             divAlerta.classList.add("alert-success")
             divAlerta.innerHTML = "<strong>Exito! </strong>Reserva realizada correctamente!"
@@ -127,6 +135,10 @@ function tempAlert(duration, error){
         case 'nameFail': //REGISTRO
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Tu nombre no puede contener números!"
+            break;
+        case 'wrongPsw': //REGISTRO
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> La contraseña debe tener un mínimo de 8 caracteres y 1 número!"
             break;
         case 'blank': //VUELOCARGA
             divAlerta.classList.add("alert-danger")
