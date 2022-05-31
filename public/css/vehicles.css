@@ -65,4 +65,8 @@
         top: 5.6rem;
         z-index: 1;
     }
+
+    #electra, #electra h5{
+        font-size: 0.8rem;
+    }
 } 
