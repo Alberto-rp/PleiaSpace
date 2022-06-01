@@ -6,6 +6,10 @@
 
 }
 
+#img_electra{
+    max-height: 50rem;
+}
+
 
 @media screen and (min-width:1280px) { 
     html, body{
@@ -17,7 +21,7 @@
 
     }
 
-    #titu1{
+    /* #titu1{
         position: sticky;
         top: 5rem;
         z-index: 1;
@@ -26,7 +30,11 @@
 
     #cuerpo{
         padding-top: 5rem;
-    }
+    }*/
+
+    #electra, #electra h5{
+        font-size: 1rem;
+    } 
 } 
 
 @media screen and (min-width:576px) and (max-width:1280px){ 
@@ -38,16 +46,20 @@
         background-repeat: no-repeat;
 
     }
-
+/* 
     #cuerpo{
         padding-top: 5.2rem;
-    }
+    } */
 
-    #titu1{
+    /* #titu1{
         position: sticky;
         top: 5.2rem;
         z-index: 1;
-    }
+    }*/
+
+    #electra, #electra h5{
+        font-size: 1rem;
+    } 
 }
 
 @media screen and (max-width:576px) { 
@@ -60,11 +72,11 @@
 
     }
 
-    #titu1{
+    /* #titu1{
         position: sticky;
         top: 5.6rem;
         z-index: 1;
-    }
+    } */
 
     #electra, #electra h5{
         font-size: 0.8rem;
