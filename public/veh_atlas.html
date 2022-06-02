@@ -11,7 +11,7 @@
     <script src="scripts/funciones.js"></script>
     <script src="scripts/vehiculos.js"></script>
     <link rel="stylesheet" href="css/fuente.css">
-    <link rel="stylesheet" href="css/vehicles.css">
+    <link rel="stylesheet" href="css/vehicles_atlas.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -24,23 +24,26 @@
 <body class="bg-negro">
     <nav></nav>
 
-    <div id="cuerpo" class="container text-center pb-4">
-        <div class="row">
+    <div class="container-fluid text-center cuerpo" id="cuerp1">
+        <div class="row" id="row1">
             <div class="col-12">
-                ELE
+                <h2><b>LINX ELECTRA</b></h2>
+                <h5>PRIMER COHETE ORBITAL DE LA COMPAÑÍA</h5>
                 <!-- cONFIGURACION DEL INDEX -->
             </div>
         </div>
-        <div class="row bg-negro pt-3" id="titu1">
+    </div>
+    <div id="cuerpo" class="container text-center pb-4 cuerpo">
+        <div class="row bg-negro pt-2 mb-5 " id="titu1">
             <div class="col-12 text-center">
-                <h1 class="tituBig text-colcomp"><b>LINX ELECTRA</b></h1>
+                <h2 class=" text-colcomp"><b>DETALLES</b></h2>
             </div>
         </div>
         <div class="row text-center justify-content-center" id="electra">
             <div class="col-12 col-md-6 pb-3">
                 <img id="img_electra" class="img img-fluid" src="img/utilities/ELECTRA.png" alt="">
             </div>
-            <div class="col-12 col-md-6 table-responsive-sm text-left">
+            <div class="col-12 col-md-6 table-responsive-sm text-left mt-4">
                 <h5><b>INFORMACIÓN TÉCNICA</b></h5>
                 <table class="table">
                     <tbody>
@@ -53,56 +56,38 @@
                             <td class="text-right">1.2 m</td>
                         </tr>
                         <tr>
-                            <td>Altura</td>
-                            <td class="text-right">18m</td>
+                            <td>PESO</td>
+                            <td class="text-right">14.000Kg</td>
+                        </tr>
+                        <tr>
+                            <td>CARGA A LEO</td>
+                            <td class="text-right">400Kg</td>
+                        </tr>
+                        <tr>
+                            <td>PUERTOS A</td>
+                            <td class="text-right">100Kg (X2)</td>
+                        </tr>
+                        <tr>
+                            <td>PUERTOS B</td>
+                            <td class="text-right">50Kg (X4)</td>
+                        </tr>
+                        <tr>
+                            <td>COFIA</td>
+                            <td class="text-right">3.8 m<sup>3</sup></td>
+                        </tr>
+                        <tr>
+                            <td>MATERIALES</td>
+                            <td class="text-right">FIBRA DE CARBONO</td>
+                        </tr>
+                        <tr>
+                            <td>PROPELENTE</td>
+                            <td class="text-right">KEROSENO</td>
                         </tr>
                     </tbody>
                 </table>
 
             </div>
             
-
-            <!--
-                                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>12 minutos</b></h5>
-                        <p>Tiempo de vuelo desde que el vehículo despega hasta que la carga está en órbita</p>
-                    </div>
-                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>14 Toneladas</b></h5>
-                        <p>Masa del vehiculo con el propelente cargado. (9800 Kg en vacío)</p>
-                    </div>
-                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>400 Kg</b></h5>
-                        <p>Capacidad de carga máxima a LEO; dividida en dos puertos de 100Kg y 4 puertos de 50 Kg, aunque puede solicitarse toda la cofia.</p>
-                    </div>
-                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>18 metros</b></h5>
-                        <p>Altura total del vehículo</p>
-                    </div>
-                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>4 m<sup>3</sup> </b></h5>
-                        <p>Espacio utilizable en la cofia</p>
-                    </div>
-                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>1,20 m</b></h5>
-                        <p>Diámetro del vehículo, compatible con pico-satélites, nano-satélites y la mayoría de micro-satélites</p>
-                    </div>
-                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>Fibra de carbono</b></h5>
-                        <p>Junto con aluminio, para la estructura del cohete</p>
-                    </div>
-                    <div class="col-6 col-md-12 bg-negro">
-                        <h5 class="text-colcomp"><b>Keroseno</b></h5>
-                        <p>Como propelente principal del vehículo</p>
-                    </div>
-            -->
-            
-        </div>
-        <div class="row">
-            <div class="col-12">
-                ELE
-                <!-- gALERIA DE IMAGENES -->
-            </div>
         </div>
     </div>
     <footer></footer>
