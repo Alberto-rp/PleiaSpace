@@ -64,9 +64,18 @@ router.get('/historia', function(request, response){
     // response.redirect('/registro')
 })
 
+router.get('/vehiculos_electra', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/veh_electra.html'))
+    // response.redirect('/registro')
+})
+
+router.get('/vehiculos_atlas', function(request, response){
+    response.sendFile(path.join(__dirname + '/../public/veh_atlas.html'))
+    // response.redirect('/registro')
+})
+
 router.get('/vehiculos', function(request, response){
     response.sendFile(path.join(__dirname + '/../public/vehiculos.html'))
     // response.redirect('/registro')
 })
-
 module.exports = router

@@ -56,11 +56,14 @@ function initHead(){
                 fetch('/api/usuario')
                 .then(resp => resp.json())
                 .then(data => {
+                    //Asignamos el nombre al menú
                     document.querySelector("#navbardrop").innerHTML = data[0].nombre.toUpperCase()
+
+                    //Cambiamos login y registro por perfil y logout
+                    document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/perfil">Perfil</a>
+                    <a class="dropdown-item" href="/api/logout">Logout</a>`
                 })
         
-                document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/perfil">Perfil</a>
-                <a class="dropdown-item" href="/api/logout">Logout</a>`
             }
         })
 
