@@ -26,8 +26,8 @@
 
     #row1{
         background-image: url(../img/backAtlas.jpg);
-        padding-top: 30rem;
-        padding-bottom: 30rem;
+        padding-top: 24rem;
+        padding-bottom: 24rem;
     }
 
     /* #titu1{
@@ -57,9 +57,9 @@
     }
 
     #row1{
-        background-image: url(../img/backVehicle1MD.jpg);
-        padding-top: 30rem;
-        padding-bottom: 30rem;
+        background-image: url(../img/backAtlasMD.jpg);
+        padding-top: 24rem;
+        padding-bottom: 24rem;
     }
 
     
@@ -90,9 +90,9 @@
     }
 
     #row1{
-        background-image: url(../img/backVehicle1SM.jpg);
-        padding-top: 30rem;
-        padding-bottom: 30rem;
+        background-image: url(../img/backAtlasSD.jpg);
+        padding-top: 24rem;
+        padding-bottom: 24rem;
     }
 
     /* #titu1{
