@@ -132,9 +132,13 @@ function tempAlert(duration, error){
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Debes introducir un email válido!"
             break;
-        case 'nameFail': //REGISTRO
+        case 'nameFail': //REGISTRO //WWUS
             divAlerta.classList.add("alert-danger")
             divAlerta.innerHTML = "<strong>Error</strong> Tu nombre no puede contener números!"
+            break;
+        case 'telFail': //WWUS
+            divAlerta.classList.add("alert-danger")
+            divAlerta.innerHTML = "<strong>Error</strong> Debes introducir un teléfono válido!"
             break;
         case 'wrongPsw': //REGISTRO
             divAlerta.classList.add("alert-danger")

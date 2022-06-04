@@ -25,27 +25,37 @@ function enviarData(){
 
     if(validate && cv.files[0] != undefined){
         //Limitar el tamaño del archivo
-        // console.log(cv.files[0].size+" "+cv.files[0].name)
         if(cv.files[0].size < (1024 * 512)){
+            //Comprobar que el archivo sea css
             if((cv.files[0].name).slice(((cv.files[0].name).length)- 4) == '.pdf'){
-                let datos = new FormData()
-                datos.append('cv', cv.files[0])
-                datos.append('nombre', nombre)
-                datos.append('apellidos', apellidos)
-                datos.append('email', email)
-                datos.append('phone', phone)
-                datos.append('ciudad', ciudad)
-            
-                fetch('/api/file', {
-                    method: 'POST',
-                    body: datos,
-                    // headers:{'Content-Type': 'application/json'}
-                })
-                .then(resp => resp.json())
-                .then(data => {
-                    tempAlert(2500, data.error)
-                    borrarCampos()
-                })
+                //Validaciones
+                if(validarEmail() && validarNames() && validarTel()){
+                    let datos = new FormData()
+                    datos.append('cv', cv.files[0])
+                    datos.append('nombre', nombre)
+                    datos.append('apellidos', apellidos)
+                    datos.append('email', email)
+                    datos.append('phone', phone)
+                    datos.append('ciudad', ciudad)
+                
+                    fetch('/api/file', {
+                        method: 'POST',
+                        body: datos
+                    })
+                    .then(resp => resp.json())
+                    .then(data => {
+                        tempAlert(2500, data.error)
+                        borrarCampos()
+                    })
+                }else{
+                    if(!validarEmail()){
+                        tempAlert(2000,'emailFail')
+                    }else if(!validarNames()){
+                        tempAlert(2000,'nameFail')
+                    }else if(!validarTel()){
+                        tempAlert(2000,'telFail')
+                    }
+                }
             }else{
                 tempAlert(2000,'pdf')
             }
@@ -86,5 +96,26 @@ function borrarCampos(){
     document.querySelector('#email').value = ""
     document.querySelector('#phone').value = ""
     document.querySelector('#city').value = ""
+}
 
+function validarNames(){
+    let name = document.querySelector("#name").value
+    let surname = document.querySelector("#surnames").value
+
+    let regNum = /^([^0-9]*)$/
+    return regNum.test(name) && regNum.test(surname)
+}
+
+function validarTel(){
+    let telImput = document.querySelector("#phone").value
+    console.log(telImput)
+    let regTel = /^([0-9])*$/
+
+    return (regTel.test(telImput) && (telImput.length == 9))
+}
+
+function validarEmail(){
+    let emailValue = document.querySelector("#email").value
+    let regEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+    return (regEmail.test(emailValue))
 }

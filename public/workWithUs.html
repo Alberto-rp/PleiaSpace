@@ -6,16 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
+
+    <!-- SCRIPTS -->
     <script src="scripts/header.js"></script>
     <script src="scripts/wwUs.js"></script>
     <script src="scripts/funciones.js"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/fuente.css">
     <link rel="stylesheet" href="css/wwUs.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-    <!-- BUSCAR COMO INCLUIR LINKS -->
+    <!-- LOGO -->
     <link rel="icon" href="img/Minitura.png">
 </head>
 
@@ -27,9 +32,11 @@
             <div class="col-12 text-center">
                 <span class="h4">UNETE</span><br>
                 <h2 class="display-5"> <b>AL EQUIPO</b></h2>
-                <p class="lead">Envianos tus datos y háblanos de tí</p>
+                <p class="lead">Envianos tus datos y te contactaremos</p>
+
                 <!-- ALERTA -->
                 <div class="alert" role="alert" id="alerta2"></div>
+
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
@@ -56,7 +63,7 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="phone">Teléfono <span class="text-danger">*</span></label>
-                    <input type="tel" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp"
+                    <input type="tel" class="form-control" id="phone" name="phone" maxlength="9" minlength="9" aria-describedby="phoneHelp"
                         placeholder="Introduce tu teléfono" required>
                     <small id="phoneHelp" class="form-text text-muted">No compartiremos el teléfono con nadie</small>
                 </div>
@@ -81,12 +88,11 @@
                 </div>
             </div>
 
-            
+
         </div>
     </div>
     <footer></footer>
-    <!-- <div class="fondo"></div> -->
-    <!-- Meter Scripts en un fichero js -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
