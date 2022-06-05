@@ -220,7 +220,7 @@ exports.eliminarCuenta = (request, response) => {
                     if(error){console.log(error)}
                     else{
                         response.cookie('jwt', 'logout', {
-                            expires: new Date(Date.now() + 5 * 1000),
+                            expires: new Date(Date.now() + 1000),
                             httpOnly: true
                         });
                         response.clearCookie('usuario')
@@ -229,7 +229,6 @@ exports.eliminarCuenta = (request, response) => {
                 })
                 console.log(idUsuario+" Eliminado")
             }else{
-                // response.status(404).json({error : 'reservaActiva'})
                 response.redirect('/perfil?error=reservaActiva')
             }
         })

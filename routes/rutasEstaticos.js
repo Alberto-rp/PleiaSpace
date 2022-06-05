@@ -36,12 +36,20 @@ router.get('/vuela', authController.isAutentic, function(request, response){
 })
 
 router.get('/login', function(request, response){
-    response.sendFile(path.join(__dirname + '/../public/login.html'))
+    //Si la sesion no esta iniciada te lleva a login; sino te redirije a perfil
+    if(!request.cookies.jwt){
+        response.sendFile(path.join(__dirname + '/../public/login.html'))
+    }else{
+        response.redirect("/perfil")
+    }
 })
 
 router.get('/registro', function(request, response){
-    response.sendFile(path.join(__dirname + '/../public/registro.html'))
-    // response.redirect('/registro')
+    if(!request.cookies.jwt){
+        response.sendFile(path.join(__dirname + '/../public/registro.html'))
+    }else{
+        response.redirect("/perfil")
+    }
 })
 
 router.get('/perfil', authController.isAutentic, function(request, response){

@@ -66,7 +66,7 @@ function init(){
                 initBotonesMod()
             }else{
                 // Si no ha reservado vuelos, solo se muestran los campos de registro
-                document.querySelector("#datosSecundarios").style.display = 'none'
+                // document.querySelector("#datosSecundarios").style.display = 'none'
                 divVuelos.innerHTML += '<div class="row"><div class="col">No ha reservado ningun vuelo</div></div>'
             }
         })

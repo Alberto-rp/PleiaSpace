@@ -62,7 +62,7 @@ function tempAlert(duration, error){
             break;
         case 'noerrorLog': //LOGIN
             divAlerta.classList.add("alert-success")
-            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente; Le hemos enviado un mail para activar su cuenta"
+            divAlerta.innerHTML = "<strong>Bien!</strong> Registrado correctamente; Le hemos enviado un mail para activar su cuenta <br> (Es posible que llegue a la carpeta Spam)"
             break;
         case 'activationSucess': //LOGIN
             divAlerta.classList.add("alert-success")
