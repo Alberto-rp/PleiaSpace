@@ -7,18 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="css/vuelo_comercial.css">
     <link rel="stylesheet" href="css/fuente.css">
 
+    <!-- SCRIPTS -->
     <script src="scripts/header.js"></script>
     <script src="scripts/vueloCom.js"></script>
     <script src="scripts/funciones.js"></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="icon" href="img/Minitura.png">
 
-    <!-- BUSCAR COMO INCLUIR LINKS -->
+    <!-- MINIATURA -->
+    <link rel="icon" href="img/Minitura.png">
 </head>
 
 <body class="">
@@ -41,7 +44,6 @@
                     <div class="row justify-content-center">
                         <fieldset id="fs1" class="col-12 col-sm-12 col-md-10 col-lg-8 darkColor rounded p-3">
                             <label for="fechaIn">No antes de:</label>
-                            <!-- <hr class="bg-colcomp"> -->
                             <input type="month" class="form-control" id="fechaIn" name="fechaIn">
                             <input id="envio" class="btn btn-primary mt-2" type="button" value="Comprobar">
                         </fieldset>
@@ -89,7 +91,8 @@
                                 <div class="row mt-2 text-center">
                                     <div class="col">
                                         <label for="phone">Teléfono</label><br>
-                                        <input class="form-control" type="tel" name="phone" id="phone" minlength="9" maxlength="9" required>
+                                        <input class="form-control" type="tel" name="phone" id="phone" minlength="9"
+                                            maxlength="9" required>
                                     </div>
                                 </div>
                                 <!-- Pais y provincia -->
@@ -112,7 +115,8 @@
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label for="codPost">Código Postal</label><br>
-                                        <input class="form-control" type="number" name="codPost" id="codPost" min="00000" max="99999" required>
+                                        <input class="form-control" type="number" name="codPost" id="codPost"
+                                            min="00000" max="99999" required>
                                     </div>
                                 </div>
                                 <!-- Dirección y metodoPago-->
@@ -144,7 +148,8 @@
                             </div>
                             <div class="col-12">
                                 <label for="info">¿Porqué quieres ir al espacio?</label><br>
-                                <textarea class="form-control" name="info" id="info" cols="30" rows="5" maxlength="500" placeholder="Opcional"></textarea>
+                                <textarea class="form-control" name="info" id="info" cols="30" rows="5" maxlength="500"
+                                    placeholder="Opcional"></textarea>
                             </div>
                         </div>
 
@@ -162,11 +167,11 @@
                 </div>
             </div>
         </form>
-        
+
 
     </div>
     <footer></footer>
-    <!-- Meter Scripts en un fichero js -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

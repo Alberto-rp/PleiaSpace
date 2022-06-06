@@ -123,12 +123,12 @@ exports.modificarReserva = (request, response) =>{
                 pool.query('UPDATE vuelos_comerciales vc SET vc.asientos_disponibles = vc.asientos_disponibles + ? WHERE vc.id_vuelo = ?', [sumaAsientos, idVuelo], (error, results) =>{
                     if(error){
                         console.log(error)
-                        response.status(404).json({error : true})
+                        response.status(400).json({error : true})
                     }else{
                         pool.query('UPDATE reserva_asiento SET ? WHERE ? AND ?', [{asientos_reservados: asientosReserva, metodo_pago: pagoSelect},{id_usuario: idUsuario}, {id_vuelo: idVuelo}], (error, results) =>{
                             if(error){
                                 console.log(error)
-                                response.status(404).json({error : true})
+                                response.status(400).json({error : true})
                             }else{
                                 response.status(200).json({error : false})
                             }
@@ -136,7 +136,7 @@ exports.modificarReserva = (request, response) =>{
                     }
                 })
             }else{
-                response.status(404).json({error : 'outAsientos'})
+                response.status(400).json({error : 'outAsientos'})
             }
                 
         })

@@ -45,7 +45,7 @@ function calcularPrecio(){
     let masaInput = document.querySelector("#peso").value
     let fechaValue = document.querySelector("[name='fechaIn']").value
 
-    if(masaInput != '' && masaInput < 750 && masaInput > 0){
+    if(masaInput != '' && masaInput <= 750 && masaInput > 0){
         let datosEnviar = {
             orbita : orbitaSelect,
             fecha: fechaValue

@@ -30,7 +30,6 @@ select{
 
 
 body{
-  /* min-height: 50rem; */
   padding-top: 9.5rem;
 }
 
@@ -67,10 +66,8 @@ body{
 
     .dispMov{
         font-size: 1.8rem;
-        /* display: none; */
     }
     .dispMovSub{
         font-size: 1rem;
-        /* display: none; */
     }
 } 

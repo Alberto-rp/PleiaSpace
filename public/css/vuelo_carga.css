@@ -8,10 +8,6 @@
     background-color: #1a1a1a;
 }
 
-/* #tablaResult{
-    display: none;
-} */
-
 .css-tooltip{
   position: relative;
   
@@ -50,8 +46,6 @@
        transform: translate(0,0px); 
 }
 
-
-/* Aniadir fs3 */
 #fs2, #fs3, #fs4, #fs5{ 
     display: none;
 }
@@ -62,14 +56,7 @@
 
 #alerta2{
     opacity: 0;
-    transition: 0.5s;
-    /* position: fixed;
-    z-index: 1;
-
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); */
-    
+    transition: 0.5s;   
 }
 
 div[class~='col-12'] img{
@@ -82,12 +69,6 @@ div[class~='col-12'] img{
     transition: 0.5s;
 }
 
-/* .icon {
-    padding-left: 25px;
-    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
-    background-size: 20px;
-} */
-
 select{
     width: 170px;
 }
@@ -96,17 +77,7 @@ select{
     font-size: 2.3rem;
 }
 
-/* IMPUTS */
-/* input{
-    background-color: #1a1a1a;
-    width: 20rem;
-    height: 3rem;
-    color: white
-} */
-
-
 body{
-  /* min-height: 50rem; */
   padding-top: 9rem;
   background-color: #1a1a1a;
 }
@@ -163,8 +134,4 @@ body{
     #datosSeleccionados{
         font-size: 0.9rem;
     }
-
-    /* #reinicio{
-        margin-bottom: 1.5rem;
-    } */
 } 

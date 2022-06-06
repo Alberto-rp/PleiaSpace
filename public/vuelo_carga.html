@@ -7,15 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="css/vuelo_carga.css">
     <link rel="stylesheet" href="css/fuente.css">
 
+    <!-- SCRIPTS -->
     <script src="scripts/header.js"></script>
     <script src="scripts/vueloCarg.js"></script>
     <script src="scripts/funciones.js"></script>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- MINIATURA -->
     <link rel="icon" href="img/Minitura.png">
 
     <!-- BUSCAR COMO INCLUIR LINKS -->
@@ -29,7 +34,7 @@
             <div class="col text-center align-items-center">
                 <h1 class="titulo1"><b>PROGRAMA DE CARGA <br> COMPARTIDA</b></h1>
                 <p class="titulo2" id="seccHead"><b>MISIONES DEDICADAS A VIAJES COMPARTIDOS DE CARGA.<br> BUSCA TÚ VUELO
-                    ABAJO</b></p>
+                        ABAJO</b></p>
             </div>
         </div>
         <!-- ALERTA -->
@@ -41,17 +46,14 @@
                 <div class="col-12 col-sm-4 m-auto">
                     <label for="fechaIn" class="text-muted">No antes de:</label><br>
                     <input type="month" class="form-control" id="fechaIn" name="fechaIn">
-                    <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                 </div>
                 <div class="col-12 col-sm-4 m-auto">
                     <label for="orbit" class="text-muted">Orbita:</label><br>
                     <select name="orbit" id="orbit" class="form-control"></select>
-                    <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                 </div>
                 <div class="col-12 col-sm-4 m-auto">
                     <label for="peso" class="text-muted">Masa(Kg):</label><br>
                     <input type="number" name="peso" id="peso" class="form-control">
-                    <!-- <small id="fechHelp" class="form-text">Tamaño del archivo: </small> -->
                 </div>
             </div>
         </fieldset>
@@ -61,7 +63,6 @@
                 <span id="precio">--</span>
             </div>
             <div id="resumen" class="col-12 pt-3 text-center darkColor">
-                <!-- <hr class="bg-colcomp"> -->
                 <span id="datosSeleccionados" class="text-muted"></span>
                 <hr class="bg-colcomp">
             </div>
@@ -71,7 +72,6 @@
         </div>
         <div class="row justify-content-center text-center darkColor rounded">
             <fieldset id="fs2">
-                <!-- <h4 class="mt-4"><b>Selección de vuelo</b></h4> -->
                 <hr class="bg-colcomp">
                 <div class="col" id="tablaResult"></div>
                 <hr class="bg-colcomp">
@@ -86,11 +86,6 @@
                 <input type="hidden" name="puertoSel" id="puertoSel" value="">
 
                 <div class="col-12">
-                    <!-- <div class="row">
-                        <div class="col">
-                            <h4 class=""><b>Selección de puerto</b></h4>  
-                        </div>
-                    </div> -->
                     <div class="row justify-content-between text-center bg-secondary">
                         <div class="col-12 col-sm-6 bg-white">
                             <div class="row">
@@ -211,7 +206,7 @@
             <fieldset id="fs5" class="col-12 pt-2">
                 <div class="row bg-white">
                     <div class="col-12 bg-dark">
-                        <h3 class="float-left mt-1"><b>Datos compañía</b></h3>                        
+                        <h3 class="float-left mt-1"><b>Datos compañía</b></h3>
                         <button id="btnCargaDatosComp" class="btn btn-primary float-right css-tooltip"
                             data-tooltip="Carga tus datos pulsando aquí" data-toggle="modal"
                             data-target="#modalCargaDatos">Cargar</button>
@@ -249,7 +244,7 @@
                     </div>
                 </div>
 
-                <h5 class="mt-2"><b>Datos de contacto</b></h5> 
+                <h5 class="mt-2"><b>Datos de contacto</b></h5>
 
                 <div class="row bg-white pb-4">
                     <div class="col-12 col-md-4 text-dark">
@@ -289,7 +284,7 @@
             <div class="col-auto"><a class="btn btn-secondary" href="/carga">Reiniciar formulario</a></div>
         </div>
 
-        
+
 
         <!-- MODAL CARGAR DATOS -->
         <div class="container">
@@ -334,8 +329,7 @@
         </div>
         <footer></footer>
     </div>
-    <!-- <div class="fondo"></div> -->
-    <!-- Meter Scripts en un fichero js -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
