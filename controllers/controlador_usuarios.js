@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken")
 const bcryp = require("bcryptjs")
 const {promisify} = require("util")
 
+//USUARIOS Y VUELOS COMERCIALES
+
 exports.obtenerUsuario = async (request, response) => {
     var decodificada = await promisify(jwt.verify)(request.cookies.jwt, process.env.JWT_SECRET)
     let query = 'SELECT * FROM `usuarios` WHERE id_usuario = ?;'
