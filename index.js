@@ -4,12 +4,8 @@ var cookieParser = require("cookie-parser")
 var vuelos = require('./routes/rutasEstaticos')
 var rutasAPI = require("./routes/rutasAPI")
 const dotenv = require('dotenv')
-<<<<<<< HEAD
-// const multer = require('multer') dd
 
 
-=======
->>>>>>> develop
 
 dotenv.config()
 
