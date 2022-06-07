@@ -34,7 +34,7 @@ app.use(rutasAPI)
 app.use(cookieParser())
 
 
-// Iniciamos el servidor
+// Iniciamos el servidor 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server iniciado en el puerto ${PORT}`)
 })
