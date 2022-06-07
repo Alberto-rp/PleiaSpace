@@ -2,21 +2,7 @@
     font-family: Montserrat;
     color: white;
     padding-top: 7rem;
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
 }
-
-/* input::-webkit-calendar-picker-indicator { display: none } */
-
-/* form i {
-    position: absolute;
-    margin-left: 100px;
-    margin-top: -30px;
-    color: black;
-    cursor: pointer;
-} */
 
 #alerta2{
     opacity: 0;

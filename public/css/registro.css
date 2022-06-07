@@ -4,8 +4,6 @@
     padding-top: 7rem;
 }
 
-/* input::-webkit-calendar-picker-indicator { display: none } */
-
 #alerta2{
     opacity: 0;
     transition: 0.5s;

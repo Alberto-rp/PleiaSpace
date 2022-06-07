@@ -5,11 +5,7 @@ let error = parametros.get('error')
 window.addEventListener('load', init)
 
 function init(){
-    // Si hay una cookie de Sesion, evita acceder a Login
-    if(getCookie('usuario') != undefined){
-        window.location.replace('/')
-    }
-    tempAlert(2000, error)
+    tempAlert(5000, error)
 
     document.querySelector("#btnLogin").addEventListener("click", enviarDatos)
     document.querySelector('#togglePassword').addEventListener("click", verPasswd)

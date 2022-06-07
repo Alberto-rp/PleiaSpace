@@ -1,7 +1,10 @@
 window.addEventListener('load', initIndex)
+
+//Variables para controlar desvanecery scroll
 lanzada = false
 let contadorParp = 1
-
+let contador = 0
+let contadorcarg = 0
 
 function initIndex() {
     window.addEventListener('scroll', anims)
@@ -14,8 +17,8 @@ function initIndex() {
     parpadeo()
 }
 
-let contador = 0
-let contadorcarg = 0
+
+//Funcion que controla las "animaciones"
 function anims() {
     if(window.scrollY <= 300){
         //Para desvanecer el titulo, cogemos la posición Y, y calculamos su porcentaje sabiendo que 300 es el 100% donde debe desaparecer
@@ -52,7 +55,7 @@ function anims() {
         document.querySelector("#contacto").style.opacity = convertida
     }
 
-    //Reiniciamos los números
+    //Reiniciamos los números de lanzamientos
     if(window.scrollY < 80){
         contadorcarg = 0
         contador = 0
@@ -61,7 +64,7 @@ function anims() {
         document.querySelector("#contadorCarg").innerHTML = '<b>00</b>'
     }
     
-    //Lanzamos los números
+    //Lanzamos los números de lanzamientos
     if(window.scrollY >= 200 && !lanzada){
         lanzada = true
         contCom()
@@ -72,7 +75,7 @@ function anims() {
     
 }
 
-//Parpadeo para invitar a bajar
+//Parpadeo para invitar a bajar (solo se ve en pantallas MD y en el movil)
 function parpadeo(){
     let objetivo = document.querySelector("#slideDown")
     if(window.scrollY <= 400){
@@ -95,6 +98,7 @@ function parpadeo(){
     }
 }
 
+//Funcion pintar numeros crecientes de Vuelos comerciales
 function contCom(){
     if(contador < 24){
         if(contador <= 16){
@@ -108,6 +112,8 @@ function contCom(){
     }
 
 }
+
+//Funcion pintar numeros crecientes de Vuelos de carga
 function contCar(){
     if(contadorcarg < 73){
         if(contadorcarg <= 60){
@@ -122,6 +128,7 @@ function contCar(){
 
 }
 
+//Sacar el numero de los contadores bonito
 function salidaContadores(number){
     return (number <= 9)? '0'+number : number
 }

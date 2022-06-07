@@ -1,11 +1,11 @@
 .cuerpo{
     font-family: Montserrat;
     color: white;
-    margin-bottom: 2rem;
 }
 
 #cuerp1{
-    padding-top: 5.3rem; 
+    padding-top: 5.3rem;
+    
 }
 
 #img_electra{
@@ -15,9 +15,9 @@
 
 @media screen and (min-width:1280px) { 
     #row1{
-        background-image: url(../img/backAtlas.jpg);
-        padding-top: 24rem;
-        padding-bottom: 24rem;
+        background-image: url(../img/backVehicle1.jpg);
+        padding-top: 30rem;
+        padding-bottom: 30rem;
     }
 
     #electra, #electra h5{
@@ -27,9 +27,9 @@
 
 @media screen and (min-width:576px) and (max-width:1280px){ 
     #row1{
-        background-image: url(../img/backAtlasMD.jpg);
-        padding-top: 24rem;
-        padding-bottom: 24rem;
+        background-image: url(../img/backVehicle1MD.jpg);
+        padding-top: 30rem;
+        padding-bottom: 30rem;
     }
 
     #electra, #electra h5{
@@ -38,10 +38,11 @@
 }
 
 @media screen and (max-width:576px) { 
+
     #row1{
-        background-image: url(../img/backAtlasSD.jpg);
-        padding-top: 24rem;
-        padding-bottom: 24rem;
+        background-image: url(../img/backVehicle1SM.jpg);
+        padding-top: 30rem;
+        padding-bottom: 30rem;
     }
 
     #electra, #electra h5{

@@ -11,7 +11,6 @@ body{
 #principal{
     max-width: 800px;
     margin-top: 100px;
-    /* padding-bottom: 2.3rem; */
     font-family: Montserrat;
 }
 .col:not(.but){

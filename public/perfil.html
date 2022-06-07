@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pleia Space</title>
+
+    <!-- SCRIPTS -->
     <script src="scripts/header.js"></script>
     <script src="scripts/perfil.js"></script>
     <script src="scripts/funciones.js"></script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/fuente.css">
     <link rel="stylesheet" href="css/perfil.css">
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!-- MINIATURA -->
     <link rel="icon" href="img/Minitura.png">
 
     <!-- BUSCAR COMO INCLUIR LINKS -->
 </head>
+
 <body>
     <nav></nav>
     <div id="cuerpo" class="container">
@@ -28,7 +38,7 @@
 
                 <div><b>Apellidos:</b></div>
                 <div class="mb-2" id="tdUserSur"></div>
-        
+
                 <div><b>Correo electronico:</b></div>
                 <div class="mb-2" id="tdMail"></div>
 
@@ -41,7 +51,7 @@
             <div class="col-6" id="datosSecundarios">
                 <div><b>Telefono contacto:</b></div>
                 <div class="mb-2" id="tdTel"></div>
-                
+
                 <div><b>Provincia:</b></div>
                 <div class="mb-2" id="tdProv"></div>
 
@@ -52,12 +62,12 @@
                 <div class="mb-2" id="tdPostCode"></div>
 
                 <div><b>Dirección:</b></div>
-                <div class="mb-2" id="tdDirecc"></div>  
+                <div class="mb-2" id="tdDirecc"></div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col" id="tdReserv">
-                <h2>Reservas</h2> 
+                <h2>Reservas</h2>
                 <hr class="bg-colcomp">
             </div>
         </div>
@@ -66,7 +76,7 @@
         <div class="alert" role="alert" id="alerta2">
             This is a primary alert—check it out!
         </div>
-        
+
 
         <!-- Acciones -->
         <div class="row">
@@ -74,84 +84,93 @@
                 <h2>Acciones</h2>
                 <hr class="bg-colcomp">
                 <a type="button" class="btn btn-secondary" href="/api/logout">Logout</a>
-                <button class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminCuent"  id="ElimCount">Eliminar Cuenta</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#ModalEliminCuent"
+                    id="ElimCount">Eliminar Cuenta</button>
             </div>
         </div>
 
         <!-- MODAL ANULAR VUELO -->
         <div class="container">
             <div class="row">
-              <div class="col">
-                <div class="modal" id="ModalAnul">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-            
-                        <!-- Modal Header -->
-                        <div class="modal-header bg-danger">
-                            <h5 class="modal-title text-white">¿Está Seguro?</h5>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="col">
+                    <div class="modal" id="ModalAnul">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header bg-danger">
+                                    <h5 class="modal-title text-white">¿Está Seguro?</h5>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <form action="api/eliminarReserva" method="post">
+                                    <input type="hidden" id="VueloCancela" name="VueloCancela">
+                                    <input type="hidden" id="UsuarioCancela" name="UsuarioCancela">
+                                    <div class="modal-body">
+                                        <p class="text-dark">Va a eliminar su reserva para el vuelo</p>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer text-left">
+                                        <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Eliminar mi reserva</button>
+                                    </div>
+                                </form>
+                                <!-- Modal body -->
+
+                            </div>
                         </div>
-                        <form action="api/eliminarReserva" method="post">
-                            <input type="hidden" id="VueloCancela" name="VueloCancela">
-                            <input type="hidden" id="UsuarioCancela" name="UsuarioCancela">
-                            <div class="modal-body">
-                                <p class="text-dark">Va a eliminar su reserva para el vuelo</p>
-                            </div>
-                
-                            <!-- Modal footer -->
-                            <div class="modal-footer text-left">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
-                                <button type="submit" class="btn btn-primary" >Eliminar mi reserva</button>
-                            </div>
-                        </form>
-                        <!-- Modal body -->
-            
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
         </div>
 
         <!-- MODAL ELIMINAR CUENTA -->
         <div class="container">
             <div class="row">
-              <div class="col">
-                <div class="modal" id="ModalEliminCuent">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-            
-                        <!-- Modal Header -->
-                        <div class="modal-header bg-danger">
-                            <h5 class="modal-title text-white">¿Está Seguro?</h5>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="col">
+                    <div class="modal" id="ModalEliminCuent">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header bg-danger">
+                                    <h5 class="modal-title text-white">¿Está Seguro?</h5>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <form action="api/eliminarCuenta" method="post">
+                                    <input type="hidden" id="UsuarioElimina" name="UsuarioElimina">
+                                    <div class="modal-body">
+                                        <p class="text-dark">Va a eliminar su cuenta, este paso no se puede revertir</p>
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer text-left">
+                                        <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Eliminar mi cuenta</button>
+                                    </div>
+                                </form>
+                                <!-- Modal body -->
+
+                            </div>
                         </div>
-                        <form action="api/eliminarCuenta" method="post">
-                            <input type="hidden" id="UsuarioElimina" name="UsuarioElimina">
-                            <div class="modal-body">
-                                <p class="text-dark">Va a eliminar su cuenta, este paso no se puede revertir</p>
-                            </div>
-                
-                            <!-- Modal footer -->
-                            <div class="modal-footer text-left">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
-                                <button type="submit" class="btn btn-primary" >Eliminar mi cuenta</button>
-                            </div>
-                        </form>
-                        <!-- Modal body -->
-            
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
         </div>
     </div>
     <footer></footer>
-    <!-- <div class="fondo"></div> -->
-    <!-- Meter Scripts en un fichero js -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

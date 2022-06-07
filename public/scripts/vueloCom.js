@@ -9,22 +9,18 @@ const parametros = new URLSearchParams(queryURL)
 let errorURL = parametros.get('error')
 
 function init(){
-    document.querySelector("#envio").addEventListener("click", despFormulario)
-    let resp = Response
-
-    tempAlert(4000, errorURL)
-
+    tempAlert(4000, errorURL) //Leemos error de la URL
     initPaises() //Inicializar paises Form
-
+    
     // Inicializamos el input
     let fechaAct = new Date(Date.now())
     document.querySelector("#fechaIn").value = fechaAct.getFullYear()+"-"+mesFormat(fechaAct.getMonth())
-
+    
     // Inicializamos los métodos de pago
     for(item of metodosPago){
         document.querySelector('#payMeth').innerHTML += `<option value='${item[0]}'>${item[1]}</option>`
     }
-
+    
     // Rellenamos los campos con los datos del usuario registrado
     fetch('/api/compCookie'+getCookie('usuario'))
     .then(res => res.json())
@@ -40,11 +36,12 @@ function init(){
                 document.querySelector("#country").value = data[0].pais
                 document.querySelector("#idUsuario").value = data[0].id_usuario
             })
-    
+            
         }
     })
-
+    
     //Listeners
+    document.querySelector("#envio").addEventListener("click", despFormulario)
     document.querySelector("#atras").addEventListener("click", atrasForm)
     document.querySelector("#formulario1").addEventListener("submit", validarForm)
 }

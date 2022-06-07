@@ -45,6 +45,8 @@ vuelos.getVuelosCarga = function (request, response) {
 
 }
 
+//CONTROLADOR VUELOS CARGA
+
 vuelos.cancelarVueloCarga = (request, response) => {
     let id_reserva = request.query.id
     let id_vueloVar

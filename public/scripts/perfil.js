@@ -66,7 +66,7 @@ function init(){
                 initBotonesMod()
             }else{
                 // Si no ha reservado vuelos, solo se muestran los campos de registro
-                document.querySelector("#datosSecundarios").style.display = 'none'
+                // document.querySelector("#datosSecundarios").style.display = 'none'
                 divVuelos.innerHTML += '<div class="row"><div class="col">No ha reservado ningun vuelo</div></div>'
             }
         })
@@ -176,7 +176,7 @@ function EnviarModificacion(){
             btnAnul.innerHTML = "Anular"
             btnAnul.className = 'btn btn-danger'
             
-        }else if(resp.status == 404){
+        }else if(resp.status == 400){
             console.log('ERROR') //METER ERROR AQUI
         }
         this.disabled = false
@@ -244,7 +244,7 @@ function generarSel(metodo_pago){
 }
 
 // Recalcular precio vuelo
-function recalcularPrecio(idVuelo){
+function recalcularPrecio(){
     let vueloMod = this.id.slice(7)
     document.querySelector("#Prec"+vueloMod).innerHTML = pintarPrecio(this.value * document.querySelector("#Prec"+vueloMod).attributes[1].value)
     //Ocultamos en el name el precio del asiento para evitar harcode
