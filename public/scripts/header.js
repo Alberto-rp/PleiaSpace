@@ -15,9 +15,31 @@ function initHead() {
 
         // Iluminar colores
         let elementos = document.querySelectorAll(".nav-item")
+        //Seleccionamos todos los apartados de la cabecera
+
         for (item of elementos) {
+            //Listeners iluminantes
             item.addEventListener("mouseover", iluminarBtn)
             item.addEventListener("mouseout", borrarBtn)
+
+            console.log(item.children[0].href.split('/')[3])
+
+            //Resaltado segun donde estemos
+            if('/'+item.children[0].href.split('/')[3] == window.location.pathname){
+                item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
+            }
+
+            if(window.location.pathname == '/historia' || window.location.pathname == '/empleo'){
+                if(item.children[0].id == 'navbardrop1'){
+                    item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
+                }
+            }
+
+            if(window.location.pathname == '/perfil' || window.location.pathname == '/login' || window.location.pathname == '/registro'){
+                if(item.children[0].id == 'navbardrop'){
+                    item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
+                }
+            }
         }
     });
 
@@ -56,6 +78,8 @@ function initHead() {
                             //Cambiamos login y registro por perfil y logout
                             document.querySelector("#variables_perfil").innerHTML = `<a class="dropdown-item" href="/perfil">Perfil</a>
                                                                                     <a class="dropdown-item" href="/api/logout">Logout</a>`
+                            comprobarUbicacion()
+                            //Comprobamos ubicacion para volver a resaltar el perfil si estamos ahí
                         })
 
                 }
@@ -83,6 +107,14 @@ function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function comprobarUbicacion(){
+    if(window.location.pathname == '/perfil' || window.location.pathname == '/login' || window.location.pathname == '/registro'){
+        if(item.children[0].id == 'navbardrop'){
+            item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
+        }
+    }
 }
 
 //OCULTAR AVISO COOKIES
