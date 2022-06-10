@@ -22,8 +22,6 @@ function initHead() {
             item.addEventListener("mouseover", iluminarBtn)
             item.addEventListener("mouseout", borrarBtn)
 
-            console.log(item.children[0].href.split('/')[3])
-
             //Resaltado segun donde estemos
             if('/'+item.children[0].href.split('/')[3] == window.location.pathname){
                 item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
@@ -33,10 +31,12 @@ function initHead() {
                 if(item.children[0].id == 'navbardrop1'){
                     item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
                 }
-            }
-
-            if(window.location.pathname == '/perfil' || window.location.pathname == '/login' || window.location.pathname == '/registro'){
+            }else if(window.location.pathname == '/perfil' || window.location.pathname == '/login' || window.location.pathname == '/registro'){
                 if(item.children[0].id == 'navbardrop'){
+                    item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
+                }
+            }else if(window.location.pathname == '/vehiculos_atlas' || window.location.pathname == '/vehiculos_electra'){
+                if(item.children[0].id == 'vehicls'){
                     item.children[0].innerHTML = `<b>${item.children[0].innerHTML}<b>`
                 }
             }
