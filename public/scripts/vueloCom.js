@@ -145,6 +145,8 @@ function mesFormat(mes){
 }
 
 function nextStep(e){
+    window.scrollTo(0, 0);//Para volver arriba de la pag donde esta el alert
+
     document.body.style.paddingTop = '6rem'
     document.querySelector("#jumbo").style.display = "none"
     
